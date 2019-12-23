@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Appendix: useful financial concepts | Financial Analytics</title>
+  <meta name="description" content="This is a practice manual using R for financial analytics." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Appendix: useful financial concepts | Financial Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a practice manual using R for financial analytics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Appendix: useful financial concepts | Financial Analytics" />
+  
+  <meta name="twitter:description" content="This is a practice manual using R for financial analytics." />
+  
+
+<meta name="author" content="Bill Foote" />
+
+
+<meta name="date" content="2019-12-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="appendix-1-r-environment-for-financial-analytics.html"/>
+<link rel="next" href="references-4.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-basic-problem"><i class="fa fa-check"></i><b>1.1</b> The basic problem</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#analytics"><i class="fa fa-check"></i><b>1.2</b> Analytics</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.3</b> Why this book?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-useful-way-to-start-private-placement-finance"><i class="fa fa-check"></i><b>1.4</b> A useful way to start: private placement finance</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#the-market-for-private-placement"><i class="fa fa-check"></i><b>1.4.1</b> The market for private placement</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#a-deal-emerges-from-the-mist"><i class="fa fa-check"></i><b>1.4.2</b> A deal emerges from the mist</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#chapter-outline"><i class="fa fa-check"></i><b>1.5</b> Chapter Outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html"><i class="fa fa-check"></i><b>2</b> R Warm-ups in Finance</a><ul>
+<li class="chapter" data-level="2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#imagine-this"><i class="fa fa-check"></i><b>2.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#modeling-process"><i class="fa fa-check"></i><b>2.1.1</b> Modeling process</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#chapter-overview"><i class="fa fa-check"></i><b>2.1.2</b> Chapter overview</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#what-is-r"><i class="fa fa-check"></i><b>2.1.3</b> What is <code>R</code>?</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-for-analytics"><i class="fa fa-check"></i><b>2.1.4</b> <code>R</code> for analytics</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#hot-and-cold-running-resources"><i class="fa fa-check"></i><b>2.1.5</b> Hot and cold running resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#tickling-the-ivories"><i class="fa fa-check"></i><b>2.2</b> Tickling the Ivories</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise"><i class="fa fa-check"></i><b>2.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#building-some-character"><i class="fa fa-check"></i><b>2.3</b> Building Some Character</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#the-plot-thickens"><i class="fa fa-check"></i><b>2.3.1</b> The plot thickens</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-example"><i class="fa fa-check"></i><b>2.3.2</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#arrays-and-you"><i class="fa fa-check"></i><b>2.4</b> Arrays and You</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise-1"><i class="fa fa-check"></i><b>2.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-about-residuals"><i class="fa fa-check"></i><b>2.4.2</b> More about residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-array-work"><i class="fa fa-check"></i><b>2.5</b> More Array Work</a></li>
+<li class="chapter" data-level="2.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+<li class="chapter" data-level="2.7" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#further-reading"><i class="fa fa-check"></i><b>2.7</b> Further Reading</a></li>
+<li class="chapter" data-level="2.8" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#practice-set"><i class="fa fa-check"></i><b>2.8</b> Practice Set</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#purpose-process-product"><i class="fa fa-check"></i><b>2.8.1</b> Purpose, Process, Product</a></li>
+<li class="chapter" data-level="2.8.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-markdown-set-up"><i class="fa fa-check"></i><b>2.8.2</b> <code>R Markdown</code> set up</a></li>
+<li class="chapter" data-level="2.8.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-1-a-financial-planning-problem"><i class="fa fa-check"></i><b>2.8.3</b> Exercise 1: a financial planning problem</a></li>
+<li class="chapter" data-level="2.8.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-2-risk-driver-model-using-regression-analysis"><i class="fa fa-check"></i><b>2.8.4</b> Exercise 2: risk driver model using regression analysis</a></li>
+<li class="chapter" data-level="2.8.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-3-commercial-loan-projection-using-regression"><i class="fa fa-check"></i><b>2.8.5</b> Exercise 3: commercial loan projection using regression</a></li>
+<li class="chapter" data-level="2.8.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#work-flow"><i class="fa fa-check"></i><b>2.8.6</b> Work Flow</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-data-modeling.html"><a href="r-data-modeling.html"><i class="fa fa-check"></i><b>3</b> R Data Modeling</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#imagine-this-1"><i class="fa fa-check"></i><b>3.1</b> Imagine This</a></li>
+<li class="chapter" data-level="3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-tables-and-vertical-lookups"><i class="fa fa-check"></i><b>3.2</b> Pivot tables and Vertical Lookups</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#some-definitions"><i class="fa fa-check"></i><b>3.2.1</b> Some definitions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-and-parry"><i class="fa fa-check"></i><b>3.2.2</b> Pivot and Parry</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-2"><i class="fa fa-check"></i><b>3.2.3</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#now-to-vlookup"><i class="fa fa-check"></i><b>3.2.4</b> Now to VLOOKUP</a></li>
+<li class="chapter" data-level="3.2.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-3"><i class="fa fa-check"></i><b>3.2.5</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#why-functions"><i class="fa fa-check"></i><b>3.3</b> Why Functions?</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-should-be-a-function"><i class="fa fa-check"></i><b>3.3.1</b> What should be a function?</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#shooting-trouble"><i class="fa fa-check"></i><b>3.3.2</b> Shooting trouble</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-the-function-can-see-and-do"><i class="fa fa-check"></i><b>3.3.3</b> What the function can see and do</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this"><i class="fa fa-check"></i><b>3.3.4</b> Try this …</a></li>
+<li class="chapter" data-level="3.3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#mind-the-interface"><i class="fa fa-check"></i><b>3.3.5</b> Mind the Interface!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#making-distributions"><i class="fa fa-check"></i><b>3.4</b> Making distributions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-4"><i class="fa fa-check"></i><b>3.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#picture-this"><i class="fa fa-check"></i><b>3.4.2</b> Picture this</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-another-exercise"><i class="fa fa-check"></i><b>3.4.3</b> Try another exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#optimization"><i class="fa fa-check"></i><b>3.5</b> Optimization</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-5"><i class="fa fa-check"></i><b>3.5.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="r-data-modeling.html"><a href="r-data-modeling.html#estimate-until-morale-improves"><i class="fa fa-check"></i><b>3.6</b> Estimate until morale improves…</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-6"><i class="fa fa-check"></i><b>3.6.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="r-data-modeling.html"><a href="r-data-modeling.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
+<li class="chapter" data-level="3.8" data-path="r-data-modeling.html"><a href="r-data-modeling.html#further-reading-1"><i class="fa fa-check"></i><b>3.8</b> Further Reading</a></li>
+<li class="chapter" data-level="3.9" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-sets"><i class="fa fa-check"></i><b>3.9</b> Practice Sets</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-a"><i class="fa fa-check"></i><b>3.9.1</b> Set A</a></li>
+<li class="chapter" data-level="3.9.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-b"><i class="fa fa-check"></i><b>3.9.2</b> Set B</a></li>
+<li class="chapter" data-level="3.9.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-set-debrief"><i class="fa fa-check"></i><b>3.9.3</b> Practice Set Debrief</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="r-data-modeling.html"><a href="r-data-modeling.html#project"><i class="fa fa-check"></i><b>3.10</b> Project</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#background"><i class="fa fa-check"></i><b>3.10.1</b> Background</a></li>
+<li class="chapter" data-level="3.10.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#data"><i class="fa fa-check"></i><b>3.10.2</b> Data</a></li>
+<li class="chapter" data-level="3.10.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#workflow"><i class="fa fa-check"></i><b>3.10.3</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="r-data-modeling.html"><a href="r-data-modeling.html#references"><i class="fa fa-check"></i><b>3.11</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Macrofinancial Data Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#imagine-this-2"><i class="fa fa-check"></i><b>4.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#working-an-example"><i class="fa fa-check"></i><b>4.1.1</b> Working an example</a></li>
+<li class="chapter" data-level="4.1.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#how-we-will-proceed"><i class="fa fa-check"></i><b>4.1.2</b> How we will proceed</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#building-the-stylized-facts"><i class="fa fa-check"></i><b>4.2</b> Building the Stylized Facts</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#implications"><i class="fa fa-check"></i><b>4.2.1</b> Implications</a></li>
+<li class="chapter" data-level="4.2.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#now-for-somthing-really-interestingagain"><i class="fa fa-check"></i><b>4.2.2</b> Now for somthing really interesting…again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#getting-caught-in-the-cross-current"><i class="fa fa-check"></i><b>4.3</b> Getting Caught in the Cross-Current</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#on-to-quantiles"><i class="fa fa-check"></i><b>4.3.1</b> On to quantiles</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#time-is-on-our-side"><i class="fa fa-check"></i><b>4.4</b> Time is on our Side</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#forecasting-gnp"><i class="fa fa-check"></i><b>4.4.1</b> Forecasting GNP</a></li>
+<li class="chapter" data-level="4.4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#residuals-again"><i class="fa fa-check"></i><b>4.4.2</b> Residuals again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#give-it-the-boot"><i class="fa fa-check"></i><b>4.5</b> Give it the Boot</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#exercises"><i class="fa fa-check"></i><b>4.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#summary-2"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
+<li class="chapter" data-level="4.7" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#further-reading-2"><i class="fa fa-check"></i><b>4.7</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="market-risk.html"><a href="market-risk.html"><i class="fa fa-check"></i><b>5</b> Market Risk</a><ul>
+<li class="chapter" data-level="5.1" data-path="market-risk.html"><a href="market-risk.html#imagine-this-3"><i class="fa fa-check"></i><b>5.1</b> Imagine This</a></li>
+<li class="chapter" data-level="5.2" data-path="market-risk.html"><a href="market-risk.html#what-is-market-risk"><i class="fa fa-check"></i><b>5.2</b> What is Market Risk?</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="market-risk.html"><a href="market-risk.html#try-this-exercise-7"><i class="fa fa-check"></i><b>5.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="market-risk.html"><a href="market-risk.html#history-speaks"><i class="fa fa-check"></i><b>5.3</b> History Speaks</a></li>
+<li class="chapter" data-level="5.4" data-path="market-risk.html"><a href="market-risk.html#now-to-the-matter-at-hand"><i class="fa fa-check"></i><b>5.4</b> Now to the Matter at Hand</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-1"><i class="fa fa-check"></i><b>5.4.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="market-risk.html"><a href="market-risk.html#carl-friedrich-gauss-i-presume"><i class="fa fa-check"></i><b>5.5</b> Carl Friedrich Gauss, I Presume…</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-2"><i class="fa fa-check"></i><b>5.5.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="market-risk.html"><a href="market-risk.html#back-to-the-future"><i class="fa fa-check"></i><b>5.6</b> Back to the Future</a></li>
+<li class="chapter" data-level="5.7" data-path="market-risk.html"><a href="market-risk.html#try-this-example-3"><i class="fa fa-check"></i><b>5.7</b> Try this example</a></li>
+<li class="chapter" data-level="5.8" data-path="market-risk.html"><a href="market-risk.html#lets-go-to-extremes"><i class="fa fa-check"></i><b>5.8</b> Let’s Go to Extremes</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-4"><i class="fa fa-check"></i><b>5.8.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="market-risk.html"><a href="market-risk.html#all-together-now"><i class="fa fa-check"></i><b>5.9</b> All Together Now</a></li>
+<li class="chapter" data-level="5.10" data-path="market-risk.html"><a href="market-risk.html#summary-3"><i class="fa fa-check"></i><b>5.10</b> Summary</a></li>
+<li class="chapter" data-level="5.11" data-path="market-risk.html"><a href="market-risk.html#further-reading-3"><i class="fa fa-check"></i><b>5.11</b> Further Reading</a></li>
+<li class="chapter" data-level="5.12" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory"><i class="fa fa-check"></i><b>5.12</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="5.12.1" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-1"><i class="fa fa-check"></i><b>5.12.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="5.12.2" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-2"><i class="fa fa-check"></i><b>5.12.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="market-risk.html"><a href="market-risk.html#project-1"><i class="fa fa-check"></i><b>5.13</b> Project</a><ul>
+<li class="chapter" data-level="5.13.1" data-path="market-risk.html"><a href="market-risk.html#background-1"><i class="fa fa-check"></i><b>5.13.1</b> Background</a></li>
+<li class="chapter" data-level="5.13.2" data-path="market-risk.html"><a href="market-risk.html#data-1"><i class="fa fa-check"></i><b>5.13.2</b> Data</a></li>
+<li class="chapter" data-level="5.13.3" data-path="market-risk.html"><a href="market-risk.html#workflow-1"><i class="fa fa-check"></i><b>5.13.3</b> Workflow</a></li>
+<li class="chapter" data-level="5.13.4" data-path="market-risk.html"><a href="market-risk.html#assessment"><i class="fa fa-check"></i><b>5.13.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="market-risk.html"><a href="market-risk.html#references-1"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html"><i class="fa fa-check"></i><b>6</b> Portfolio Analytics</a><ul>
+<li class="chapter" data-level="6.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#imagine-this-4"><i class="fa fa-check"></i><b>6.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#our-working-example"><i class="fa fa-check"></i><b>6.1.1</b> Our “working example”</a></li>
+<li class="chapter" data-level="6.1.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#this-chapter"><i class="fa fa-check"></i><b>6.1.2</b> This chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-walk-before-we-run"><i class="fa fa-check"></i><b>6.2</b> Let’s Walk Before We Run</a></li>
+<li class="chapter" data-level="6.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#all-in"><i class="fa fa-check"></i><b>6.3</b> All In</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-8"><i class="fa fa-check"></i><b>6.3.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="6.3.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-keep-moving-on"><i class="fa fa-check"></i><b>6.3.2</b> Let’s keep moving on…</a></li>
+<li class="chapter" data-level="6.3.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-9"><i class="fa fa-check"></i><b>6.3.3</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#optimizing-a-portfolio"><i class="fa fa-check"></i><b>6.4</b> Optimizing a Portfolio</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-10"><i class="fa fa-check"></i><b>6.4.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#summary-4"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#further-reading-4"><i class="fa fa-check"></i><b>6.6</b> Further Reading</a></li>
+<li class="chapter" data-level="6.7" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-3"><i class="fa fa-check"></i><b>6.7</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-1-1"><i class="fa fa-check"></i><b>6.7.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="6.7.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-2-1"><i class="fa fa-check"></i><b>6.7.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#project-2"><i class="fa fa-check"></i><b>6.8</b> Project</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#background-2"><i class="fa fa-check"></i><b>6.8.1</b> Background</a></li>
+<li class="chapter" data-level="6.8.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#data-2"><i class="fa fa-check"></i><b>6.8.2</b> Data</a></li>
+<li class="chapter" data-level="6.8.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#workflow-2"><i class="fa fa-check"></i><b>6.8.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.8.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#assessment-1"><i class="fa fa-check"></i><b>6.8.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#references-2"><i class="fa fa-check"></i><b>6.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html"><i class="fa fa-check"></i><b>7</b> Aggregating Enterprise Risk</a><ul>
+<li class="chapter" data-level="7.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-problem-with-enterprise-risk"><i class="fa fa-check"></i><b>7.1</b> The Problem with Enterprise Risk</a></li>
+<li class="chapter" data-level="7.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-make-copulas"><i class="fa fa-check"></i><b>7.2</b> Let’s make copulas</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#we-do-this-from-scratch."><i class="fa fa-check"></i><b>7.2.1</b> We do this from scratch.</a></li>
+<li class="chapter" data-level="7.2.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example"><i class="fa fa-check"></i><b>7.2.2</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#sklars-in-the-house"><i class="fa fa-check"></i><b>7.3</b> Sklar’s in the house…</a></li>
+<li class="chapter" data-level="7.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analyze-that"><i class="fa fa-check"></i><b>7.4</b> Analyze that…</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-1"><i class="fa fa-check"></i><b>7.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#risk-measures"><i class="fa fa-check"></i><b>7.5</b> Risk measures</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-2"><i class="fa fa-check"></i><b>7.5.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-build-an-app"><i class="fa fa-check"></i><b>7.6</b> Let’s build an app …</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analytics-1"><i class="fa fa-check"></i><b>7.6.1</b> Analytics</a></li>
+<li class="chapter" data-level="7.6.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#ui"><i class="fa fa-check"></i><b>7.6.2</b> UI</a></li>
+<li class="chapter" data-level="7.6.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#server"><i class="fa fa-check"></i><b>7.6.3</b> Server</a></li>
+<li class="chapter" data-level="7.6.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#application-generator"><i class="fa fa-check"></i><b>7.6.4</b> Application generator</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-simulation-function"><i class="fa fa-check"></i><b>7.7</b> The simulation function</a></li>
+<li class="chapter" data-level="7.8" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-ui"><i class="fa fa-check"></i><b>7.8</b> The UI</a></li>
+<li class="chapter" data-level="7.9" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-server"><i class="fa fa-check"></i><b>7.9</b> The server</a></li>
+<li class="chapter" data-level="7.10" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#run-the-app"><i class="fa fa-check"></i><b>7.10</b> Run the app</a></li>
+<li class="chapter" data-level="7.11" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#what-else-could-we-do"><i class="fa fa-check"></i><b>7.11</b> What else could we do?</a></li>
+<li class="chapter" data-level="7.12" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#summary-5"><i class="fa fa-check"></i><b>7.12</b> Summary</a></li>
+<li class="chapter" data-level="7.13" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#further-reading-5"><i class="fa fa-check"></i><b>7.13</b> Further Reading</a></li>
+<li class="chapter" data-level="7.14" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-4"><i class="fa fa-check"></i><b>7.14</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="7.14.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-1-2"><i class="fa fa-check"></i><b>7.14.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="7.14.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-2-2"><i class="fa fa-check"></i><b>7.14.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="7.15" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#project-3"><i class="fa fa-check"></i><b>7.15</b> Project</a><ul>
+<li class="chapter" data-level="7.15.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#background-3"><i class="fa fa-check"></i><b>7.15.1</b> Background</a></li>
+<li class="chapter" data-level="7.15.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#data-3"><i class="fa fa-check"></i><b>7.15.2</b> Data</a></li>
+<li class="chapter" data-level="7.15.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#workflow-3"><i class="fa fa-check"></i><b>7.15.3</b> Workflow</a></li>
+<li class="chapter" data-level="7.15.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#assessment-2"><i class="fa fa-check"></i><b>7.15.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.16" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#references-3"><i class="fa fa-check"></i><b>7.16</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html"><i class="fa fa-check"></i><b>8</b> Appendix 1 – R environment for financial analytics</a><ul>
+<li class="chapter" data-level="8.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#setting-up-r-for-analytics"><i class="fa fa-check"></i><b>8.1</b> Setting Up R for Analytics</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#some-useful-r-resources"><i class="fa fa-check"></i><b>8.1.2</b> Some useful <code>R</code> resources</a></li>
+<li class="chapter" data-level="8.1.3" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>8.1.3</b> Install <code>R</code> on your computer</a></li>
+<li class="chapter" data-level="8.1.4" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-rstudio"><i class="fa fa-check"></i><b>8.1.4</b> Install <code>RStudio</code></a></li>
+<li class="chapter" data-level="8.1.5" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-markdown"><i class="fa fa-check"></i><b>8.1.5</b> Install <code>R Markdown</code></a></li>
+<li class="chapter" data-level="8.1.6" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-latex"><i class="fa fa-check"></i><b>8.1.6</b> Install LaTex</a></li>
+<li class="chapter" data-level="8.1.7" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#r-markdown"><i class="fa fa-check"></i><b>8.1.7</b> R Markdown</a></li>
+<li class="chapter" data-level="8.1.8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#jargon"><i class="fa fa-check"></i><b>8.1.8</b> jaRgon</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#nomenclature"><i class="fa fa-check"></i><b>8.2</b> Nomenclature</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html"><i class="fa fa-check"></i><b>9</b> Appendix: useful financial concepts</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#a-question-is-raised"><i class="fa fa-check"></i><b>9.0.1</b> A question is raised</a></li>
+<li class="chapter" data-level="9.0.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#jacob-bernoulli-has-a-story-to-tell"><i class="fa fa-check"></i><b>9.0.2</b> Jacob Bernoulli has a story to tell</a></li>
+<li class="chapter" data-level="9.0.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#wheres-the-finance"><i class="fa fa-check"></i><b>9.0.3</b> Where’s the finance?</a></li>
+<li class="chapter" data-level="9.0.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#the-answer-please"><i class="fa fa-check"></i><b>9.0.4</b> The answer please?</a></li>
+<li class="chapter" data-level="9.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#net-present-value"><i class="fa fa-check"></i><b>9.1</b> Net present value</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-net-present-value"><i class="fa fa-check"></i><b>9.1.1</b> What is net present value?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-do-companies-typically-use-it-for"><i class="fa fa-check"></i><b>9.1.2</b> What do companies typically use it for?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-npv"><i class="fa fa-check"></i><b>9.1.3</b> How can we calculate NPV?</a></li>
+<li class="chapter" data-level="9.1.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong"><i class="fa fa-check"></i><b>9.1.4</b> What can go wrong?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#internal-rate-of-return"><i class="fa fa-check"></i><b>9.2</b> Internal rate of return</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-internal-rate-of-return"><i class="fa fa-check"></i><b>9.2.1</b> What is the internal rate of return?</a></li>
+<li class="chapter" data-level="9.2.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-irr"><i class="fa fa-check"></i><b>9.2.2</b> How can we calculate IRR?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong-1"><i class="fa fa-check"></i><b>9.2.3</b> What can go wrong?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-foreign-exchange-market"><i class="fa fa-check"></i><b>9.2.4</b> What is the foreign exchange market?</a></li>
+<li class="chapter" data-level="9.2.5" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rates"><i class="fa fa-check"></i><b>9.2.5</b> What are exchange rates?</a></li>
+<li class="chapter" data-level="9.2.6" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-a-foreign-exchange-arrbitrage"><i class="fa fa-check"></i><b>9.2.6</b> What is a foreign exchange arrbitrage?</a></li>
+<li class="chapter" data-level="9.2.7" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-you-hedge-with-foreign-exchange"><i class="fa fa-check"></i><b>9.2.7</b> How can you hedge with foreign exchange?</a></li>
+<li class="chapter" data-level="9.2.8" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#covered-interest-arbitrage"><i class="fa fa-check"></i><b>9.2.8</b> Covered interest arbitrage</a></li>
+<li class="chapter" data-level="9.2.9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rate-movements"><i class="fa fa-check"></i><b>9.2.9</b> What are exchange rate movements?</a></li>
+<li class="chapter" data-level="9.2.10" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-financial-services-benefit"><i class="fa fa-check"></i><b>9.2.10</b> How can financial services benefit?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-4.html"><a href="references-4.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Financial Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-useful-financial-concepts" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Appendix: useful financial concepts</h1>
+<p>In this appendix we will discuss returns, especially continuously compounded returns, net present value, internal rate of return, foreign exchange markets, and other fascinating topics.</p>
+<div id="a-question-is-raised" class="section level3">
+<h3><span class="header-section-number">9.0.1</span> A question is raised</h3>
+<blockquote>
+<p>Why do we take differences of logarithms to calculate returns?</p>
+</blockquote>
+<p>A great question deserves a story.</p>
+<p>You can find the <a href="https://turing.manhattan.edu/~wfoote01/finalytics/_site/RMD/e-ln-returns.Rmd">source code here.</a></p>
+</div>
+<div id="jacob-bernoulli-has-a-story-to-tell" class="section level3">
+<h3><span class="header-section-number">9.0.2</span> Jacob Bernoulli has a story to tell</h3>
+<p>In 1683, Jacob Bernoulli posed this problem in compound interest:</p>
+<ol style="list-style-type: decimal">
+<li>Invest 1 ducat for 1 year at 100% interest. This yields</li>
+</ol>
+<p><span class="math display">\[ 
+I = I ( 1 + r) ^t = 1 (1 + 1)^1 = 2
+\]</span>
+\indent where <span class="math inline">\(I =\)</span> investment at the beginning of the year, <span class="math inline">\(r =\)</span> the return in one year, and <span class="math inline">\(t =\)</span> the number of years (in this case simply 1 year).</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Invest 1 ducat for one-half a year at annual rate $r = $ 1 and semi-annual equivalent $r/2 = $0.5. Reinvest what you earn in one-half a year for another one-half a year. This yields</li>
+</ol>
+<p><span class="math display">\[ 
+I = I ( 1 + r/2) (1 + r/2) = 1 (1 + 0.5)^2 = 2.25
+\]</span>
+3. Invest 1 ducat for one-quarter of a year at annual rate $r = $ 1 and quarterly equivalent $r/4 = $0.25. Reinvest what you earn in a quarter for another quarter. Invest the two quarter balance for the third. Invest the three quarter balance for the fourth and final quarter. This yields</p>
+<p><span class="math display">\[ 
+I = I ( 1 + r/4) (1 + r/4) (1 + r/4) (1 + r/4) = 1 (1 + 0.25)^4 = 2.441
+\]</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Cut up the quarter into smaller and smaller time units, also known as <strong>compounding periods</strong>. Say we are now at an investment period of only one day. There are 365 days in this year. There are thus 365 compounding periods. Using the same logic we get</li>
+</ol>
+<p><span class="math display">\[ 
+I = I ( 1 + r/365) (1 + r/365) ... (1 + r/365) = 1 (1 + 0.003)^{365} = 2.715
+\]</span></p>
+<p>In general, Bernoulli was calculating the expression</p>
+<p><span class="math display">\[
+\left(1 + \frac{1}{n}\right)^n
+\]</span>
+as <span class="math inline">\(n \rightarrow \infty\)</span>, that is, as the number of compounding periods <span class="math inline">\(n\)</span> got ever larger. In the limit, this expression converges to the transcendental number <span class="math inline">\(e=\)</span> 2.718.</p>
+<p><em>In finance, this is the equivalent of earning 2.718 ducats in a year for an investment of 1 ducat at the beginning of the year at 100% rate of return per year compounded continuously.</em></p>
+<p>Here is a picture of the calculated approximation of <span class="math inline">\(e\)</span> versus the number of compounding periods <span class="math inline">\(n\)</span>.</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" title="1"><span class="kw">library</span>(ggplot2) <span class="co"># to plot e approximation versus number of compounding periods</span></a>
+<a class="sourceLine" id="cb460-2" title="2"><span class="kw">library</span>(latex2exp) <span class="co"># to build latex math expressions in ggplot using TeX to generatelatex string</span></a>
+<a class="sourceLine" id="cb460-3" title="3"><span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">5</span>) <span class="co"># overall rounding</span></a>
+<a class="sourceLine" id="cb460-4" title="4">r &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># 100% annual rate of return as in Bernoulli (1683)</span></a>
+<a class="sourceLine" id="cb460-5" title="5">t &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># one year as in Bernoullil (1683)</span></a>
+<a class="sourceLine" id="cb460-6" title="6">n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">365</span> <span class="co"># number of compounding periods</span></a>
+<a class="sourceLine" id="cb460-7" title="7">e_approx &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>r<span class="op">/</span>n)<span class="op">^</span>n <span class="co"># vector of e approximations</span></a>
+<a class="sourceLine" id="cb460-8" title="8">e_asymptote &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">exp</span>(r<span class="op">*</span>t), <span class="dv">5</span>) <span class="co"># need to round result for ggplot</span></a>
+<a class="sourceLine" id="cb460-9" title="9">e_label &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;e = &quot;</span>, e_asymptote) <span class="co"># horizontal label for asymptote</span></a>
+<a class="sourceLine" id="cb460-10" title="10">e_title &lt;-<span class="st"> &quot;Jacob Bernoulli&#39;s 1683 compound interest experiment&quot;</span> <span class="co"># graph title</span></a>
+<a class="sourceLine" id="cb460-11" title="11">y_label &lt;-<span class="st"> </span><span class="kw">TeX</span>(<span class="st">&#39;$(1 + 1/n)^n$&#39;</span>) <span class="co"># rmarkdown needs \\ for latex escape</span></a>
+<a class="sourceLine" id="cb460-12" title="12">e_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">e_approx =</span> e_approx, <span class="dt">n =</span> n) <span class="co"># data frame needed for ggplot</span></a>
+<a class="sourceLine" id="cb460-13" title="13"><span class="kw">ggplot</span>(e_df, <span class="kw">aes</span>(<span class="dt">x =</span> n, <span class="dt">y =</span> e_approx)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb460-14" title="14"><span class="st">  </span><span class="kw">ylab</span>(y_label) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb460-15" title="15"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;n compounding periods&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb460-16" title="16"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb460-17" title="17"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> e_asymptote, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb460-18" title="18"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">label =</span> e_label, <span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">y =</span> e_asymptote <span class="op">+</span><span class="st"> </span><span class="fl">0.04</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span> ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb460-19" title="19"><span class="st">  </span><span class="kw">ggtitle</span>(e_title)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/experiment-1.png" width="672" />
+Calculations are rounded to 5 decimal places.</p>
+</div>
+<div id="wheres-the-finance" class="section level3">
+<h3><span class="header-section-number">9.0.3</span> Where’s the finance?</h3>
+<p>In finance, and in Bernoulli’s example, <span class="math inline">\(r =\)</span> 1.00, or an annual return of 100%. For a duration of <span class="math inline">\(t=\)</span> 1 year, an investor would earn</p>
+<p><span class="math display">\[
+Ie^{rt} = 1 \times e^{1.00 \times 1} = 2.71828
+\]</span>
+if the investor could earn continuously through every minute, every second of every day in the year.</p>
+<p>For example, let the investor earn <span class="math inline">\(r=\)</span> 5% per year on a $1,000 investment for one month. The number of years in a single month is a fraction <span class="math inline">\(t=1/12\)</span> 0.08333. The investor would have at the end of a month</p>
+<p><span class="math display">\[
+Ie^{rt} = 1000 \times e^{0.05 \times (1/12)} = 1004.17536
+\]</span></p>
+<p>We calculate the inverse of <span class="math inline">\(e^{rt}\)</span> to calculate, isolate <span class="math inline">\(r\)</span>. This <span class="math inline">\(r\)</span> is the annually continuously compounded rate of return. In algebra, <span class="math inline">\(e\)</span> is the base and <span class="math inline">\(rt\)</span> is the exponent.</p>
+<p>The inverse of any exponential term is the logarithm. The natural logarithm, <span class="math inline">\(ln()\)</span>, is the logarithm to the base <span class="math inline">\(e\)</span>. For any base raised to a power, the logarithm answers the question: “What is the power?” In finance, we have a future value. With continuous compounding, we ask: “What is the corresponding rate of return?”</p>
+<p>Here date 0 is the beginning of the month and date 1 is the end of the month. Let’s name the result at the end of one month <span class="math inline">\(I_1\)</span> and the investment at the beginning of the month <span class="math inline">\(I_0\)</span>. Then we have with continuous compounding</p>
+<p><span class="math display">\[
+I_1 = I_0 e^{rt}
+\]</span>
+Divide both sides of the this equation by <span class="math inline">\(I_0\)</span> to get
+<span class="math display">\[
+\frac{I_1}{I_0} = e^{rt}
+\]</span>
+Then take logarithms of both sides to isolate <span class="math inline">\(rt\)</span> to get
+<span class="math display">\[
+ln \left(\frac{I_1}{I_0}\right) = ln(e^{rt}) = rt
+\]</span>
+From algebra we know that the log of a ratio is the same as the difference of the logs of the numerator and denominator. Then also dividing both sides by <span class="math inline">\(t\)</span>, the holding period, we have
+<span class="math display">\[
+r = \frac{ln(I_1)-ln(I_0)}{t} = \frac{6.91192 - 6.90776}{0.08333} = 0.05
+\]</span>
+We must remember that this is the annual rate of return continuously compounded over a one month holding period.</p>
+</div>
+<div id="the-answer-please" class="section level3">
+<h3><span class="header-section-number">9.0.4</span> The answer please?</h3>
+<blockquote>
+<p>The difference in logarithms is equivalent to the logarithm of the ratio of future to present value. The difference must be divided by the fraction (or multiple) of the annual holding period.</p>
+</blockquote>
+<p>Subtract one and it looks a lot like a percentage change in value, also known as the rate of return.</p>
+</div>
+<div id="net-present-value" class="section level2">
+<h2><span class="header-section-number">9.1</span> Net present value</h2>
+<div id="what-is-net-present-value" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> What is net present value?</h3>
+<p>Net present value (NPV) is the present value of the cash flows at the required rate of return of your project compared to an initial investment. In practical terms, it’s a method of calculating your return on investment, or ROI, for a project or expenditure. By looking at all of the money we expect to make from the investment and translating those returns into today’s dollars, you can decide whether the project is worthwhile.</p>
+<p>We translate all of the future cash flows into today’s dollars (or euros, yen, name it) by finding the present value of those flows. Present value is the amount of money today that fans out into future cashflows at a rate of return for each future period in which cash flow occurs. This process and metric is also referred to as the time value of money.</p>
+</div>
+<div id="what-do-companies-typically-use-it-for" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> What do companies typically use it for?</h3>
+<p>When a manager needs to compare projects and decide which ones to pursue, there are generally three options available: internal rate of return, payback method, and net present value. There are two reasons why financial analysts and investors use NPV.</p>
+<ul>
+<li><p>NPV considers the time value of money, translating future cash flows into today’s dollars.</p></li>
+<li><p>It provides a concrete number that managers can use to easily compare an initial outlay of cash against the present value of the return.</p></li>
+</ul>
+<p>It’s far superior to the payback method, which is the most commonly used. The attraction of payback is that it is simple to calculate and simple to understand: when will you make back the money you put in? But it doesn’t take into account that the buying power of money today is greater than the buying power of the same amount of money in the future. That’s what makes NPV a superior method. With financial calculators and Excel spreadsheets, NPV is now nearly just as easy to calculate as payback.</p>
+<p>Managers also use NPV to decide whether to make large purchases, such as equipment or software. It’s also used in mergers and acquisitions (though it’s called the discounted cash flow model in that scenario). In fact, it’s the model that Warren Buffet uses to evaluate companies. Any time a company is using today’s dollars for future returns, NPV is a solid choice.</p>
+</div>
+<div id="how-can-we-calculate-npv" class="section level3">
+<h3><span class="header-section-number">9.1.3</span> How can we calculate NPV?</h3>
+<p>There is an NPV function in Excel that makes it easy once you’ve entered your stream of costs and benefits. Many financial calculators, including ones on smart phones, also include an NPV function.</p>
+<p>Here is the math behind NPV. Let’s suppose we have this information about a contract your very good business associate wants to sell you for $950 today. You hope you can earn at least what the market makes. That amount is 10% per year. This means that if you put $1 into the earning machine, you expect $1.10 in one year.</p>
+<p>Year Cash Flow
+1 100
+2 1100</p>
+<p>How do we know if the price of the contract is right? We find the contract’s net present value. Here’s how
+we do it.</p>
+<p>The calculation looks like this:</p>
+<p>Find the amount of money today that translates into $100 in one year at 10% per year, that is, find the present value of $100 in one year at 10%. Call this number PV1.</p>
+<p><span class="math display">\[
+PV_1(1+0.10)=100
+\]</span></p>
+<p>Solve for PV_1 to get</p>
+<p><span class="math display">\[
+PV_1=1001.10=90.91
+\]</span></p>
+<p>Find the amount of money today that translates into $1,100 in two years at 10% per year, that is, find the present value of $1,100 in two years at 10%. Call this number <span class="math inline">\(PV_2\)</span>.
+We do this in two steps. In one year <span class="math inline">\(PV_2\)</span> will grow at 10% this way:</p>
+<p><span class="math display">\[
+PV_2(1+0.10)
+\]</span></p>
+<p>From the end of year one to the end of year two, PV2(1.1) will grow into this amount:</p>
+<p><span class="math display">\[
+PV_2(1+0.1)(1+0.1)
+\]</span></p>
+<p>All of this will yield $1,100:</p>
+<p><span class="math display">\[
+PV2(1.1)(1.1)=PV2(1.1)2=1100
+\]</span></p>
+<p>Solve for the amount of money today that grows at 10% per year to yield $1,100 in two years, PV2:
+PV2=11001.12=909.91</p>
+<p>Pull all of this into the Net Present Value (NPV). Today you pay $950, or a negative cash flow of 50. Today you would have in present value $90.01 for the first year’s worth of cash flow, and $909.91 for the second year’s worth of cash flow.</p>
+<p><span class="math display">\[
+NPV=−950+PV1+PV2=−950+90.91+909.91=50
+\]</span></p>
+<p>If NPV &gt; 0, then today’s value of future cash flows, given your expectation of return, exceeds what you paid for the investment. If NPV = 0, you have break-even. If NPV &lt; 0, then the investment costs more than your expectations of value. Since NPV = 50 &gt; 0, you would believe that the investment is more valuable than what you pay for it, so, yes, indeed you might take up your friend on this offer.</p>
+</div>
+<div id="what-can-go-wrong" class="section level3">
+<h3><span class="header-section-number">9.1.4</span> What can go wrong?</h3>
+<p>There are three things that managers need to be aware of when using NPV.</p>
+<p>The result might be difficult to explain to others. You would need to establish that the goal is to find value. But this depends on your expectations of the growth in your initial investment. If you believe that there is more value in this contract than the asking price, then you should buy the contract. NPV helps you understand that phrase “more value.”</p>
+<p>Your expectations of the future growth of money might be wrong. This means that the rate above is higher or lower than 10%. For example if the rate is really 15%, then</p>
+<p><span class="math display">\[
+NPV=−950+\frac{100}{1.15^1}+\frac{1100}{1.15^2}=−31.29
+\]</span></p>
+<p>In this case NPV &lt; 0 and this would be a bad value deal. You would be paying more that you think the contract is worth, in fact $31.29 more.</p>
+<p>You do not receive all of the cash flow that is promised. Suppose the contract defaults (a little bit!) and your business associate can only assure you that she can pay you 75 cents on the dollar in a worse case scenario.
+NPV=−950+(0.75)100/1.10+(0.75)1100/1.102=−200
+Here we figure we only make $75 in the first year for sure and $825 in the second year. Quite a potential loss! If we truly believe that this scenario could occur, then this is indeed a really bad deal!</p>
+</div>
+</div>
+<div id="internal-rate-of-return" class="section level2">
+<h2><span class="header-section-number">9.2</span> Internal rate of return</h2>
+<div id="what-is-the-internal-rate-of-return" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> What is the internal rate of return?</h3>
+<p>The internal rate of return (IRR) is the discount rate when the net present value (NPV) is zero, or breaks even. If the cash flows come from a bond or other fixed income instrument, then the IRR is also called the yield and also the yield to maturity (YTM).</p>
+<p>When the NPV breaks even, the present value of negative (investing) cash flows equals the present value of positive (earning) cash flows. It is a true inflection point of equilibrium that balances cash flows for a project, financial instrument, portfolio, or contract. At this point no one would want to buy or sell. In fact at that point there are no further value gains or losses. Gains exactly equal losses. This indeed is the definition of a market clearing equilibrium.</p>
+<p>What do companies typically use IRR for?
+If anything at all, the IRR is a benchmark measure that allows us to compare two sets of cash flows, one each from two projects, contracts, or investments. Many managers use, especially in financial services organizaitons, use IRR as a rate of return compared with a hurdle rate. The hurdle rate is usually the required rate of return for the risks undertaken in investment. The risks undertaken involve any potential loss of cash flows that emanate from the investment.</p>
+<p>If the IRR &gt; hurdle rate, then the project will have a positive NPV.</p>
+<ul>
+<li><p>When the IRR = hurdle rate, NPV = 0.</p></li>
+<li><p>When IRR &lt; hurdle rate, NPV &lt; 0.</p></li>
+</ul>
+<p>The manager might as well use NPV. Still, like NPV, the IRR uses the time value of money as its basis for concluding the value-worthiness of a set of cash flows. In this way the IRR is also better than the payback method, which is the most commonly used. The attraction of payback is that it is simple to calculate and simple to understand: when will you make back the money you put in? But it doesn’t take into account that the buying power of money today is greater than the buying power of the same amount of money in the future. That’s what makes NPV and IRR better methods. With financial calculators and Excel spreadsheets, IRR is now nearly just as easy to calculate as payback.</p>
+</div>
+<div id="how-can-we-calculate-irr" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> How can we calculate IRR?</h3>
+<p>The calculation of IRR requires the calculation of the NPV of cashflows. There is an IRR function in Excel that makes it easy once you’ve entered your stream of costs and benefits. Many financial calculators, including ones on smart phones, also include an IRR function.</p>
+<p>Here is the math behind IRR. Let’s suppose we have this information about a contract your very good (and credible and reliable) business associate wants to sell you for $950 today. You hope you can earn at least what the market makes. That amount is 10% per year. This means that if you put $1 into the earning machine, you expect $1.10 in one year.</p>
+<p>Year Cash Flow
+1 100
+2 1100</p>
+<p>How do you know if the price of the contract is right? Compare the contract’s internal rate of return with your hurdle rate of 10%. Here’s how we do it.</p>
+<p>Calculate the NPV of the cash flows at the hurdle rate. We do this calculation for these cash flows in the NPv section. If the NPV &gt; 0, then the IRR will be greater than the hurdle rate. Guess a 200 basis point adder to the hurdle rate as your initial estimate of the IRR.</p>
+<p><span class="math display">\[
+NPV=−950+1001.10+11001.102=50
+\]</span></p>
+<p>Since the NPV &gt; 0, recalculate the NPV at the initial IRR estimate of 10% + 2%. Recalculate NPV. If this recalculation yields a positive NPV, continue to increase the discount rate, in this case, to 13%. If the NPV &lt; 0, then the IRR will be less than 12%, so you would decrease the initial estimate by a small amount, say, to 11% and recalculate NPV. Here is the NPV at 12%.</p>
+<p><span class="math display">\[
+NPV=−950+1001.12+11001.122=16.20
+\]</span></p>
+<p>NPV is smaller but still greater than zero. Increase the estimate of IRR to 13%.</p>
+<p><span class="math display">\[
+NPV=−950+1001.13+11001.132=−0.043
+\]</span></p>
+<p>NPV is slightly less than zero, so that 13% is a bit too high. Consider a trial estimate of 12.95%.</p>
+<p><span class="math display">\[
+NPV=−950+1001.1395+11001.12952=0.75
+\]</span></p>
+<p>One more trial: set the trial IRR to just under 13% to get very close to break-even NPV.</p>
+<p><span class="math display">\[
+NPV=−950+1001.129973+11001.1299732=0.00021
+\]</span></p>
+<p>This tedious workout iterates to an approximate solution. We can get ever so close to NPV = 0, but never quite get there. There is much need for just a bit of tolerance for ambiguity in this case!</p>
+<p>If anything, the rule that accept a project, or even proclaim that a price is right, can be made using IRR &gt; hurdle rate.</p>
+</div>
+<div id="what-can-go-wrong-1" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> What can go wrong?</h3>
+<p>There are three things that managers need to be aware of when using IRR.</p>
+<p>The result might be difficult to explain to others. You would need to establish that the goal is to find a yield that exceeds the hurdle rate. In any case the manager must have a consensus on what the hurdle rate should be. The same caveats to NPV also hold. If you believe that there is more yield, that is, return, in this contract than the hurdle rate, then you should buy the contract. IRR helps you understand that phrase “more yield.”</p>
+<p>Your hurdle rate might be wrong. This means that the rate might be higher or lower than 10%. For example if the rate is really 15%, then an IRR = 13% means that the contract does not earn at least the hurdle rate and you should reject the offer.</p>
+<p>Just as in NPV analysis you might not receive all of the cash flow that is promised. Suppose the contract defaults (a little bit!) and your business associate can only assure you that she can pay you 75 cents on the dollar in a worse case scenario. As in step one above, we calculate the NPV at the hurdle rate.</p>
+<p><span class="math display">\[
+NPV=−950+\frac{(0.75)100}{1.10^1}+\frac{(0.75)1100}{1.10^2}=−200
+\]</span></p>
+<p>Here we figure we only make $75 in the first year for sure and $825 in the second year. Quite a potential loss on a NPV basis! If we truly believe that this scenario could occur, then this is indeed a really bad deal from a NPV perspective! Also the IRR of the cash flows would be negative! An IRR = -0.0278 falls far short of the hurdle.
+## Foreign exchange markets</p>
+</div>
+<div id="what-is-the-foreign-exchange-market" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> What is the foreign exchange market?</h3>
+<p>The <em>foreign exchange market</em> is the network of individuals, organizations, financial institutions, and governments that buy and sell U.S. dollars in exchange for other currencies. Currencies are often quoted in USD since better than The market for dollars, for example, is composed of all the traders in all of the locations in which trade transacts, including London, Singapore, Tokyo, New York, and so on.</p>
+<p>The principal function of the foreign exchange market is the transfer of funds, and thus purchasing power, from one nation and currency to another. Other functions provide short-term credits to finance trade and facilities for speculating and hedging foreign exchange risks.</p>
+<ul>
+<li><p>In purely doestic trade, payments transact only in the domestic currency. When doemstic entities conduct foreign trade, purchases and receipts for goods and services are denominated in the foreign currency. Thus in foreign trade the domestic currency must be exchanged for the foreign currency at a value of one for the other.</p></li>
+<li><p>When buyers and sellers move goods or provision services across as span of time, credit is needed to finance the future receipt or disbursement of funds. In a typical export trade, the exporter might allow 90 days for payment from the importer in the exporter’s currency. To get cash now, the exporter will take the 90 day note from the importer and discount the note at the exporter’s bank. The exporter receives the discounted cash flow in the exporter’s currency. In 90 days the bank then takes delivery of the importer’s currency and may then exchange the importer’s currency to the bank’s functional currency.</p></li>
+</ul>
+</div>
+<div id="what-are-exchange-rates" class="section level3">
+<h3><span class="header-section-number">9.2.5</span> What are exchange rates?</h3>
+<p>An exchange rate is the price or value of one nation’s currency in terms of another another nation’s currency. An exchange rate has two components,</p>
+<ul>
+<li><p>the value of domestic currency and</p></li>
+<li><p>the value of foreign currency,</p></li>
+<li><p>expressed as the ratio (rate) of the two currency values quoted either directly or indirectly.</p></li>
+</ul>
+<p>In a direct quotation, the price of a unit of foreign currency is expressed in terms of the domestic currency. In an indirect quotation, the price of a unit of domestic currency is expressed in terms of the foreign currency.</p>
+<p>Exchange rates are nearly always (post Bretton Woods, 1946) quoted in values against the US dollar. However, exchange rates can also be quoted against another nations currency, which are known as a cross currency, or cross rate.</p>
+<p>For example if the the current rate of USD (U.S. dollar) for each GBP (Great Britain pound sterling) is USD2.00 = GBP 1.00. An increase in the exchange rate from 2 to 2.20 means that it takes 10% more USD to buy GBP =</p>
+<p><span class="math display">\[
+\frac{2.20 - 2.00}{2.00} = 0.10
+\]</span></p>
+<p>Because it takes more USD, this is a <em>depreciation</em> of the dollar against the pound. Similarly we could calculate the pound point of view as GBP1.00 = USD2.00 or GBP0.50 = USD1.00. If the pound is now GBP1.00 = 2.20 or GPB0.45455 = USD1.00000. This means that it will take 10% fewer GBP to buy USD.</p>
+<p><span class="math display">\[
+\frac{0.45455 - 0.50000}{0.50000} = - 0.10
+\]</span></p>
+<p>Because it takes fewer GBP, this is an <em>appreciation</em> of the pound against the dollar, that is, the pound is <em>dearer</em> than the dollar.</p>
+</div>
+<div id="what-is-a-foreign-exchange-arrbitrage" class="section level3">
+<h3><span class="header-section-number">9.2.6</span> What is a foreign exchange arrbitrage?</h3>
+<p>It does happen that the exchange rate in one location, say New York, is different from the same exchange rate in, say, Dubai. Suppose that New York quotes USD1.98 = GBP1.00 and Dubai quotes USD2.00 = GBP1.00. This will be a 2-point arbitrage or trade.</p>
+<ul>
+<li><p>Traders can buy GBP in NY for USD1.98, and immediately sell them in Dubai for USD2.00 to make an arbitrage profit of USD0.02, less any transaction costs.</p></li>
+<li><p>As traders continue this arbitrage, there will be an increase in the demand for GBP relative to USD so that the USD price of GBP in NY will increase, and will fall in Dubai because of the increased supply of GBP.</p></li>
+</ul>
+<p>Arbitrage trading will continue until the price ratio of the two currencies is approximately the same. In a 3-point arbitrage there will be three traders in 3 money centers, but essentially the same result will occur = one rate, approximately, in equilibrium.</p>
+<div id="point-or-triagular-arbitrage" class="section level4">
+<h4><span class="header-section-number">9.2.6.1</span> 3-point or triagular arbitrage</h4>
+<p>Now we have 3 traders vying for our treasury business. New York quotes EUR1.10 = USD1.00 and Dubai quotes USD1.98 = GBP1.00, while Singapore is quoting GBP0.51 = EUR1.00. In practice, traders will compute this ratio for the three currency pairs first and test if it is equal to 1.</p>
+<p><span class="math display">\[
+\frac{EUR}{USD}\frac{USD}{GBP}\frac{GBP}{EUR} = \frac{EUR}{EUR} = 1 
+\]</span>
+<span class="math display">\[
+(1.10)(1.98)(0.51) = 1.11 \geq 1 
+\]</span></p>
+<p>This appears to be an 11% premium to the base currency USD. The ratio is embedded in these three transactions.</p>
+<ol style="list-style-type: decimal">
+<li><p>Use USD1.00 (base currency) to buy EUR1.10 (counter-currency 1) in NY.</p></li>
+<li><p>Sell EUR1.10 in Singapore for GBP0.561 (counter-currency 2, 1.10 x 0.51).</p></li>
+<li><p>Sell GBP0.561 in Dubai to buy USD1.11 (0.561 x 1.98) to yield USD0.11 profit in the base currency.</p></li>
+</ol>
+<p>Is this a tidy profit? We must lock in these rates, pay our staff, pay our brokers and banks, and still make enough to earn a return for our weary investors. In any case, these rates will be traded to a near zero profit in high frequency and efficient markets.</p>
+</div>
+</div>
+<div id="how-can-you-hedge-with-foreign-exchange" class="section level3">
+<h3><span class="header-section-number">9.2.7</span> How can you hedge with foreign exchange?</h3>
+<div id="forward-exchange-rate-market" class="section level4">
+<h4><span class="header-section-number">9.2.7.1</span> Forward exchange rate market</h4>
+<p>A spot transaction requires delivery of currency usually within 2 or fewer (business) days, often defined by contract between buyer and seller. The spot exchange rate is the that covers this delivery condition.</p>
+<ul>
+<li>For example, we could enter into a spot transaction that says you will deliver to me GBP100 within 2 days at which time I will give you USD200. The spot exchange rate is thus USD2.00 = GBP1.00.</li>
+</ul>
+<p>A forward transaction is an agreement today to buy or sell a specific amount of currency at a specific location at a specific date in the future, under further specific conditions. Examples of forward transactions are forward rate agreements (FRAs), futures contracts (standardized forward rate agreements traded on exchanges), swaps, and options on FRAs, futures, and swaps.</p>
+<ul>
+<li><p>For example, we could enter into a FRA that says you will deliver to me GBP100 in 3 months at which time I will give you USD202. The 3 month forward exchange rate is thus USD2.02 = GBP1.00.</p></li>
+<li><p>In this transaction, and relative to the spot rate of USD2.00 = GBP1.00, GBP is at a USD0.02 <em>forward premium</em>, because at delivery, it takes fewer GBP to buy USD than at spot (today) rates. If the 3 month forward rate were USD1.98 = GBP1.00 then the GBP market would be a 3 month <em>forward discount</em> of USD0.02.</p></li>
+<li><p>The forward premium is thus</p></li>
+</ul>
+<p><span class="math display">\[
+\frac{2.02 - 2.00}{2.00} = 0.01
+\]</span></p>
+<p>per 90 days. In an ACTUAL/365 day count this is <span class="math inline">\(90/365 = 0.24658\)</span> years or <span class="math inline">\(365/90 = 4.05556\)</span> 90 day periods. Across 4.05556 periods this amounts to</p>
+<p><span class="math display">\[
+(1.01)^{4.05556} - 1 = 1.04118 - 1 = 0.04118
+\]</span></p>
+<p>or a little over 4% per annum (year).</p>
+<ul>
+<li>Forward transactions arise from hedging and speculating in foreign exchange rate movements, and covered interest arbitrage.</li>
+</ul>
+</div>
+<div id="using-a-hedge" class="section level4">
+<h4><span class="header-section-number">9.2.7.2</span> Using a hedge</h4>
+<p>Hedging is the act of mitigating unwanted movements, in this case, in foreign exchange rates. Spot rates will fluctuate through time as the historical record shows. In a hedge, the hedger forgoes any gains in future spot rates beyond what she contracts for today. But at the same time, she will also not suffer any losses beyond what she contracted for.</p>
+<ul>
+<li><p>A US importer has agreed to pay GBP1,000,000 for the delivery of aluminium ingots in 3 months time in the Port of Newark. The spot rate today is USD2.00 and the 3 month forward rate for GBP is USD2.02. How can she hedge the risk that she might have to pay more than GBP1,000,000 when converting USD to GBP?</p></li>
+<li><p>The hedger can buy GBP1,000,000 for delivery in 3 months at a forward rate of USD2.02. She is thus willing to pay <span class="math inline">\(USD1,000,000 \times USD0.02 = USD20,000\)</span> more to insure against future spot rates moving against her, that is, that the rate does not move higher than USD2.02 in three months. In three months the hedger will pay USD2,020,000 and will receive GBP1,000,000 to make the payment to the aluminium supplier.</p></li>
+<li><p>Suppose in 3 months the spot rate rose to USD2.05? If the US importer did not hedge, then she would have had to pay USD2,050,000 or USD30,000 more than if she had hedged.</p></li>
+<li><p>Instead what if the in 3 months the spot rate fell to USD1.99? If the US importer did not hedge, then she would have had to pay USD 1,990,000 or USD30,000 less than if she had hedged. But she did hedge, and thus forgoes this possible gain of USD30,000.</p></li>
+</ul>
+</div>
+</div>
+<div id="covered-interest-arbitrage" class="section level3">
+<h3><span class="header-section-number">9.2.8</span> Covered interest arbitrage</h3>
+<div id="interest-arbitrage-and-foreign-exchange-risk" class="section level4">
+<h4><span class="header-section-number">9.2.8.1</span> Interest arbitrage and foreign exchange risk</h4>
+<p>Potential discrepancies and anomalies in the debt securities markets between nations can also give rise to an arbitrage or trading opportunity. Interest arbitrage transfers liquid funds from one money center to another. If a MNC invests or must pay vendors or receive revenue from customers in a foreign country, the MNC must exchange home country funds into foreign country funds. The question is how much of one currency versus another, and when. As soon as we think about the future, we must now include interest rates into the discussioin.</p>
+</div>
+<div id="try-this-trade" class="section level4">
+<h4><span class="header-section-number">9.2.8.2</span> Try this trade</h4>
+<p>In parity, where there is no arbitrage (profitable trading) opportunity, the following two transactions are of the same value in one year:</p>
+<ol style="list-style-type: decimal">
+<li><p>GBP to USD Spot- USD Loan Repayment: borrow GBP1.00 and convert to USD at USD2.00 = GBP1.00 and repay in one year at 2% and repay USD 2 x 1.02 or USD2.04 for each forward GBP1.00.</p></li>
+<li><p>USD to GBP Spot-GBP Loan Repayment - GBP to USD Forward: convert USD2.00 to GBP1.00, then repay in one year at 4% GBP1.00 x 1.04 or GBP1.04, and convert to USD at the forward rate of USD1.96154 = GBP1.00 to get USD2.04.</p></li>
+</ol>
+<p>At so-called <em>parity</em>, the two transactions are equivalent and thus there is no profitable trading opportunity. But what if the forward rate is not USD1.96154 = GBP1.00?</p>
+<p>In parity, the forward domestic value of a lending or a borrowing in a foreign account must equal the spot value of an account in a domestic account.</p>
+<p><span class="math display">\[
+Forward\,rate \times (1 + foreign\,rate) = Spot\,rate \times (1 + domestic\,rate)
+\]</span></p>
+<p>Solving for the forward rate (domestic currency = one unit of the foreign currency) we get</p>
+<p><span class="math display">\[
+Forward\,\,rate = Spot\,\,rate \times \frac{(1 + domestic\,\,rate)}{(1 + foreign\,\,rate)}
+\]</span></p>
+</div>
+<div id="an-opportunity" class="section level4">
+<h4><span class="header-section-number">9.2.8.3</span> An opportunity?</h4>
+<p>Suppose that the treasurer observes a forward rate of USD2.02 = GBP1.00. The savvy treasurer might exploit this arbitrage opportunity with these transactions.</p>
+<ol style="list-style-type: decimal">
+<li><p>Borrow USD500,000 at 2% per annum and repay the loan in one year with USD510,000.</p></li>
+<li><p>Convert the USD500,000 at the spot rate USD2.00 = GBP1.00 into GBP250,000 because it offers a higher one-year interest rate of 4%.</p></li>
+<li><p>Deposit GBP500,000 in a London Bank at 4% per annum, and simultaneously enter into a forward contract that converts the full maturity amount of the deposit GBP260,000 into USD at the one-year forward rate of USD2.02 = GBP1.00.</p></li>
+<li><p>After one year, settle the one year forward contract at the contracted one year forward rate of USD2.02 = GBP1.00, which would give the savvy treasurer USD525,200.</p></li>
+<li><p>Repay the loan amount of USD510,000 and reap a profit of USD15,200. Get permission from the CFO to have a party for the team.</p></li>
+</ol>
+</div>
+<div id="going-backwards" class="section level4">
+<h4><span class="header-section-number">9.2.8.4</span> Going backwards</h4>
+<p>But wait! What if the one year forward rate is USD1.92 = GBP1.00. Then the treasurer does the reverse of the above transaction.</p>
+<ol style="list-style-type: decimal">
+<li><p>Borrow GBP250,000 at 4% per annum and repay the loan in one year with GBP260,000.</p></li>
+<li><p>Convert the borrowed GBP into USD500,000 at the spot rate USD2.00 = GBP1.00.</p></li>
+<li><p>Deposit USD500,000 in a New York Bank at 2% per annum, and simultaneously enter into a forward contract that converts the full maturity amount of the deposit USD510,000 into GBP at the one-year forward rate of USD1.92 = GBP1.00.</p></li>
+<li><p>After one year, settle the one year forward contract at the contracted one year forward rate of USD1.92 = GBP1.00, which would give the savvy treasurer GBP265,625 (<span class="math inline">\(=510000/1.92\)</span>).</p></li>
+<li><p>Repay the loan amount of GBP260,000 and reap a profit of GBP5,625. Get permission from the CFO to have a smaller party for the team.</p></li>
+</ol>
+</div>
+</div>
+<div id="what-are-exchange-rate-movements" class="section level3">
+<h3><span class="header-section-number">9.2.9</span> What are exchange rate movements?</h3>
+<p>Exchange rate movements are commonly measured by the percentage change in their values over a specified period, such as a month or a year. MNCs closely monitor exchange rate movements over the period in which they have cash flows denominated in the foreign currencies of concern.</p>
+<p>The equilibrium exchange rate between two currencies at any time is based on demand and supply conditions. Changes in the demand for a currency or the supply of a currency for sale will affect the equilibrium exchange rate.</p>
+<div id="what-affects-exchange-rate-movements" class="section level4">
+<h4><span class="header-section-number">9.2.9.1</span> What affects exchange rate movements?</h4>
+<p>The key economic factors that can influence exchange rate movements through their effects on demand and supply conditions are</p>
+<ul>
+<li><p>relative inflation rates,</p></li>
+<li><p>interest rates,</p></li>
+<li><p>income levels, and</p></li>
+<li><p>government controls.</p></li>
+</ul>
+<p>When these factors lead to a change in international trade or financial flows, they affect the demand for a currency or the supply of currency for sale and thus the equilibrium exchange rate.</p>
+<p>If a foreign country experiences an increase in interest rates, the price of the foreign country’s debt instruments decreases (relative to U.S. interest rates and security prices). THis condition creates an excess demand for foreign treasuries and thus the foreign currency to buy these treasuries. If investors are buying foreign currency they are exchanging the currency for domestic (here U.S. currency) and thus there will be an inflow of U.S. funds to purchase its securities.</p>
+<ul>
+<li><p>Demand for domestic currency increases,</p></li>
+<li><p>Supply of foreign currency decreases, and</p></li>
+<li><p>There will be an upward pressure on the foreign currency’s equilibrium value relative to the domestic currency.</p></li>
+</ul>
+<p>All relevant factors must be considered simultaneously when attempting to predict the most likely movement in a currency’s value.</p>
+</div>
+<div id="how-do-trade-and-financial-flows-affect-exchange-rates" class="section level4">
+<h4><span class="header-section-number">9.2.9.2</span> How do trade and financial flows affect exchange rates?</h4>
+<p>There are distinct international trade and financial flows between every pair of countries. These flows dictate the unique supply and demand conditions for the currencies of the two countries, which affect the equilibrium cross exchange rate between their currencies.</p>
+<p>Trade factors include current account movements in the demand for imports and the supply of exports from a country. Export-import flows of goods and services impact the prices, and thus the inflation and deflation of the prices of goods and services. Government controls export-import flows through tariffs, most favored nation treatment, and through quotas. Each of these mechanisms affects the price levels of exports and imports and will thus impact the demand and supply of home country currency.</p>
+<p>For example, if the home government imposes a tariff on imported aluminium, the home supply of aluminium will be restricted and home aluminium prices will rise and home producers will demand less aluminium. If demand for foreign aluminium eases, then so does the demand for foreign currency to buy the aluminium from foreign aluminium producers. This will cause a downward pressure on foreign currency and an upward pressure on the home currency.</p>
+</div>
+</div>
+<div id="how-can-financial-services-benefit" class="section level3">
+<h3><span class="header-section-number">9.2.10</span> How can financial services benefit?</h3>
+<p>Financial institutions can attempt to benefit from the expected appreciation of a currency by purchasing that currency. Analogously, they can benefit from expected depreciation of a currency by borrowing that currency and exchanging it for their home currency.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="appendix-1-r-environment-for-financial-analytics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/12-appendix-key-financial-concepts.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

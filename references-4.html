@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>References | Financial Analytics</title>
+  <meta name="description" content="This is a practice manual using R for financial analytics." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="References | Financial Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a practice manual using R for financial analytics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="References | Financial Analytics" />
+  
+  <meta name="twitter:description" content="This is a practice manual using R for financial analytics." />
+  
+
+<meta name="author" content="Bill Foote" />
+
+
+<meta name="date" content="2019-12-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="appendix-useful-financial-concepts.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-basic-problem"><i class="fa fa-check"></i><b>1.1</b> The basic problem</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#analytics"><i class="fa fa-check"></i><b>1.2</b> Analytics</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.3</b> Why this book?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-useful-way-to-start-private-placement-finance"><i class="fa fa-check"></i><b>1.4</b> A useful way to start: private placement finance</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#the-market-for-private-placement"><i class="fa fa-check"></i><b>1.4.1</b> The market for private placement</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#a-deal-emerges-from-the-mist"><i class="fa fa-check"></i><b>1.4.2</b> A deal emerges from the mist</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#chapter-outline"><i class="fa fa-check"></i><b>1.5</b> Chapter Outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html"><i class="fa fa-check"></i><b>2</b> R Warm-ups in Finance</a><ul>
+<li class="chapter" data-level="2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#imagine-this"><i class="fa fa-check"></i><b>2.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#modeling-process"><i class="fa fa-check"></i><b>2.1.1</b> Modeling process</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#chapter-overview"><i class="fa fa-check"></i><b>2.1.2</b> Chapter overview</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#what-is-r"><i class="fa fa-check"></i><b>2.1.3</b> What is <code>R</code>?</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-for-analytics"><i class="fa fa-check"></i><b>2.1.4</b> <code>R</code> for analytics</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#hot-and-cold-running-resources"><i class="fa fa-check"></i><b>2.1.5</b> Hot and cold running resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#tickling-the-ivories"><i class="fa fa-check"></i><b>2.2</b> Tickling the Ivories</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise"><i class="fa fa-check"></i><b>2.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#building-some-character"><i class="fa fa-check"></i><b>2.3</b> Building Some Character</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#the-plot-thickens"><i class="fa fa-check"></i><b>2.3.1</b> The plot thickens</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-example"><i class="fa fa-check"></i><b>2.3.2</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#arrays-and-you"><i class="fa fa-check"></i><b>2.4</b> Arrays and You</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise-1"><i class="fa fa-check"></i><b>2.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-about-residuals"><i class="fa fa-check"></i><b>2.4.2</b> More about residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-array-work"><i class="fa fa-check"></i><b>2.5</b> More Array Work</a></li>
+<li class="chapter" data-level="2.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+<li class="chapter" data-level="2.7" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#further-reading"><i class="fa fa-check"></i><b>2.7</b> Further Reading</a></li>
+<li class="chapter" data-level="2.8" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#practice-set"><i class="fa fa-check"></i><b>2.8</b> Practice Set</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#purpose-process-product"><i class="fa fa-check"></i><b>2.8.1</b> Purpose, Process, Product</a></li>
+<li class="chapter" data-level="2.8.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-markdown-set-up"><i class="fa fa-check"></i><b>2.8.2</b> <code>R Markdown</code> set up</a></li>
+<li class="chapter" data-level="2.8.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-1-a-financial-planning-problem"><i class="fa fa-check"></i><b>2.8.3</b> Exercise 1: a financial planning problem</a></li>
+<li class="chapter" data-level="2.8.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-2-risk-driver-model-using-regression-analysis"><i class="fa fa-check"></i><b>2.8.4</b> Exercise 2: risk driver model using regression analysis</a></li>
+<li class="chapter" data-level="2.8.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-3-commercial-loan-projection-using-regression"><i class="fa fa-check"></i><b>2.8.5</b> Exercise 3: commercial loan projection using regression</a></li>
+<li class="chapter" data-level="2.8.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#work-flow"><i class="fa fa-check"></i><b>2.8.6</b> Work Flow</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-data-modeling.html"><a href="r-data-modeling.html"><i class="fa fa-check"></i><b>3</b> R Data Modeling</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#imagine-this-1"><i class="fa fa-check"></i><b>3.1</b> Imagine This</a></li>
+<li class="chapter" data-level="3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-tables-and-vertical-lookups"><i class="fa fa-check"></i><b>3.2</b> Pivot tables and Vertical Lookups</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#some-definitions"><i class="fa fa-check"></i><b>3.2.1</b> Some definitions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-and-parry"><i class="fa fa-check"></i><b>3.2.2</b> Pivot and Parry</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-2"><i class="fa fa-check"></i><b>3.2.3</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#now-to-vlookup"><i class="fa fa-check"></i><b>3.2.4</b> Now to VLOOKUP</a></li>
+<li class="chapter" data-level="3.2.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-3"><i class="fa fa-check"></i><b>3.2.5</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#why-functions"><i class="fa fa-check"></i><b>3.3</b> Why Functions?</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-should-be-a-function"><i class="fa fa-check"></i><b>3.3.1</b> What should be a function?</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#shooting-trouble"><i class="fa fa-check"></i><b>3.3.2</b> Shooting trouble</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-the-function-can-see-and-do"><i class="fa fa-check"></i><b>3.3.3</b> What the function can see and do</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this"><i class="fa fa-check"></i><b>3.3.4</b> Try this …</a></li>
+<li class="chapter" data-level="3.3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#mind-the-interface"><i class="fa fa-check"></i><b>3.3.5</b> Mind the Interface!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#making-distributions"><i class="fa fa-check"></i><b>3.4</b> Making distributions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-4"><i class="fa fa-check"></i><b>3.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#picture-this"><i class="fa fa-check"></i><b>3.4.2</b> Picture this</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-another-exercise"><i class="fa fa-check"></i><b>3.4.3</b> Try another exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#optimization"><i class="fa fa-check"></i><b>3.5</b> Optimization</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-5"><i class="fa fa-check"></i><b>3.5.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="r-data-modeling.html"><a href="r-data-modeling.html#estimate-until-morale-improves"><i class="fa fa-check"></i><b>3.6</b> Estimate until morale improves…</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-6"><i class="fa fa-check"></i><b>3.6.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="r-data-modeling.html"><a href="r-data-modeling.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
+<li class="chapter" data-level="3.8" data-path="r-data-modeling.html"><a href="r-data-modeling.html#further-reading-1"><i class="fa fa-check"></i><b>3.8</b> Further Reading</a></li>
+<li class="chapter" data-level="3.9" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-sets"><i class="fa fa-check"></i><b>3.9</b> Practice Sets</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-a"><i class="fa fa-check"></i><b>3.9.1</b> Set A</a></li>
+<li class="chapter" data-level="3.9.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-b"><i class="fa fa-check"></i><b>3.9.2</b> Set B</a></li>
+<li class="chapter" data-level="3.9.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-set-debrief"><i class="fa fa-check"></i><b>3.9.3</b> Practice Set Debrief</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="r-data-modeling.html"><a href="r-data-modeling.html#project"><i class="fa fa-check"></i><b>3.10</b> Project</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#background"><i class="fa fa-check"></i><b>3.10.1</b> Background</a></li>
+<li class="chapter" data-level="3.10.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#data"><i class="fa fa-check"></i><b>3.10.2</b> Data</a></li>
+<li class="chapter" data-level="3.10.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#workflow"><i class="fa fa-check"></i><b>3.10.3</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="r-data-modeling.html"><a href="r-data-modeling.html#references"><i class="fa fa-check"></i><b>3.11</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Macrofinancial Data Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#imagine-this-2"><i class="fa fa-check"></i><b>4.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#working-an-example"><i class="fa fa-check"></i><b>4.1.1</b> Working an example</a></li>
+<li class="chapter" data-level="4.1.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#how-we-will-proceed"><i class="fa fa-check"></i><b>4.1.2</b> How we will proceed</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#building-the-stylized-facts"><i class="fa fa-check"></i><b>4.2</b> Building the Stylized Facts</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#implications"><i class="fa fa-check"></i><b>4.2.1</b> Implications</a></li>
+<li class="chapter" data-level="4.2.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#now-for-somthing-really-interestingagain"><i class="fa fa-check"></i><b>4.2.2</b> Now for somthing really interesting…again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#getting-caught-in-the-cross-current"><i class="fa fa-check"></i><b>4.3</b> Getting Caught in the Cross-Current</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#on-to-quantiles"><i class="fa fa-check"></i><b>4.3.1</b> On to quantiles</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#time-is-on-our-side"><i class="fa fa-check"></i><b>4.4</b> Time is on our Side</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#forecasting-gnp"><i class="fa fa-check"></i><b>4.4.1</b> Forecasting GNP</a></li>
+<li class="chapter" data-level="4.4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#residuals-again"><i class="fa fa-check"></i><b>4.4.2</b> Residuals again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#give-it-the-boot"><i class="fa fa-check"></i><b>4.5</b> Give it the Boot</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#exercises"><i class="fa fa-check"></i><b>4.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#summary-2"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
+<li class="chapter" data-level="4.7" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#further-reading-2"><i class="fa fa-check"></i><b>4.7</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="market-risk.html"><a href="market-risk.html"><i class="fa fa-check"></i><b>5</b> Market Risk</a><ul>
+<li class="chapter" data-level="5.1" data-path="market-risk.html"><a href="market-risk.html#imagine-this-3"><i class="fa fa-check"></i><b>5.1</b> Imagine This</a></li>
+<li class="chapter" data-level="5.2" data-path="market-risk.html"><a href="market-risk.html#what-is-market-risk"><i class="fa fa-check"></i><b>5.2</b> What is Market Risk?</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="market-risk.html"><a href="market-risk.html#try-this-exercise-7"><i class="fa fa-check"></i><b>5.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="market-risk.html"><a href="market-risk.html#history-speaks"><i class="fa fa-check"></i><b>5.3</b> History Speaks</a></li>
+<li class="chapter" data-level="5.4" data-path="market-risk.html"><a href="market-risk.html#now-to-the-matter-at-hand"><i class="fa fa-check"></i><b>5.4</b> Now to the Matter at Hand</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-1"><i class="fa fa-check"></i><b>5.4.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="market-risk.html"><a href="market-risk.html#carl-friedrich-gauss-i-presume"><i class="fa fa-check"></i><b>5.5</b> Carl Friedrich Gauss, I Presume…</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-2"><i class="fa fa-check"></i><b>5.5.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="market-risk.html"><a href="market-risk.html#back-to-the-future"><i class="fa fa-check"></i><b>5.6</b> Back to the Future</a></li>
+<li class="chapter" data-level="5.7" data-path="market-risk.html"><a href="market-risk.html#try-this-example-3"><i class="fa fa-check"></i><b>5.7</b> Try this example</a></li>
+<li class="chapter" data-level="5.8" data-path="market-risk.html"><a href="market-risk.html#lets-go-to-extremes"><i class="fa fa-check"></i><b>5.8</b> Let’s Go to Extremes</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-4"><i class="fa fa-check"></i><b>5.8.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="market-risk.html"><a href="market-risk.html#all-together-now"><i class="fa fa-check"></i><b>5.9</b> All Together Now</a></li>
+<li class="chapter" data-level="5.10" data-path="market-risk.html"><a href="market-risk.html#summary-3"><i class="fa fa-check"></i><b>5.10</b> Summary</a></li>
+<li class="chapter" data-level="5.11" data-path="market-risk.html"><a href="market-risk.html#further-reading-3"><i class="fa fa-check"></i><b>5.11</b> Further Reading</a></li>
+<li class="chapter" data-level="5.12" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory"><i class="fa fa-check"></i><b>5.12</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="5.12.1" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-1"><i class="fa fa-check"></i><b>5.12.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="5.12.2" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-2"><i class="fa fa-check"></i><b>5.12.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="market-risk.html"><a href="market-risk.html#project-1"><i class="fa fa-check"></i><b>5.13</b> Project</a><ul>
+<li class="chapter" data-level="5.13.1" data-path="market-risk.html"><a href="market-risk.html#background-1"><i class="fa fa-check"></i><b>5.13.1</b> Background</a></li>
+<li class="chapter" data-level="5.13.2" data-path="market-risk.html"><a href="market-risk.html#data-1"><i class="fa fa-check"></i><b>5.13.2</b> Data</a></li>
+<li class="chapter" data-level="5.13.3" data-path="market-risk.html"><a href="market-risk.html#workflow-1"><i class="fa fa-check"></i><b>5.13.3</b> Workflow</a></li>
+<li class="chapter" data-level="5.13.4" data-path="market-risk.html"><a href="market-risk.html#assessment"><i class="fa fa-check"></i><b>5.13.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="market-risk.html"><a href="market-risk.html#references-1"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html"><i class="fa fa-check"></i><b>6</b> Portfolio Analytics</a><ul>
+<li class="chapter" data-level="6.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#imagine-this-4"><i class="fa fa-check"></i><b>6.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#our-working-example"><i class="fa fa-check"></i><b>6.1.1</b> Our “working example”</a></li>
+<li class="chapter" data-level="6.1.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#this-chapter"><i class="fa fa-check"></i><b>6.1.2</b> This chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-walk-before-we-run"><i class="fa fa-check"></i><b>6.2</b> Let’s Walk Before We Run</a></li>
+<li class="chapter" data-level="6.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#all-in"><i class="fa fa-check"></i><b>6.3</b> All In</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-8"><i class="fa fa-check"></i><b>6.3.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="6.3.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-keep-moving-on"><i class="fa fa-check"></i><b>6.3.2</b> Let’s keep moving on…</a></li>
+<li class="chapter" data-level="6.3.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-9"><i class="fa fa-check"></i><b>6.3.3</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#optimizing-a-portfolio"><i class="fa fa-check"></i><b>6.4</b> Optimizing a Portfolio</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-10"><i class="fa fa-check"></i><b>6.4.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#summary-4"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#further-reading-4"><i class="fa fa-check"></i><b>6.6</b> Further Reading</a></li>
+<li class="chapter" data-level="6.7" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-3"><i class="fa fa-check"></i><b>6.7</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-1-1"><i class="fa fa-check"></i><b>6.7.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="6.7.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-2-1"><i class="fa fa-check"></i><b>6.7.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#project-2"><i class="fa fa-check"></i><b>6.8</b> Project</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#background-2"><i class="fa fa-check"></i><b>6.8.1</b> Background</a></li>
+<li class="chapter" data-level="6.8.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#data-2"><i class="fa fa-check"></i><b>6.8.2</b> Data</a></li>
+<li class="chapter" data-level="6.8.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#workflow-2"><i class="fa fa-check"></i><b>6.8.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.8.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#assessment-1"><i class="fa fa-check"></i><b>6.8.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#references-2"><i class="fa fa-check"></i><b>6.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html"><i class="fa fa-check"></i><b>7</b> Aggregating Enterprise Risk</a><ul>
+<li class="chapter" data-level="7.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-problem-with-enterprise-risk"><i class="fa fa-check"></i><b>7.1</b> The Problem with Enterprise Risk</a></li>
+<li class="chapter" data-level="7.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-make-copulas"><i class="fa fa-check"></i><b>7.2</b> Let’s make copulas</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#we-do-this-from-scratch."><i class="fa fa-check"></i><b>7.2.1</b> We do this from scratch.</a></li>
+<li class="chapter" data-level="7.2.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example"><i class="fa fa-check"></i><b>7.2.2</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#sklars-in-the-house"><i class="fa fa-check"></i><b>7.3</b> Sklar’s in the house…</a></li>
+<li class="chapter" data-level="7.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analyze-that"><i class="fa fa-check"></i><b>7.4</b> Analyze that…</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-1"><i class="fa fa-check"></i><b>7.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#risk-measures"><i class="fa fa-check"></i><b>7.5</b> Risk measures</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-2"><i class="fa fa-check"></i><b>7.5.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-build-an-app"><i class="fa fa-check"></i><b>7.6</b> Let’s build an app …</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analytics-1"><i class="fa fa-check"></i><b>7.6.1</b> Analytics</a></li>
+<li class="chapter" data-level="7.6.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#ui"><i class="fa fa-check"></i><b>7.6.2</b> UI</a></li>
+<li class="chapter" data-level="7.6.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#server"><i class="fa fa-check"></i><b>7.6.3</b> Server</a></li>
+<li class="chapter" data-level="7.6.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#application-generator"><i class="fa fa-check"></i><b>7.6.4</b> Application generator</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-simulation-function"><i class="fa fa-check"></i><b>7.7</b> The simulation function</a></li>
+<li class="chapter" data-level="7.8" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-ui"><i class="fa fa-check"></i><b>7.8</b> The UI</a></li>
+<li class="chapter" data-level="7.9" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-server"><i class="fa fa-check"></i><b>7.9</b> The server</a></li>
+<li class="chapter" data-level="7.10" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#run-the-app"><i class="fa fa-check"></i><b>7.10</b> Run the app</a></li>
+<li class="chapter" data-level="7.11" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#what-else-could-we-do"><i class="fa fa-check"></i><b>7.11</b> What else could we do?</a></li>
+<li class="chapter" data-level="7.12" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#summary-5"><i class="fa fa-check"></i><b>7.12</b> Summary</a></li>
+<li class="chapter" data-level="7.13" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#further-reading-5"><i class="fa fa-check"></i><b>7.13</b> Further Reading</a></li>
+<li class="chapter" data-level="7.14" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-4"><i class="fa fa-check"></i><b>7.14</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="7.14.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-1-2"><i class="fa fa-check"></i><b>7.14.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="7.14.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-2-2"><i class="fa fa-check"></i><b>7.14.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="7.15" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#project-3"><i class="fa fa-check"></i><b>7.15</b> Project</a><ul>
+<li class="chapter" data-level="7.15.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#background-3"><i class="fa fa-check"></i><b>7.15.1</b> Background</a></li>
+<li class="chapter" data-level="7.15.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#data-3"><i class="fa fa-check"></i><b>7.15.2</b> Data</a></li>
+<li class="chapter" data-level="7.15.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#workflow-3"><i class="fa fa-check"></i><b>7.15.3</b> Workflow</a></li>
+<li class="chapter" data-level="7.15.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#assessment-2"><i class="fa fa-check"></i><b>7.15.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.16" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#references-3"><i class="fa fa-check"></i><b>7.16</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html"><i class="fa fa-check"></i><b>8</b> Appendix 1 – R environment for financial analytics</a><ul>
+<li class="chapter" data-level="8.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#setting-up-r-for-analytics"><i class="fa fa-check"></i><b>8.1</b> Setting Up R for Analytics</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#some-useful-r-resources"><i class="fa fa-check"></i><b>8.1.2</b> Some useful <code>R</code> resources</a></li>
+<li class="chapter" data-level="8.1.3" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>8.1.3</b> Install <code>R</code> on your computer</a></li>
+<li class="chapter" data-level="8.1.4" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-rstudio"><i class="fa fa-check"></i><b>8.1.4</b> Install <code>RStudio</code></a></li>
+<li class="chapter" data-level="8.1.5" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-markdown"><i class="fa fa-check"></i><b>8.1.5</b> Install <code>R Markdown</code></a></li>
+<li class="chapter" data-level="8.1.6" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-latex"><i class="fa fa-check"></i><b>8.1.6</b> Install LaTex</a></li>
+<li class="chapter" data-level="8.1.7" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#r-markdown"><i class="fa fa-check"></i><b>8.1.7</b> R Markdown</a></li>
+<li class="chapter" data-level="8.1.8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#jargon"><i class="fa fa-check"></i><b>8.1.8</b> jaRgon</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#nomenclature"><i class="fa fa-check"></i><b>8.2</b> Nomenclature</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html"><i class="fa fa-check"></i><b>9</b> Appendix: useful financial concepts</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#a-question-is-raised"><i class="fa fa-check"></i><b>9.0.1</b> A question is raised</a></li>
+<li class="chapter" data-level="9.0.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#jacob-bernoulli-has-a-story-to-tell"><i class="fa fa-check"></i><b>9.0.2</b> Jacob Bernoulli has a story to tell</a></li>
+<li class="chapter" data-level="9.0.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#wheres-the-finance"><i class="fa fa-check"></i><b>9.0.3</b> Where’s the finance?</a></li>
+<li class="chapter" data-level="9.0.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#the-answer-please"><i class="fa fa-check"></i><b>9.0.4</b> The answer please?</a></li>
+<li class="chapter" data-level="9.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#net-present-value"><i class="fa fa-check"></i><b>9.1</b> Net present value</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-net-present-value"><i class="fa fa-check"></i><b>9.1.1</b> What is net present value?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-do-companies-typically-use-it-for"><i class="fa fa-check"></i><b>9.1.2</b> What do companies typically use it for?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-npv"><i class="fa fa-check"></i><b>9.1.3</b> How can we calculate NPV?</a></li>
+<li class="chapter" data-level="9.1.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong"><i class="fa fa-check"></i><b>9.1.4</b> What can go wrong?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#internal-rate-of-return"><i class="fa fa-check"></i><b>9.2</b> Internal rate of return</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-internal-rate-of-return"><i class="fa fa-check"></i><b>9.2.1</b> What is the internal rate of return?</a></li>
+<li class="chapter" data-level="9.2.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-irr"><i class="fa fa-check"></i><b>9.2.2</b> How can we calculate IRR?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong-1"><i class="fa fa-check"></i><b>9.2.3</b> What can go wrong?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-foreign-exchange-market"><i class="fa fa-check"></i><b>9.2.4</b> What is the foreign exchange market?</a></li>
+<li class="chapter" data-level="9.2.5" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rates"><i class="fa fa-check"></i><b>9.2.5</b> What are exchange rates?</a></li>
+<li class="chapter" data-level="9.2.6" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-a-foreign-exchange-arrbitrage"><i class="fa fa-check"></i><b>9.2.6</b> What is a foreign exchange arrbitrage?</a></li>
+<li class="chapter" data-level="9.2.7" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-you-hedge-with-foreign-exchange"><i class="fa fa-check"></i><b>9.2.7</b> How can you hedge with foreign exchange?</a></li>
+<li class="chapter" data-level="9.2.8" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#covered-interest-arbitrage"><i class="fa fa-check"></i><b>9.2.8</b> Covered interest arbitrage</a></li>
+<li class="chapter" data-level="9.2.9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rate-movements"><i class="fa fa-check"></i><b>9.2.9</b> What are exchange rate movements?</a></li>
+<li class="chapter" data-level="9.2.10" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-financial-services-benefit"><i class="fa fa-check"></i><b>9.2.10</b> How can financial services benefit?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-4.html"><a href="references-4.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Financial Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references-4" class="section level1 unnumbered">
+<h1>References</h1>
+
+<div id="refs" class="references">
+<div>
+<p>Chang, W. 2013. <em>R Graphics Cookbook</em>. Oreilly and Associate Series. O’Reilly Media, Incorporated. <a href="http://www.cookbook-r.com/">http://www.cookbook-r.com/</a>.</p>
+</div>
+<div>
+<p>Hofert, Marius, and Kurt Hornik. 2016. <em>Qrmdata: Data Sets for Quantitative Risk Management Practice</em>. <a href="https://CRAN.R-project.org/package=qrmdata">https://CRAN.R-project.org/package=qrmdata</a>.</p>
+</div>
+<div>
+<p>Koenker, Roger. 2019. <em>Quantreg: Quantile Regression</em>. <a href="https://CRAN.R-project.org/package=quantreg">https://CRAN.R-project.org/package=quantreg</a>.</p>
+</div>
+<div>
+<p>Komsta, Lukasz, and Frederick Novomestky. 2015. <em>Moments: Moments, Cumulants, Skewness, Kurtosis and Related Tests</em>. <a href="https://CRAN.R-project.org/package=moments">https://CRAN.R-project.org/package=moments</a>.</p>
+</div>
+<div>
+<p>McNeil, A. J., R. Frey, and P. Embrechts. 2015. <em>Quantitative Risk Management: Concepts, Techniques and Tools - Revised Edition</em>. Princeton Series in Finance. Princeton University Press. <a href="https://books.google.com/books?id=SfJnBgAAQBAJ">https://books.google.com/books?id=SfJnBgAAQBAJ</a>.</p>
+</div>
+<div>
+<p>Pfaff, Bernhard, and Alexander McNeil. 2016. <em>QRM: Provides R-Language Code to Examine Quantitative Risk Management Concepts</em>. <a href="https://CRAN.R-project.org/package=QRM">https://CRAN.R-project.org/package=QRM</a>.</p>
+</div>
+<div>
+<p>———. 2018. <em>Evir: Extreme Values in R</em>. <a href="https://CRAN.R-project.org/package=evir">https://CRAN.R-project.org/package=evir</a>.</p>
+</div>
+<div>
+<p>Ruppert, D., and D. S. Matteson. 2015. <em>Statistics and Data Analysis for Financial Engineering: With R Examples</em>. Springer Texts in Statistics. Springer New York. <a href="https://books.google.com/books?id=9X19CAAAQBAJ">https://books.google.com/books?id=9X19CAAAQBAJ</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, and Hiroaki Yutani. 2019. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div>
+<p>Wuertz, Diethelm, Tobias Setz, and Yohan Chalabi. 2017. <em>FBasics: Rmetrics - Markets and Basic Statistics</em>. <a href="https://CRAN.R-project.org/package=fBasics">https://CRAN.R-project.org/package=fBasics</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim, Gabor Grothendieck, and Jeffrey A. Ryan. 2019. <em>Zoo: S3 Infrastructure for Regular and Irregular Time Series (Z’s Ordered Observations)</em>. <a href="https://CRAN.R-project.org/package=zoo">https://CRAN.R-project.org/package=zoo</a>.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="appendix-useful-financial-concepts.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/13-references.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

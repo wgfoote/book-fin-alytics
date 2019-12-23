@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 R Data Modeling | Financial Analytics</title>
+  <meta name="description" content="This is a practice manual using R for financial analytics." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 R Data Modeling | Financial Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a practice manual using R for financial analytics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 R Data Modeling | Financial Analytics" />
+  
+  <meta name="twitter:description" content="This is a practice manual using R for financial analytics." />
+  
+
+<meta name="author" content="Bill Foote" />
+
+
+<meta name="date" content="2019-12-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-warm-ups-in-finance.html"/>
+<link rel="next" href="macrofinancial-data-analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-basic-problem"><i class="fa fa-check"></i><b>1.1</b> The basic problem</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#analytics"><i class="fa fa-check"></i><b>1.2</b> Analytics</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.3</b> Why this book?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-useful-way-to-start-private-placement-finance"><i class="fa fa-check"></i><b>1.4</b> A useful way to start: private placement finance</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#the-market-for-private-placement"><i class="fa fa-check"></i><b>1.4.1</b> The market for private placement</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#a-deal-emerges-from-the-mist"><i class="fa fa-check"></i><b>1.4.2</b> A deal emerges from the mist</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#chapter-outline"><i class="fa fa-check"></i><b>1.5</b> Chapter Outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html"><i class="fa fa-check"></i><b>2</b> R Warm-ups in Finance</a><ul>
+<li class="chapter" data-level="2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#imagine-this"><i class="fa fa-check"></i><b>2.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#modeling-process"><i class="fa fa-check"></i><b>2.1.1</b> Modeling process</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#chapter-overview"><i class="fa fa-check"></i><b>2.1.2</b> Chapter overview</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#what-is-r"><i class="fa fa-check"></i><b>2.1.3</b> What is <code>R</code>?</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-for-analytics"><i class="fa fa-check"></i><b>2.1.4</b> <code>R</code> for analytics</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#hot-and-cold-running-resources"><i class="fa fa-check"></i><b>2.1.5</b> Hot and cold running resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#tickling-the-ivories"><i class="fa fa-check"></i><b>2.2</b> Tickling the Ivories</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise"><i class="fa fa-check"></i><b>2.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#building-some-character"><i class="fa fa-check"></i><b>2.3</b> Building Some Character</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#the-plot-thickens"><i class="fa fa-check"></i><b>2.3.1</b> The plot thickens</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-example"><i class="fa fa-check"></i><b>2.3.2</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#arrays-and-you"><i class="fa fa-check"></i><b>2.4</b> Arrays and You</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise-1"><i class="fa fa-check"></i><b>2.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-about-residuals"><i class="fa fa-check"></i><b>2.4.2</b> More about residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-array-work"><i class="fa fa-check"></i><b>2.5</b> More Array Work</a></li>
+<li class="chapter" data-level="2.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+<li class="chapter" data-level="2.7" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#further-reading"><i class="fa fa-check"></i><b>2.7</b> Further Reading</a></li>
+<li class="chapter" data-level="2.8" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#practice-set"><i class="fa fa-check"></i><b>2.8</b> Practice Set</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#purpose-process-product"><i class="fa fa-check"></i><b>2.8.1</b> Purpose, Process, Product</a></li>
+<li class="chapter" data-level="2.8.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-markdown-set-up"><i class="fa fa-check"></i><b>2.8.2</b> <code>R Markdown</code> set up</a></li>
+<li class="chapter" data-level="2.8.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-1-a-financial-planning-problem"><i class="fa fa-check"></i><b>2.8.3</b> Exercise 1: a financial planning problem</a></li>
+<li class="chapter" data-level="2.8.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-2-risk-driver-model-using-regression-analysis"><i class="fa fa-check"></i><b>2.8.4</b> Exercise 2: risk driver model using regression analysis</a></li>
+<li class="chapter" data-level="2.8.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-3-commercial-loan-projection-using-regression"><i class="fa fa-check"></i><b>2.8.5</b> Exercise 3: commercial loan projection using regression</a></li>
+<li class="chapter" data-level="2.8.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#work-flow"><i class="fa fa-check"></i><b>2.8.6</b> Work Flow</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-data-modeling.html"><a href="r-data-modeling.html"><i class="fa fa-check"></i><b>3</b> R Data Modeling</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#imagine-this-1"><i class="fa fa-check"></i><b>3.1</b> Imagine This</a></li>
+<li class="chapter" data-level="3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-tables-and-vertical-lookups"><i class="fa fa-check"></i><b>3.2</b> Pivot tables and Vertical Lookups</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#some-definitions"><i class="fa fa-check"></i><b>3.2.1</b> Some definitions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-and-parry"><i class="fa fa-check"></i><b>3.2.2</b> Pivot and Parry</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-2"><i class="fa fa-check"></i><b>3.2.3</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#now-to-vlookup"><i class="fa fa-check"></i><b>3.2.4</b> Now to VLOOKUP</a></li>
+<li class="chapter" data-level="3.2.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-3"><i class="fa fa-check"></i><b>3.2.5</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#why-functions"><i class="fa fa-check"></i><b>3.3</b> Why Functions?</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-should-be-a-function"><i class="fa fa-check"></i><b>3.3.1</b> What should be a function?</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#shooting-trouble"><i class="fa fa-check"></i><b>3.3.2</b> Shooting trouble</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-the-function-can-see-and-do"><i class="fa fa-check"></i><b>3.3.3</b> What the function can see and do</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this"><i class="fa fa-check"></i><b>3.3.4</b> Try this …</a></li>
+<li class="chapter" data-level="3.3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#mind-the-interface"><i class="fa fa-check"></i><b>3.3.5</b> Mind the Interface!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#making-distributions"><i class="fa fa-check"></i><b>3.4</b> Making distributions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-4"><i class="fa fa-check"></i><b>3.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#picture-this"><i class="fa fa-check"></i><b>3.4.2</b> Picture this</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-another-exercise"><i class="fa fa-check"></i><b>3.4.3</b> Try another exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#optimization"><i class="fa fa-check"></i><b>3.5</b> Optimization</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-5"><i class="fa fa-check"></i><b>3.5.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="r-data-modeling.html"><a href="r-data-modeling.html#estimate-until-morale-improves"><i class="fa fa-check"></i><b>3.6</b> Estimate until morale improves…</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-6"><i class="fa fa-check"></i><b>3.6.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="r-data-modeling.html"><a href="r-data-modeling.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
+<li class="chapter" data-level="3.8" data-path="r-data-modeling.html"><a href="r-data-modeling.html#further-reading-1"><i class="fa fa-check"></i><b>3.8</b> Further Reading</a></li>
+<li class="chapter" data-level="3.9" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-sets"><i class="fa fa-check"></i><b>3.9</b> Practice Sets</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-a"><i class="fa fa-check"></i><b>3.9.1</b> Set A</a></li>
+<li class="chapter" data-level="3.9.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-b"><i class="fa fa-check"></i><b>3.9.2</b> Set B</a></li>
+<li class="chapter" data-level="3.9.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-set-debrief"><i class="fa fa-check"></i><b>3.9.3</b> Practice Set Debrief</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="r-data-modeling.html"><a href="r-data-modeling.html#project"><i class="fa fa-check"></i><b>3.10</b> Project</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#background"><i class="fa fa-check"></i><b>3.10.1</b> Background</a></li>
+<li class="chapter" data-level="3.10.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#data"><i class="fa fa-check"></i><b>3.10.2</b> Data</a></li>
+<li class="chapter" data-level="3.10.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#workflow"><i class="fa fa-check"></i><b>3.10.3</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="r-data-modeling.html"><a href="r-data-modeling.html#references"><i class="fa fa-check"></i><b>3.11</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Macrofinancial Data Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#imagine-this-2"><i class="fa fa-check"></i><b>4.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#working-an-example"><i class="fa fa-check"></i><b>4.1.1</b> Working an example</a></li>
+<li class="chapter" data-level="4.1.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#how-we-will-proceed"><i class="fa fa-check"></i><b>4.1.2</b> How we will proceed</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#building-the-stylized-facts"><i class="fa fa-check"></i><b>4.2</b> Building the Stylized Facts</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#implications"><i class="fa fa-check"></i><b>4.2.1</b> Implications</a></li>
+<li class="chapter" data-level="4.2.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#now-for-somthing-really-interestingagain"><i class="fa fa-check"></i><b>4.2.2</b> Now for somthing really interesting…again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#getting-caught-in-the-cross-current"><i class="fa fa-check"></i><b>4.3</b> Getting Caught in the Cross-Current</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#on-to-quantiles"><i class="fa fa-check"></i><b>4.3.1</b> On to quantiles</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#time-is-on-our-side"><i class="fa fa-check"></i><b>4.4</b> Time is on our Side</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#forecasting-gnp"><i class="fa fa-check"></i><b>4.4.1</b> Forecasting GNP</a></li>
+<li class="chapter" data-level="4.4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#residuals-again"><i class="fa fa-check"></i><b>4.4.2</b> Residuals again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#give-it-the-boot"><i class="fa fa-check"></i><b>4.5</b> Give it the Boot</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#exercises"><i class="fa fa-check"></i><b>4.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#summary-2"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
+<li class="chapter" data-level="4.7" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#further-reading-2"><i class="fa fa-check"></i><b>4.7</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="market-risk.html"><a href="market-risk.html"><i class="fa fa-check"></i><b>5</b> Market Risk</a><ul>
+<li class="chapter" data-level="5.1" data-path="market-risk.html"><a href="market-risk.html#imagine-this-3"><i class="fa fa-check"></i><b>5.1</b> Imagine This</a></li>
+<li class="chapter" data-level="5.2" data-path="market-risk.html"><a href="market-risk.html#what-is-market-risk"><i class="fa fa-check"></i><b>5.2</b> What is Market Risk?</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="market-risk.html"><a href="market-risk.html#try-this-exercise-7"><i class="fa fa-check"></i><b>5.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="market-risk.html"><a href="market-risk.html#history-speaks"><i class="fa fa-check"></i><b>5.3</b> History Speaks</a></li>
+<li class="chapter" data-level="5.4" data-path="market-risk.html"><a href="market-risk.html#now-to-the-matter-at-hand"><i class="fa fa-check"></i><b>5.4</b> Now to the Matter at Hand</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-1"><i class="fa fa-check"></i><b>5.4.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="market-risk.html"><a href="market-risk.html#carl-friedrich-gauss-i-presume"><i class="fa fa-check"></i><b>5.5</b> Carl Friedrich Gauss, I Presume…</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-2"><i class="fa fa-check"></i><b>5.5.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="market-risk.html"><a href="market-risk.html#back-to-the-future"><i class="fa fa-check"></i><b>5.6</b> Back to the Future</a></li>
+<li class="chapter" data-level="5.7" data-path="market-risk.html"><a href="market-risk.html#try-this-example-3"><i class="fa fa-check"></i><b>5.7</b> Try this example</a></li>
+<li class="chapter" data-level="5.8" data-path="market-risk.html"><a href="market-risk.html#lets-go-to-extremes"><i class="fa fa-check"></i><b>5.8</b> Let’s Go to Extremes</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-4"><i class="fa fa-check"></i><b>5.8.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="market-risk.html"><a href="market-risk.html#all-together-now"><i class="fa fa-check"></i><b>5.9</b> All Together Now</a></li>
+<li class="chapter" data-level="5.10" data-path="market-risk.html"><a href="market-risk.html#summary-3"><i class="fa fa-check"></i><b>5.10</b> Summary</a></li>
+<li class="chapter" data-level="5.11" data-path="market-risk.html"><a href="market-risk.html#further-reading-3"><i class="fa fa-check"></i><b>5.11</b> Further Reading</a></li>
+<li class="chapter" data-level="5.12" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory"><i class="fa fa-check"></i><b>5.12</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="5.12.1" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-1"><i class="fa fa-check"></i><b>5.12.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="5.12.2" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-2"><i class="fa fa-check"></i><b>5.12.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="market-risk.html"><a href="market-risk.html#project-1"><i class="fa fa-check"></i><b>5.13</b> Project</a><ul>
+<li class="chapter" data-level="5.13.1" data-path="market-risk.html"><a href="market-risk.html#background-1"><i class="fa fa-check"></i><b>5.13.1</b> Background</a></li>
+<li class="chapter" data-level="5.13.2" data-path="market-risk.html"><a href="market-risk.html#data-1"><i class="fa fa-check"></i><b>5.13.2</b> Data</a></li>
+<li class="chapter" data-level="5.13.3" data-path="market-risk.html"><a href="market-risk.html#workflow-1"><i class="fa fa-check"></i><b>5.13.3</b> Workflow</a></li>
+<li class="chapter" data-level="5.13.4" data-path="market-risk.html"><a href="market-risk.html#assessment"><i class="fa fa-check"></i><b>5.13.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="market-risk.html"><a href="market-risk.html#references-1"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html"><i class="fa fa-check"></i><b>6</b> Portfolio Analytics</a><ul>
+<li class="chapter" data-level="6.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#imagine-this-4"><i class="fa fa-check"></i><b>6.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#our-working-example"><i class="fa fa-check"></i><b>6.1.1</b> Our “working example”</a></li>
+<li class="chapter" data-level="6.1.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#this-chapter"><i class="fa fa-check"></i><b>6.1.2</b> This chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-walk-before-we-run"><i class="fa fa-check"></i><b>6.2</b> Let’s Walk Before We Run</a></li>
+<li class="chapter" data-level="6.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#all-in"><i class="fa fa-check"></i><b>6.3</b> All In</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-8"><i class="fa fa-check"></i><b>6.3.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="6.3.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-keep-moving-on"><i class="fa fa-check"></i><b>6.3.2</b> Let’s keep moving on…</a></li>
+<li class="chapter" data-level="6.3.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-9"><i class="fa fa-check"></i><b>6.3.3</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#optimizing-a-portfolio"><i class="fa fa-check"></i><b>6.4</b> Optimizing a Portfolio</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-10"><i class="fa fa-check"></i><b>6.4.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#summary-4"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#further-reading-4"><i class="fa fa-check"></i><b>6.6</b> Further Reading</a></li>
+<li class="chapter" data-level="6.7" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-3"><i class="fa fa-check"></i><b>6.7</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-1-1"><i class="fa fa-check"></i><b>6.7.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="6.7.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-2-1"><i class="fa fa-check"></i><b>6.7.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#project-2"><i class="fa fa-check"></i><b>6.8</b> Project</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#background-2"><i class="fa fa-check"></i><b>6.8.1</b> Background</a></li>
+<li class="chapter" data-level="6.8.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#data-2"><i class="fa fa-check"></i><b>6.8.2</b> Data</a></li>
+<li class="chapter" data-level="6.8.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#workflow-2"><i class="fa fa-check"></i><b>6.8.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.8.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#assessment-1"><i class="fa fa-check"></i><b>6.8.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#references-2"><i class="fa fa-check"></i><b>6.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html"><i class="fa fa-check"></i><b>7</b> Aggregating Enterprise Risk</a><ul>
+<li class="chapter" data-level="7.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-problem-with-enterprise-risk"><i class="fa fa-check"></i><b>7.1</b> The Problem with Enterprise Risk</a></li>
+<li class="chapter" data-level="7.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-make-copulas"><i class="fa fa-check"></i><b>7.2</b> Let’s make copulas</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#we-do-this-from-scratch."><i class="fa fa-check"></i><b>7.2.1</b> We do this from scratch.</a></li>
+<li class="chapter" data-level="7.2.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example"><i class="fa fa-check"></i><b>7.2.2</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#sklars-in-the-house"><i class="fa fa-check"></i><b>7.3</b> Sklar’s in the house…</a></li>
+<li class="chapter" data-level="7.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analyze-that"><i class="fa fa-check"></i><b>7.4</b> Analyze that…</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-1"><i class="fa fa-check"></i><b>7.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#risk-measures"><i class="fa fa-check"></i><b>7.5</b> Risk measures</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-2"><i class="fa fa-check"></i><b>7.5.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-build-an-app"><i class="fa fa-check"></i><b>7.6</b> Let’s build an app …</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analytics-1"><i class="fa fa-check"></i><b>7.6.1</b> Analytics</a></li>
+<li class="chapter" data-level="7.6.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#ui"><i class="fa fa-check"></i><b>7.6.2</b> UI</a></li>
+<li class="chapter" data-level="7.6.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#server"><i class="fa fa-check"></i><b>7.6.3</b> Server</a></li>
+<li class="chapter" data-level="7.6.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#application-generator"><i class="fa fa-check"></i><b>7.6.4</b> Application generator</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-simulation-function"><i class="fa fa-check"></i><b>7.7</b> The simulation function</a></li>
+<li class="chapter" data-level="7.8" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-ui"><i class="fa fa-check"></i><b>7.8</b> The UI</a></li>
+<li class="chapter" data-level="7.9" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-server"><i class="fa fa-check"></i><b>7.9</b> The server</a></li>
+<li class="chapter" data-level="7.10" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#run-the-app"><i class="fa fa-check"></i><b>7.10</b> Run the app</a></li>
+<li class="chapter" data-level="7.11" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#what-else-could-we-do"><i class="fa fa-check"></i><b>7.11</b> What else could we do?</a></li>
+<li class="chapter" data-level="7.12" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#summary-5"><i class="fa fa-check"></i><b>7.12</b> Summary</a></li>
+<li class="chapter" data-level="7.13" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#further-reading-5"><i class="fa fa-check"></i><b>7.13</b> Further Reading</a></li>
+<li class="chapter" data-level="7.14" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-4"><i class="fa fa-check"></i><b>7.14</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="7.14.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-1-2"><i class="fa fa-check"></i><b>7.14.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="7.14.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-2-2"><i class="fa fa-check"></i><b>7.14.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="7.15" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#project-3"><i class="fa fa-check"></i><b>7.15</b> Project</a><ul>
+<li class="chapter" data-level="7.15.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#background-3"><i class="fa fa-check"></i><b>7.15.1</b> Background</a></li>
+<li class="chapter" data-level="7.15.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#data-3"><i class="fa fa-check"></i><b>7.15.2</b> Data</a></li>
+<li class="chapter" data-level="7.15.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#workflow-3"><i class="fa fa-check"></i><b>7.15.3</b> Workflow</a></li>
+<li class="chapter" data-level="7.15.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#assessment-2"><i class="fa fa-check"></i><b>7.15.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.16" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#references-3"><i class="fa fa-check"></i><b>7.16</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html"><i class="fa fa-check"></i><b>8</b> Appendix 1 – R environment for financial analytics</a><ul>
+<li class="chapter" data-level="8.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#setting-up-r-for-analytics"><i class="fa fa-check"></i><b>8.1</b> Setting Up R for Analytics</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#some-useful-r-resources"><i class="fa fa-check"></i><b>8.1.2</b> Some useful <code>R</code> resources</a></li>
+<li class="chapter" data-level="8.1.3" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>8.1.3</b> Install <code>R</code> on your computer</a></li>
+<li class="chapter" data-level="8.1.4" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-rstudio"><i class="fa fa-check"></i><b>8.1.4</b> Install <code>RStudio</code></a></li>
+<li class="chapter" data-level="8.1.5" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-markdown"><i class="fa fa-check"></i><b>8.1.5</b> Install <code>R Markdown</code></a></li>
+<li class="chapter" data-level="8.1.6" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-latex"><i class="fa fa-check"></i><b>8.1.6</b> Install LaTex</a></li>
+<li class="chapter" data-level="8.1.7" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#r-markdown"><i class="fa fa-check"></i><b>8.1.7</b> R Markdown</a></li>
+<li class="chapter" data-level="8.1.8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#jargon"><i class="fa fa-check"></i><b>8.1.8</b> jaRgon</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#nomenclature"><i class="fa fa-check"></i><b>8.2</b> Nomenclature</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html"><i class="fa fa-check"></i><b>9</b> Appendix: useful financial concepts</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#a-question-is-raised"><i class="fa fa-check"></i><b>9.0.1</b> A question is raised</a></li>
+<li class="chapter" data-level="9.0.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#jacob-bernoulli-has-a-story-to-tell"><i class="fa fa-check"></i><b>9.0.2</b> Jacob Bernoulli has a story to tell</a></li>
+<li class="chapter" data-level="9.0.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#wheres-the-finance"><i class="fa fa-check"></i><b>9.0.3</b> Where’s the finance?</a></li>
+<li class="chapter" data-level="9.0.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#the-answer-please"><i class="fa fa-check"></i><b>9.0.4</b> The answer please?</a></li>
+<li class="chapter" data-level="9.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#net-present-value"><i class="fa fa-check"></i><b>9.1</b> Net present value</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-net-present-value"><i class="fa fa-check"></i><b>9.1.1</b> What is net present value?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-do-companies-typically-use-it-for"><i class="fa fa-check"></i><b>9.1.2</b> What do companies typically use it for?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-npv"><i class="fa fa-check"></i><b>9.1.3</b> How can we calculate NPV?</a></li>
+<li class="chapter" data-level="9.1.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong"><i class="fa fa-check"></i><b>9.1.4</b> What can go wrong?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#internal-rate-of-return"><i class="fa fa-check"></i><b>9.2</b> Internal rate of return</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-internal-rate-of-return"><i class="fa fa-check"></i><b>9.2.1</b> What is the internal rate of return?</a></li>
+<li class="chapter" data-level="9.2.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-irr"><i class="fa fa-check"></i><b>9.2.2</b> How can we calculate IRR?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong-1"><i class="fa fa-check"></i><b>9.2.3</b> What can go wrong?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-foreign-exchange-market"><i class="fa fa-check"></i><b>9.2.4</b> What is the foreign exchange market?</a></li>
+<li class="chapter" data-level="9.2.5" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rates"><i class="fa fa-check"></i><b>9.2.5</b> What are exchange rates?</a></li>
+<li class="chapter" data-level="9.2.6" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-a-foreign-exchange-arrbitrage"><i class="fa fa-check"></i><b>9.2.6</b> What is a foreign exchange arrbitrage?</a></li>
+<li class="chapter" data-level="9.2.7" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-you-hedge-with-foreign-exchange"><i class="fa fa-check"></i><b>9.2.7</b> How can you hedge with foreign exchange?</a></li>
+<li class="chapter" data-level="9.2.8" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#covered-interest-arbitrage"><i class="fa fa-check"></i><b>9.2.8</b> Covered interest arbitrage</a></li>
+<li class="chapter" data-level="9.2.9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rate-movements"><i class="fa fa-check"></i><b>9.2.9</b> What are exchange rate movements?</a></li>
+<li class="chapter" data-level="9.2.10" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-financial-services-benefit"><i class="fa fa-check"></i><b>9.2.10</b> How can financial services benefit?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-4.html"><a href="references-4.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Financial Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-data-modeling" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> R Data Modeling</h1>
+<div id="imagine-this-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Imagine This</h2>
+<p>Your project team is assigned to work with the accounts receivable team. Specifically, accounts receivable is about to review a portfolio of customers from a potential acquisition. Managers would like to query data provided through due diligence during the acquisition process. Some of the questions include:</p>
+<ol style="list-style-type: decimal">
+<li>What is the income risk across applicant pools?</li>
+<li>Are there differences in applicant income?</li>
+<li>Does age matter?</li>
+<li>Is there a pattern of family dependents across applicant pools?</li>
+<li>How much income per dependent?</li>
+</ol>
+<p>The analytics team will process the data, review its quality, and help accounts receivable answer these questions.</p>
+<p>In this chapter we will build approaches to manage such queries, including pivot tables, lookups, and the creation of new metrics from existing data. We will expand this assortment of skills into the writing of functions, such as net present value and internal rate of return, more plotting of data, working with time series data, and fitting data to probability distributions.</p>
+</div>
+<div id="pivot-tables-and-vertical-lookups" class="section level2">
+<h2><span class="header-section-number">3.2</span> Pivot tables and Vertical Lookups</h2>
+<p>These are, mythically at least, two of the most-used Excel features. Pivot tables are the slice and dice machine we use to partition data sets. Lookups allow us to relate one data table to another. We will explore these tools in <code>R</code>, here made easier and less apt to crash on large data sets. We start with some definitions.</p>
+<div id="some-definitions" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Some definitions</h3>
+<p>The pivot table is a data summarization tool that can automatically sort, count, total, or give the average of the data stored in one table or spreadsheet, displaying the results in a second table showing the summarized data. This tool transforms a flat table of fields with rows of data into a table with grouped row values and column header values. The specification of grouped row values and column headers can rotate the flat table’s data rows into the intersection of the row and column labels.</p>
+<p>“V” or “vertical” stands for the looking up of a value in a column. This feature allows the analyst to find approximate and exact matches between the look up value and a table value in a vertical column assigned to the look up value. A <code>HLOOKUP</code> function does the same lookup but for a specified row instead of a column.</p>
+</div>
+<div id="pivot-and-parry" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Pivot and Parry</h3>
+<p>Let’s return to the Credit Card Applicant business questions:</p>
+<ol style="list-style-type: decimal">
+<li>What is the income risk across applicant pools?</li>
+<li>Are there differences in applicant income?</li>
+<li>Does age matter?</li>
+<li>Is there a pattern of dependents across applicant pools?</li>
+<li>How much income per dependent?</li>
+</ol>
+<p>The first step in building an analysis of the data relative to these questions is to understand the required dimensions of the data that apply to the questions. Here we would scan the table column names in the data base and look for</p>
+<ol style="list-style-type: decimal">
+<li>Card status</li>
+<li>Ownership</li>
+<li>Employment</li>
+</ol>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">CreditCard &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/CreditCard.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb112-2" title="2"><span class="kw">str</span>(CreditCard)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    1319 obs. of  13 variables:
+##  $ card       : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ reports    : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ age        : num  37.7 33.2 33.7 30.5 32.2 ...
+##  $ income     : num  4.52 2.42 4.5 2.54 9.79 ...
+##  $ share      : num  0.03327 0.00522 0.00416 0.06521 0.06705 ...
+##  $ expenditure: num  124.98 9.85 15 137.87 546.5 ...
+##  $ owner      : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 1 2 1 2 1 1 2 2 1 ...
+##  $ selfemp    : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ dependents : int  3 3 4 0 2 0 2 0 0 0 ...
+##  $ months     : int  54 34 58 25 64 54 7 77 97 65 ...
+##  $ majorcards : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ active     : int  12 13 5 7 5 1 5 3 6 18 ...
+##  $ state      : Factor w/ 3 levels &quot;CT&quot;,&quot;NJ&quot;,&quot;NY&quot;: 3 3 3 3 3 3 3 3 3 3 ...</code></pre>
+<p>The <code>str()</code> function allows us to see all of the objects in <code>CreditCard</code>. Next lext look at the data itself inside this object using <code>head</code> (for the beginning of the data).</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">head</span>(CreditCard, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##   card reports  age income   share expenditure owner selfemp dependents
+## 1  yes       0 37.7   4.52 0.03327      124.98   yes      no          3
+## 2  yes       0 33.2   2.42 0.00522        9.85    no      no          3
+## 3  yes       0 33.7   4.50 0.00416       15.00   yes      no          4
+##   months majorcards active state
+## 1     54          1     12    NY
+## 2     34          1     13    NY
+## 3     58          1      5    NY</code></pre>
+<p>Knowing the structure and a sample of the data, we can build a summary of the data and review the minimum, maximum, and quartiles in each of <code>CreditCard</code>’s columns of data.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">summary</span>(CreditCard)</a></code></pre></div>
+<pre><code>##   card         reports           age           income          share      
+##  no : 296   Min.   : 0.00   Min.   : 0.2   Min.   : 0.21   Min.   :0.000  
+##  yes:1023   1st Qu.: 0.00   1st Qu.:25.4   1st Qu.: 2.24   1st Qu.:0.002  
+##             Median : 0.00   Median :31.2   Median : 2.90   Median :0.039  
+##             Mean   : 0.46   Mean   :33.2   Mean   : 3.37   Mean   :0.069  
+##             3rd Qu.: 0.00   3rd Qu.:39.4   3rd Qu.: 4.00   3rd Qu.:0.094  
+##             Max.   :14.00   Max.   :83.5   Max.   :13.50   Max.   :0.906  
+##   expenditure   owner     selfemp      dependents       months   
+##  Min.   :   0   no :738   no :1228   Min.   :0.00   Min.   :  0  
+##  1st Qu.:   5   yes:581   yes:  91   1st Qu.:0.00   1st Qu.: 12  
+##  Median : 101                        Median :1.00   Median : 30  
+##  Mean   : 185                        Mean   :0.99   Mean   : 55  
+##  3rd Qu.: 249                        3rd Qu.:2.00   3rd Qu.: 72  
+##  Max.   :3100                        Max.   :6.00   Max.   :540  
+##    majorcards        active   state   
+##  Min.   :0.000   Min.   : 0   CT:442  
+##  1st Qu.:1.000   1st Qu.: 2   NJ:472  
+##  Median :1.000   Median : 6   NY:405  
+##  Mean   :0.817   Mean   : 7           
+##  3rd Qu.:1.000   3rd Qu.:11           
+##  Max.   :1.000   Max.   :46</code></pre>
+<p>We immediately see an age minimum of 0.2. Either this is an anomaly, or outright error, or there is an application not quite a year old!. Let’s filter the data for ages greater than 18 to be safe.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">ccard &lt;-<span class="st"> </span>CreditCard[CreditCard<span class="op">$</span>age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">18</span>, ]</a></code></pre></div>
+<p>In the filter, the comma means keep data on applicants only at or in excess of 18 years of age. When we leave the column empty, it means apply this filter across all columns. We next review the distribution of ages of applicants to be sure our filter does the job properly. The function <code>hist()</code> builds a simple frequency histogram to visualize this data.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">hist</span>(ccard<span class="op">$</span>age)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</div>
+<div id="try-this-exercise-2" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Try this exercise</h3>
+<p>What is the basic design of this inquiry?</p>
+<ol style="list-style-type: decimal">
+<li>Business questions?</li>
+<li>Dimensions?</li>
+<li>Taxonomy and metrics?</li>
+</ol>
+<p>To answer 1 and 2 we have business questions along the lines of indicator variables:</p>
+<ul>
+<li>Card issued (<code>card</code>)</li>
+<li>Own or rent (<code>owner</code>)</li>
+<li>Self-employed or not (<code>selfemp</code>)</li>
+</ul>
+<p>For 3 our basic taxonomy is:</p>
+<ol style="list-style-type: decimal">
+<li>For each card issued…in New York</li>
+<li>…and for each owner…</li>
+<li>…who is employed…</li>
+<li>What are the range of income, average dependents, age, and income per dependent?</li>
+</ol>
+<p>Here is the basic 3 step pivot table design. We should check if we have installed the <code>dplyr</code> package into the <code>R</code> environment.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="co"># install.packages(&quot;dplyr&quot;) if not already</span></a>
+<a class="sourceLine" id="cb120-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb120-3" title="3"><span class="co"># set decimal places and turn off scientific notation</span></a>
+<a class="sourceLine" id="cb120-4" title="4"><span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">4</span>, <span class="dt">scipen =</span> <span class="dv">99999999</span>)</a>
+<a class="sourceLine" id="cb120-5" title="5"><span class="co">## 1: filter to keep three states. </span></a>
+<a class="sourceLine" id="cb120-6" title="6">pivot_table &lt;-<span class="st">  </span><span class="kw">filter</span>(ccard, state <span class="op">%in%</span><span class="st"> &quot;NY&quot;</span>)</a>
+<a class="sourceLine" id="cb120-7" title="7"><span class="co">## 2: set up data frame for by-group processing. </span></a>
+<a class="sourceLine" id="cb120-8" title="8">pivot_table &lt;-<span class="st">  </span><span class="kw">group_by</span>(pivot_table, card, owner, selfemp)</a>
+<a class="sourceLine" id="cb120-9" title="9"><span class="co">## 3: calculate the three summary metrics</span></a>
+<a class="sourceLine" id="cb120-10" title="10"><span class="kw">options</span>(<span class="dt">dplyr.width =</span> <span class="ot">Inf</span>) <span class="co">## to display all columns</span></a>
+<a class="sourceLine" id="cb120-11" title="11">pivot_table &lt;-<span class="st">  </span><span class="kw">summarise</span>(pivot_table, <span class="dt">income.cv =</span> <span class="kw">sd</span>(income)<span class="op">/</span><span class="kw">mean</span>(income), <span class="dt">age.avg =</span> <span class="kw">mean</span>(age), <span class="dt">income.per.dependent =</span> <span class="kw">sum</span>(income)<span class="op">/</span><span class="kw">sum</span>(dependents))</a></code></pre></div>
+<p>We then visualize results in a table. Here we use <code>knitr</code>, which is a package that powers <code>rmarkdown</code>. The function <code>kable()</code> is short for “knitr table.”</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(pivot_table)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+card
+</th>
+<th style="text-align:left;">
+owner
+</th>
+<th style="text-align:left;">
+selfemp
+</th>
+<th style="text-align:right;">
+income.cv
+</th>
+<th style="text-align:right;">
+age.avg
+</th>
+<th style="text-align:right;">
+income.per.dependent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+0.4942
+</td>
+<td style="text-align:right;">
+31.92
+</td>
+<td style="text-align:right;">
+3.646
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+0.5653
+</td>
+<td style="text-align:right;">
+26.39
+</td>
+<td style="text-align:right;">
+2.852
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+0.3756
+</td>
+<td style="text-align:right;">
+36.02
+</td>
+<td style="text-align:right;">
+2.158
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+53.33
+</td>
+<td style="text-align:right;">
+Inf
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+0.3299
+</td>
+<td style="text-align:right;">
+28.09
+</td>
+<td style="text-align:right;">
+5.314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+0.4368
+</td>
+<td style="text-align:right;">
+37.45
+</td>
+<td style="text-align:right;">
+7.062
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+0.5520
+</td>
+<td style="text-align:right;">
+36.80
+</td>
+<td style="text-align:right;">
+3.155
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+0.5032
+</td>
+<td style="text-align:right;">
+41.92
+</td>
+<td style="text-align:right;">
+3.195
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="now-to-vlookup" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Now to VLOOKUP</h3>
+<p>Let’s start with a different data set. We load this IBRD (World Bank) data that has</p>
+<ul>
+<li>The variable <code>life.expectancy</code> is the average life expectancy for each country from 2009 through 2014.</li>
+<li>The variable <code>sanitation</code> is the percentage of population with direct access to sanitation facilities.</li>
+</ul>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">le &lt;-<span class="st">  </span><span class="kw">read.csv</span>(<span class="st">&quot;data/life_expectancy.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb122-2" title="2">sa &lt;-<span class="st">  </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sanitation_.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Always we look at the first few records.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">head</span>(le)</a></code></pre></div>
+<pre><code>##               country years.life.expectancy.avg
+## 1         Afghanistan                     46.62
+## 2             Albania                     71.12
+## 3             Algeria                     61.82
+## 4              Angola                     41.66
+## 5 Antigua and Barbuda                     69.81
+## 6          Arab World                     60.93</code></pre>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">head</span>(sa)</a></code></pre></div>
+<pre><code>##          country sanitation.avg
+## 1    Afghanistan          25.40
+## 2        Albania          85.36
+## 3        Algeria          84.22
+## 4 American Samoa          61.73
+## 5        Andorra         100.00
+## 6         Angola          36.01</code></pre>
+<p>The job here is to join sanitation data with life expectancy data, by country. In Excel we would typically use a <code>VLOOKUP(country, sanitation, 2, FALSE)</code> statement.</p>
+<ol style="list-style-type: decimal">
+<li>In this statement <code>country</code> is the value to be looked up, for example, “Australia”.</li>
+<li>The variable <code>sanitation</code> is the range of the sanitation lookup table of two columns of country and sanitation data, for example, <code>B2:C104</code> in Excel.</li>
+<li>The <code>2</code> is the second column of the sanitation lookup table, for example column <code>C</code>.</li>
+<li><code>FALSE</code> means don’t find an exact match.</li>
+</ol>
+<p>In <code>R</code> we can use the <code>merge()</code> function.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">life_sanitation &lt;-<span class="st"> </span><span class="kw">merge</span>(le[, <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;years.life.expectancy.avg&quot;</span>)], sa[, <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;sanitation.avg&quot;</span>)])</a></code></pre></div>
+<p>The whole range of countries is populated by the lookup.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">head</span>(life_sanitation, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##       country years.life.expectancy.avg sanitation.avg
+## 1 Afghanistan                     46.62          25.40
+## 2     Albania                     71.12          85.36
+## 3     Algeria                     61.82          84.22</code></pre>
+</div>
+<div id="try-this-exercise-3" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Try this exercise</h3>
+<p>We will load yet another data set on house prices. Suppose we work for a housing developer like Toll Brothers (NYSE: TOL) and want to allocate resources to marketing and financing the building of luxury homes in major US metropolitan areas. We have data for one test market.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">hprice &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/hprice.csv&quot;</span>)</a></code></pre></div>
+<p>Let’s look at the available data:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="kw">summary</span>(hprice)</a></code></pre></div>
+<pre><code>##        ID            Price             SqFt         Bedrooms   
+##  Min.   :  1.0   Min.   : 69100   Min.   :1450   Min.   :2.00  
+##  1st Qu.: 32.8   1st Qu.:111325   1st Qu.:1880   1st Qu.:3.00  
+##  Median : 64.5   Median :125950   Median :2000   Median :3.00  
+##  Mean   : 64.5   Mean   :130427   Mean   :2001   Mean   :3.02  
+##  3rd Qu.: 96.2   3rd Qu.:148250   3rd Qu.:2140   3rd Qu.:3.00  
+##  Max.   :128.0   Max.   :211200   Max.   :2590   Max.   :5.00  
+##    Bathrooms        Offers     Brick    Neighborhood
+##  Min.   :2.00   Min.   :1.00   No :86   East :45    
+##  1st Qu.:2.00   1st Qu.:2.00   Yes:42   North:44    
+##  Median :2.00   Median :3.00            West :39    
+##  Mean   :2.44   Mean   :2.58                        
+##  3rd Qu.:3.00   3rd Qu.:3.00                        
+##  Max.   :4.00   Max.   :6.00</code></pre>
+<p>Our business questions include:</p>
+<ol style="list-style-type: decimal">
+<li>What are the most valuable (higher price) neighborhoods?</li>
+<li>What housing characteristics maintain the most housing value?</li>
+</ol>
+<p>First, where and what are the most valuable houses? One way to answer this is to build a pivot table. Next we pivot the data and build metrics into the query. We will use the <code>mean()</code> and standard deviation <code>sd()</code> functions to help answer our questions.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="co">#library(dplyr)</span></a>
+<a class="sourceLine" id="cb133-2" title="2"><span class="co">## 1: filter to those houses with fairly high prices</span></a>
+<a class="sourceLine" id="cb133-3" title="3">pivot_table &lt;-<span class="st">  </span><span class="kw">filter</span>(hprice, Price <span class="op">&gt;</span><span class="st"> </span><span class="dv">99999</span>)</a>
+<a class="sourceLine" id="cb133-4" title="4"><span class="co">## 2: set up data frame for by-group processing</span></a>
+<a class="sourceLine" id="cb133-5" title="5">pivot_table &lt;-<span class="st">  </span><span class="kw">group_by</span>(pivot_table, Brick, Neighborhood)</a>
+<a class="sourceLine" id="cb133-6" title="6"><span class="co">## 3: calculate the summary metrics</span></a>
+<a class="sourceLine" id="cb133-7" title="7"><span class="kw">options</span>(<span class="dt">dplyr.width =</span> <span class="ot">Inf</span>) <span class="co">## to display all columns</span></a>
+<a class="sourceLine" id="cb133-8" title="8">pivot_table &lt;-<span class="st">  </span><span class="kw">summarise</span>(pivot_table, <span class="dt">Price_avg =</span> <span class="kw">mean</span>(Price), <span class="dt">Price_cv =</span> <span class="kw">sd</span>(Price)<span class="op">/</span><span class="kw">mean</span>(Price), <span class="dt">SqFt_avg =</span> <span class="kw">mean</span>(SqFt), <span class="dt">Price.per_SqFt =</span> <span class="kw">mean</span>(Price)<span class="op">/</span><span class="kw">mean</span>(SqFt))</a></code></pre></div>
+<p>Then we visualize in a table.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(pivot_table)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Brick
+</th>
+<th style="text-align:left;">
+Neighborhood
+</th>
+<th style="text-align:right;">
+Price_avg
+</th>
+<th style="text-align:right;">
+Price_cv
+</th>
+<th style="text-align:right;">
+SqFt_avg
+</th>
+<th style="text-align:right;">
+Price.per_SqFt
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:right;">
+121096
+</td>
+<td style="text-align:right;">
+0.1252
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+59.96
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:right;">
+115307
+</td>
+<td style="text-align:right;">
+0.0940
+</td>
+<td style="text-align:right;">
+1958
+</td>
+<td style="text-align:right;">
+58.88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:right;">
+148230
+</td>
+<td style="text-align:right;">
+0.0912
+</td>
+<td style="text-align:right;">
+2073
+</td>
+<td style="text-align:right;">
+71.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:right;">
+135468
+</td>
+<td style="text-align:right;">
+0.0978
+</td>
+<td style="text-align:right;">
+2031
+</td>
+<td style="text-align:right;">
+66.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:right;">
+118457
+</td>
+<td style="text-align:right;">
+0.1308
+</td>
+<td style="text-align:right;">
+1857
+</td>
+<td style="text-align:right;">
+63.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:right;">
+175200
+</td>
+<td style="text-align:right;">
+0.0930
+</td>
+<td style="text-align:right;">
+2091
+</td>
+<td style="text-align:right;">
+83.78
+</td>
+</tr>
+</tbody>
+</table>
+<p>Based on this data set from one metropolitan area, the most valuable properties (fetching the highest average price and price per square foot) are made of brick in the West neighborhood. Brick or not, the West neighborhood also seems have the lowest relative variation in price.</p>
+<p>Now for something different: functions.</p>
+</div>
+</div>
+<div id="why-functions" class="section level2">
+<h2><span class="header-section-number">3.3</span> Why Functions?</h2>
+<p>We will encapsulate several operations into a reusable storage device called a function. The usual suspects and candidates for the use of functions are:</p>
+<ul>
+<li>Data structures rack together related values into one object.</li>
+<li>Functions group related commands into one object.</li>
+</ul>
+<p>In both cases the logic and coding is easier to understand, easier to work with, easier to build into larger things, and less prone to breaches of plain-old stubby finger breaches of operational safety and security.</p>
+<p>For example, here is an Excel look-alike NPV function. We enter this into a code-chunk in an <code>R markdown</code> file or directly into the console to store the function into the current <code>R</code> environment. Once that is done, we now have a new function we can use like any other function.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1"><span class="co">## Net Present Value function</span></a>
+<a class="sourceLine" id="cb135-2" title="2"><span class="co">## Inputs: vector of rates (rates) with 0 as the first rate for time 0, vector of cash flows (cashflows)</span></a>
+<a class="sourceLine" id="cb135-3" title="3"><span class="co">## Outputs: scalar net present value</span></a>
+<a class="sourceLine" id="cb135-4" title="4">NPV_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(rates, cashflows) {</a>
+<a class="sourceLine" id="cb135-5" title="5">  NPV &lt;-<span class="st"> </span><span class="kw">sum</span>(cashflows<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>rates)<span class="op">^</span>(<span class="kw">seq_along</span>(cashflows)<span class="op">-</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb135-6" title="6">  <span class="kw">return</span>(NPV)</a>
+<a class="sourceLine" id="cb135-7" title="7">}</a></code></pre></div>
+<p>The structure of a function includes:</p>
+<ol style="list-style-type: decimal">
+<li>A header describes the function along with inputs and outputs. Here we use comment characters <code>#</code> to describe and document the function.</li>
+<li>A definition names the function and identify the interface of inputs and outputs to the programming environment. The name is like a variable and is assigned to <code>function()</code>, where inputs are defined.</li>
+<li>Code statements take the inputs from the definition and program the tasks, logic, and decisions in the function’s work flow into output.</li>
+<li>An output statement releases the function’s results for use in other code statements outside of the function’s “mini-verse.” We use the formal <code>return()</code> function to identify the output that the function will produce. If we did not use <code>return()</code>, then <code>R</code> will us the last assigned variable as the output of the function.</li>
+</ol>
+<p>In this example We generate data internal to the function:</p>
+<ul>
+<li>We use <code>seq_along</code> to generate time index of cashflows.</li>
+<li>We must subtract 1 from this sequence as starting cashflow is time 0.</li>
+<li>We generate a net present value directly in one line of code.</li>
+</ul>
+<p>Our functions get used just like the built-in ones, for example, <code>mean()</code>. Let’s define <code>rates</code> and <code>cashflows</code> as vector inputs to the <code>NPV.1()</code> function and run this code. The interpretation of rates here is the per period rate a cash flow can grow to in so many periods. A rate of 0.04 assigned to the third period means that a unit of currency today can grow into $(1 + 0.04)(1 + 0.04)(1 + 0.04)=(1 + 0.04)^3=1.1249 units of currency in three periods. With this interpretation we calculate the net present value of cash flows next.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">rates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.00</span>, <span class="fl">0.08</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>) <span class="co">## first rate is always 0.00</span></a>
+<a class="sourceLine" id="cb136-2" title="2">cashflows &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb136-3" title="3"><span class="kw">NPV_1</span>(rates, cashflows)</a></code></pre></div>
+<pre><code>## [1] 361.1</code></pre>
+<p>We go back to the declaration and look at the parts:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="co">## Net Present Value function</span></a>
+<a class="sourceLine" id="cb138-2" title="2"><span class="co">## Inputs: vector of rates (rates) with 0 as the first rate for time 0, vector of cash flows (cashflows)</span></a>
+<a class="sourceLine" id="cb138-3" title="3"><span class="co">## Outputs: scalar net present value</span></a>
+<a class="sourceLine" id="cb138-4" title="4">NPV_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(rates, cashflows) {</a>
+<a class="sourceLine" id="cb138-5" title="5">  NPV &lt;-<span class="st"> </span><span class="kw">sum</span>(cashflows<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>rates)<span class="op">^</span>(<span class="kw">seq_along</span>(cashflows)<span class="op">-</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb138-6" title="6">  <span class="kw">return</span>(NPV)</a>
+<a class="sourceLine" id="cb138-7" title="7">}</a></code></pre></div>
+<p><strong>Interfaces</strong> refer to these components:</p>
+<ul>
+<li><strong>inputs</strong> or <strong>arguments</strong></li>
+<li><strong>outputs</strong> or <strong>return value</strong></li>
+<li>Calls other functions <code>sum</code>, <code>seq_along()</code>, operators
+<code>/</code>, <code>+</code>, <code>^</code> and <code>-</code> .</li>
+</ul>
+<p>We can also call other functions we’ve written. We use <code>return()</code> to explicitly say what the output is. This is simply good documentation. Alternately, a function will return the last evaluation.</p>
+<p>Comments, that is, lines that begin with <code>#</code>, are not required by <code>R</code>, but are always a good and welcome idea that provide a terse description of purpose and direction. Initial comments should also include a listing of inputs, also called “arguments,” and outputs.</p>
+<div id="what-should-be-a-function" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> What should be a function?</h3>
+<p>Functions should be written for code we are going to re-run, especially if it will be re-run with changes in inputs. They can also be code chunks we keep highlighting and hitting return on. We often write functions for code chunkswhich are small parts of bigger analyses.</p>
+<p>In the next redition of <code>irr.1</code> we improve the code with named and default arguments.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="co">## Internal Rate of Return (IRR) function</span></a>
+<a class="sourceLine" id="cb139-2" title="2"><span class="co">## Inputs: vector of cash flows (cashflows), scalar interations (maxiter)</span></a>
+<a class="sourceLine" id="cb139-3" title="3"><span class="co">## Outputs: scalar net present value</span></a>
+<a class="sourceLine" id="cb139-4" title="4">IRR_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(cashflows, <span class="dt">maxiter=</span><span class="dv">1000</span>) {</a>
+<a class="sourceLine" id="cb139-5" title="5">  t &lt;-<span class="st"> </span><span class="kw">seq_along</span>(cashflows)<span class="op">-</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb139-6" title="6">  <span class="co">## rate will eventually converge to IRR</span></a>
+<a class="sourceLine" id="cb139-7" title="7">  f &lt;-<span class="st"> </span><span class="cf">function</span>(rate)(<span class="kw">sum</span>(cashflows<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>rate)<span class="op">^</span>t))</a>
+<a class="sourceLine" id="cb139-8" title="8">  <span class="co">## use uniroot function to solve for root (IRR = rate) of f = 0</span></a>
+<a class="sourceLine" id="cb139-9" title="9">  <span class="co">## c(-1,1) bounds solution for only positive or negative rates</span></a>
+<a class="sourceLine" id="cb139-10" title="10">  <span class="co">## select the root estimate</span></a>
+<a class="sourceLine" id="cb139-11" title="11">  <span class="kw">return</span>(<span class="kw">uniroot</span>(f, <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">maxiter =</span> maxiter)<span class="op">$</span>root)</a>
+<a class="sourceLine" id="cb139-12" title="12">}</a></code></pre></div>
+<p>Here the <em>default argument</em> is <code>maxiter</code> which controls the number of iterations. At our peril we can eliminate this argument if we want. This illustrates yet another need for functions: we can put error and exception logic to handle somtimes fatal issues our calculations might present. Thw <code>uniroot()</code> function also bounds the roots between -1 and 1 using the concatenate function <code>c(-1,1)</code>.</p>
+<p>Here are the cashflows for a 3% coupon bond bought at a hefty premium.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">cashflows &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">150</span>,   <span class="dv">3</span>,   <span class="dv">3</span>,   <span class="dv">3</span>,   <span class="dv">3</span>,   <span class="dv">3</span>,   <span class="dv">3</span>,   <span class="dv">3</span>, <span class="dv">103</span>)</a>
+<a class="sourceLine" id="cb140-2" title="2"><span class="kw">IRR_1</span>(cashflows)</a></code></pre></div>
+<pre><code>## [1] -0.02554</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">IRR_1</span>(cashflows, <span class="dt">maxiter =</span> <span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1] -0.02554</code></pre>
+<p>We get a negative IRR or yield to maturity on this net present value = 0 calculation. A not so trivial interpretation of negative yields, and even negative prices is the existence of over-supply of a good or service.</p>
+</div>
+<div id="shooting-trouble" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Shooting trouble</h3>
+<p><em>Problem</em>: We see “odd”" behavior when arguments aren’t as we expect.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">NPV_1</span>(<span class="kw">c</span>(<span class="fl">0.10</span>, <span class="fl">0.05</span>), <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">100</span>))</a></code></pre></div>
+<pre><code>## [1] 86.1</code></pre>
+<p>We do get a result, but…</p>
+<ul>
+<li>What does it mean?</li>
+<li>What rates correspond with what cashflows?</li>
+</ul>
+<p>Here the function calculates a net present value. But the analyst entered two rates for four cash flows.</p>
+<p><em>Solution</em>: We put sanity checks into the code.</p>
+<ul>
+<li>Let’s use the <code>stopifnot(some logical statment)</code> is TRUE.</li>
+</ul>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="co">## Net Present Value function</span></a>
+<a class="sourceLine" id="cb146-2" title="2"><span class="co">## Inputs: vector of rates (rates) with 0 as the first rate for time 0, vector of cash flows (cashflows), length of rates must equal length of cashflows</span></a>
+<a class="sourceLine" id="cb146-3" title="3"><span class="co">## Outputs: scalar net present value</span></a>
+<a class="sourceLine" id="cb146-4" title="4">NPV_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(rates, cashflows) {</a>
+<a class="sourceLine" id="cb146-5" title="5">  <span class="kw">stopifnot</span>(<span class="kw">length</span>(rates) <span class="op">==</span><span class="st"> </span><span class="kw">length</span>(cashflows))</a>
+<a class="sourceLine" id="cb146-6" title="6">  NPV &lt;-<span class="st"> </span><span class="kw">sum</span>(cashflows<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>rates)<span class="op">^</span>(<span class="kw">seq_along</span>(cashflows)<span class="op">-</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb146-7" title="7">  <span class="kw">return</span>(NPV)</a>
+<a class="sourceLine" id="cb146-8" title="8">}</a></code></pre></div>
+<p>Here are some thoughts about <code>stopifnot</code> <code>TRUE</code> error handling</p>
+<ul>
+<li>Arguments to <code>stopifnot()</code> are a series of logical expressions which should all be TRUE.</li>
+<li>Execution halts, with error message, at <em>first</em> FALSE.</li>
+</ul>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">NPV_2</span>(<span class="kw">c</span>(<span class="fl">0.10</span>, <span class="fl">0.05</span>), <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">6</span>,<span class="dv">100</span>))</a></code></pre></div>
+<p>Hit (not too hard!) the <code>Escape</code> key on your keyboard, This will take you out of <code>Browse[1]&gt;</code> mode and back to the console prompt <code>&gt;</code>.</p>
+</div>
+<div id="what-the-function-can-see-and-do" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> What the function can see and do</h3>
+<p>Each function has its own environment. Names here will override names in the global environment. The function’s internal environment starts with the named arguments. Assignments inside the function only change the internal environment. If a name is not defined in the function, the function will look for this name in the environment the function gets called from.</p>
+</div>
+<div id="try-this" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Try this …</h3>
+<p>Your company is running a 100 million pound sterling project in the EU. You must post 25% collateral in a Landesbank using only high-quality government securities. You find a high-quality gilt fund that will pay 1.5% (coupon rate) annually for three years.</p>
+<p>Some questions for analysis</p>
+<ol style="list-style-type: decimal">
+<li>How much would you pay for this collateral if the rate curve (yield to maturity of cash flows) is (from next year on…)</li>
+</ol>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">rates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.001</span>, <span class="fl">0.002</span>, <span class="fl">0.01</span>)</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose a bond dealer asks for 130% of notional collateral value for this bond. What is the yield on this transaction (IRR)? Would you buy it?</li>
+<li>What is the return on this collateral if you terminate the project in one year and liquidate the collateral (i.e., sell it for cash) if the yield shifts down by 0.005? This is a “parallel” shift, which is finance for: “take each rate and deduct 0.005.”</li>
+</ol>
+<p>To get at these requirements we will build rates and cash flows across the 3-year time frame, remembering our previous work.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1">(rates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, rates))</a></code></pre></div>
+<pre><code>## [1]  0.000 -0.001  0.002  0.010</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1">collateral_periods &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb151-2" title="2">collateral_rate &lt;-<span class="st"> </span><span class="fl">0.25</span></a>
+<a class="sourceLine" id="cb151-3" title="3">collateral_notional &lt;-<span class="st"> </span>collateral_rate <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb151-4" title="4">coupon_rate &lt;-<span class="st"> </span><span class="fl">0.015</span></a>
+<a class="sourceLine" id="cb151-5" title="5">cashflows &lt;-<span class="st"> </span><span class="kw">rep</span>(coupon_rate <span class="op">*</span><span class="st"> </span>collateral_notional, collateral_periods)</a>
+<a class="sourceLine" id="cb151-6" title="6">cashflows[collateral_periods] &lt;-<span class="st"> </span>collateral_notional <span class="op">+</span><span class="st"> </span>cashflows[collateral_periods]</a>
+<a class="sourceLine" id="cb151-7" title="7">(cashflows &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, cashflows))</a></code></pre></div>
+<pre><code>## [1]  0.000  0.375  0.375 25.375</code></pre>
+<p>What just happened?</p>
+<ol style="list-style-type: decimal">
+<li>We appended a <code>0</code> to the rate schedule so we can use the <code>NPV.2</code> function.</li>
+<li>We then parameterized the term sheet (terms of the collateral transaction),</li>
+<li>We used <code>rep()</code> to form coupon cash flows.</li>
+<li>Then we added notional value repayment to the last cash flow.</li>
+</ol>
+<p>Now we can calculate the present value of the bond using <code>NPV_2</code>.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1">(Value_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">NPV_2</span>(rates, cashflows))</a></code></pre></div>
+<pre><code>## [1] 25.38</code></pre>
+<p>The answer is 25.378 million pounds sterling or <code>Value_0 / collateral_notional</code> times the notional value.</p>
+<p>The yield to maturity averages the forward rates across the bond cash flows. A “forward rate” is the rate per period we would expect to earn each period for a specified number of periods forward. This is one interpretation of the Internal Rate of Return (“IRR”).</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1">cashflows_IRR &lt;-<span class="st"> </span>cashflows</a>
+<a class="sourceLine" id="cb155-2" title="2">collateral_ask &lt;-<span class="st"> </span><span class="dv">130</span></a>
+<a class="sourceLine" id="cb155-3" title="3">cashflows_IRR[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="op">-</span>(collateral_ask<span class="op">/</span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span>collateral_notional</a>
+<a class="sourceLine" id="cb155-4" title="4"><span class="co">## mind the negative sign!</span></a>
+<a class="sourceLine" id="cb155-5" title="5">(collateral_IRR_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">IRR_1</span>(cashflows_IRR))</a></code></pre></div>
+<pre><code>## [1] -0.07112</code></pre>
+<p>You end up paying over 7% per annum for the privilege of owning this bond! You call up the European Central Bank, report this overly hefty haircut on your project. You send out a request for proposal to other bond dealers. They come back with an average asking price of 109 (109% of notional).</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">cashflows_IRR &lt;-<span class="st"> </span>cashflows</a>
+<a class="sourceLine" id="cb157-2" title="2">collateral_ask &lt;-<span class="st"> </span><span class="dv">109</span></a>
+<a class="sourceLine" id="cb157-3" title="3">cashflows_IRR[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="op">-</span>(collateral_ask<span class="op">/</span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span>collateral_notional</a>
+<a class="sourceLine" id="cb157-4" title="4">(collateral_IRR_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">IRR_1</span>(cashflows_IRR))</a></code></pre></div>
+<pre><code>## [1] -0.01416</code></pre>
+<p>That’s more like it: about 140 basis points (1.41% x 100 basis points per percentage) cost (negative sign).</p>
+<p>Let’s unwind the project, and the collateral transaction, in 1 year. Let’s suppose the yield curve in 1 year has parallel shifted down by 0.005.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1">rate_shift &lt;-<span class="st"> </span><span class="fl">-0.005</span></a>
+<a class="sourceLine" id="cb159-2" title="2">rates_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, rates[<span class="op">-</span><span class="dv">2</span>]) <span class="op">+</span><span class="st"> </span>rate_shift</a>
+<a class="sourceLine" id="cb159-3" title="3">cashflows_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, cashflows[<span class="op">-</span><span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb159-4" title="4">(Value_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">NPV_2</span>(rates_<span class="dv">1</span>, cashflows_<span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## [1] 25.38</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1">(collateral_return_<span class="dv">1</span> &lt;-<span class="st"> </span>Value_<span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="op">-</span>cashflows_IRR[<span class="dv">1</span>]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] -0.06879</code></pre>
+<p>This results ooks much more than a break-even return on the collateral transaction:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">(collateral_gainloss &lt;-<span class="st"> </span>collateral_notional <span class="op">*</span><span class="st"> </span>collateral_return_<span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="dv">1000000</span></a></code></pre></div>
+<pre><code>## [1] -1719807</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="co">## adjust for millions of euros</span></a></code></pre></div>
+<p>That’s probably some executive’s salary (with stock grants!)…in pounds sterling.</p>
+</div>
+<div id="mind-the-interface" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Mind the Interface!</h3>
+<p>Interfaces mark out a controlled inner environment for our code;</p>
+<ul>
+<li>They allow us to interact with the rest of the system only at the interface.</li>
+<li>Arguments explicitly give the function all the information the function needs to operate and reduces the risk of confusion and error.<br />
+</li>
+<li>There are exceptions such as true universals like <span class="math inline">\(\pi\)</span>.</li>
+<li>Likewise, output should only be through the return value.</li>
+</ul>
+<p>Let’s build (parametric) distributions next.</p>
+</div>
+</div>
+<div id="making-distributions" class="section level2">
+<h2><span class="header-section-number">3.4</span> Making distributions</h2>
+<p>As always, let’s load some data, this time from the Bureau of Labor Statistics (BLS) and load the export-import price index whose description and graph are at <a href="http://data.bls.gov/timeseries/EIUIR?output_view=pct_1mth" class="uri">http://data.bls.gov/timeseries/EIUIR?output_view=pct_1mth</a>. We look up the symbols “EIUIR” and “EIUIR100” and download a text file that we then convert to a comma separated variable or <code>csv</code> file in Excel. We deposit the <code>csv</code> file in a directory and read it into a variable called <code>EIUIR</code>.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">require</span>(xts)</a>
+<a class="sourceLine" id="cb166-2" title="2"><span class="kw">require</span>(zoo)</a>
+<a class="sourceLine" id="cb166-3" title="3">EIUIR &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/EIUIR.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb166-4" title="4"><span class="kw">head</span>(EIUIR)</a></code></pre></div>
+<pre><code>##         Date Value
+## 1 2006-01-01 113.7
+## 2 2006-02-01 112.8
+## 3 2006-03-01 112.7
+## 4 2006-04-01 115.1
+## 5 2006-05-01 117.2
+## 6 2006-06-01 117.3</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1">xmprice &lt;-<span class="st"> </span><span class="kw">na.omit</span>(EIUIR) <span class="co">## to clean up any missing data</span></a>
+<a class="sourceLine" id="cb168-2" title="2"><span class="kw">str</span>(xmprice)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    131 obs. of  2 variables:
+##  $ Date : Factor w/ 131 levels &quot;2006-01-01&quot;,&quot;2006-02-01&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ Value: num  114 113 113 115 117 ...</code></pre>
+<p>We might have to have installed separately the <code>xts</code> and <code>zoo</code> packages that handle time series data explicitly. The <code>str()</code> function indicates that the <code>Value</code> column in the data frame contains the export price series. We then compute the natural logarithm of prices and calculate the differences to get rates of growth from month to month. A simple plot reveals aspects of the data series to explore.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">xmprice_r &lt;-<span class="st"> </span><span class="kw">as.zoo</span>(<span class="kw">na.omit</span>((<span class="kw">diff</span>(<span class="kw">log</span>(xmprice<span class="op">$</span>Value))))) <span class="co">## compute rates</span></a>
+<a class="sourceLine" id="cb170-2" title="2"><span class="kw">head</span>(xmprice_r)</a></code></pre></div>
+<pre><code>##          1          2          3          4          5          6 
+## -0.0079471 -0.0008869  0.0210719  0.0180806  0.0008529  0.0076433</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1"><span class="kw">plot</span>(xmprice_r, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Monthly 2/2000-9/2016&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>We further transform the data exploring the absolute value of price rates. This is a first stab at understanding the clustering of volatility in financial-economic time series, a topic to which we will return.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1">xmprice_r_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(xmprice_r, <span class="dt">Date =</span> <span class="kw">index</span>(xmprice_r), <span class="dt">Rate =</span> xmprice_r[, <span class="dv">1</span>], <span class="dt">Rate_abs =</span>  <span class="kw">abs</span>(xmprice_r[,<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb173-2" title="2"><span class="kw">head</span>(xmprice_r_df)</a></code></pre></div>
+<pre><code>##    xmprice_r Date       Rate  Rate_abs
+## 1 -0.0079471    1 -0.0079471 0.0079471
+## 2 -0.0008869    2 -0.0008869 0.0008869
+## 3  0.0210719    3  0.0210719 0.0210719
+## 4  0.0180806    4  0.0180806 0.0180806
+## 5  0.0008529    5  0.0008529 0.0008529
+## 6  0.0076433    6  0.0076433 0.0076433</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="kw">str</span>(xmprice_r_df)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    130 obs. of  4 variables:
+##  $ xmprice_r: num  -0.007947 -0.000887 0.021072 0.018081 0.000853 ...
+##  $ Date     : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Rate     : num  -0.007947 -0.000887 0.021072 0.018081 0.000853 ...
+##  $ Rate_abs : num  0.007947 0.000887 0.021072 0.018081 0.000853 ...</code></pre>
+<p>We can achieve a “prettier” plot with the <code>ggplot2</code> package. In the <code>ggplot</code> statements we use <code>aes</code>, “aesthetics”, to pick <code>x</code> (horizontal) and <code>y</code> (vertical) axes. The added (<code>+</code>) <code>geom_line</code> is the geometrical method that builds the line plot.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb177-2" title="2"><span class="kw">ggplot</span>(xmprice_r_df, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Rate)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p>Let’s try a bar graph of the absolute value of price rates. We use <code>geom_bar</code> to build this picture.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb178-2" title="2"><span class="kw">ggplot</span>(xmprice_r_df, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Rate_abs)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<div id="try-this-exercise-4" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Try this exercise</h3>
+<p>Let’s overlay returns (<code>geom_line</code>) and their absolute value <code>geom_bar</code>.</p>
+<ul>
+<li><code>ggplot</code> declares the canvas using the price data frame.</li>
+<li><code>aes</code> establishes the data series to be used to generate pictures.</li>
+<li><code>geom_bar</code> builds a bar chart.</li>
+<li><code>geom_line</code> overlays the bar chart with a line chart.</li>
+</ul>
+<p>By examining this chart, what business questions about your Univeral Export-Import Ltd supply chain could this help answer? Why is this helpful?</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb179-2" title="2"><span class="kw">ggplot</span>(xmprice_r_df, <span class="kw">aes</span>(Date, Rate_abs)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">data =</span> xmprice_r_df, <span class="kw">aes</span>(Date, Rate), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p>The plot goes a long way to answering the question: When supply and demand tightens, does price volatility cluster? Here is an interpretation based on the data we see in the plot.</p>
+<ol style="list-style-type: decimal">
+<li>If we are selling, we would experience strong swings in demand and thus in revenue at the customer fulfillment end of the chain.</li>
+<li>If we are buying, we would experience strong swings in cost and input product utilization at the procurement end of the chain.</li>
+<li>For the financial implications: we would have a tough time making the earnings we forecast to the market.</li>
+</ol>
+</div>
+<div id="picture-this" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Picture this</h3>
+<p>We import goods as input to our manufacturing process. We might want to know the odds that a very high export-import rate might occur. We can plot a cumulative distribution function (<em>cdf</em> or <em>CDF</em>) call. we can build this plot using the <code>stat_ecdf()</code> function in <code>ggplot2</code>.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="co">#library(ggplot2)</span></a>
+<a class="sourceLine" id="cb180-2" title="2"><span class="kw">ggplot</span>(xmprice_r_df, <span class="kw">aes</span>(Rate)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_ecdf</span>(<span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+</div>
+<div id="try-another-exercise" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Try another exercise</h3>
+<ol style="list-style-type: decimal">
+<li>Suppose the procurement team’s delegation of authority remit states: “Procurement may approve input invoices when there is only a 5% chance that prices will rise any higher than the price rate associated with that tolerance. If input prices do rise higher than the tolerable rate, you must get divisional approval.”</li>
+<li>Plot a vertical line to indicate the maximum tolerable rate for procurement using the BLS EIUR data from 2000 to the present.</li>
+</ol>
+<ul>
+<li>Use <code>r_tol &lt;- quantile(xmprice_r_df$Rate, 0.95)</code> to find the tolerable rate.</li>
+<li>Use <code>+ geom_vline(xintercept = r_tol)</code> in the CDF plot.</li>
+</ul>
+<p>We can implement these requirements with the following code.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="co">#library(ggplot2)</span></a>
+<a class="sourceLine" id="cb181-2" title="2">r_tol_pct &lt;-<span class="st"> </span><span class="fl">0.95</span></a>
+<a class="sourceLine" id="cb181-3" title="3">r_tol &lt;-<span class="st"> </span><span class="kw">quantile</span>(xmprice_r_df<span class="op">$</span>Rate, r_tol_pct)</a>
+<a class="sourceLine" id="cb181-4" title="4">r_tol_label &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Tolerable Rate = &quot;</span>, <span class="kw">round</span>(r_tol, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb181-5" title="5"><span class="kw">ggplot</span>(xmprice_r_df, <span class="kw">aes</span>(Rate)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb181-6" title="6"><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb181-7" title="7"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> r_tol, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb181-8" title="8"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="fl">0.95</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">linetype=</span><span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb181-9" title="9"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> r_tol<span class="fl">-.05</span> , <span class="dt">y =</span> <span class="fl">0.75</span>, <span class="dt">label =</span> r_tol_label, <span class="dt">colour =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb181-10" title="10"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;price inflation&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;cumulative probability&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb181-11" title="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Price inflation risk tolerance&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<p>This may be a little more than we bargained for originally. We used the <code>paste</code> and <code>round</code> (to two, <code>2</code>, decimal places) functions to make a label. We made much thicker lines (<code>size = 1.5</code>). At price inflation of 2.6348% we drew a line with the vertical line <code>geom_vline()</code> annotated the line with text, and intersected the cumulative probability plot (<code>stat_ecdf()</code>) with a horizontal dotteed line <code>geom_hline()</code>, labeled the axes, and inserted a title.</p>
+<p>How might we interpret this plot?</p>
+<ol style="list-style-type: decimal">
+<li><p>The y-axis is the cumulative probability that a rate of price inflation on the x-axis occurs.</p></li>
+<li><p>The risk management policy states that any inflation above an occurrence rate of 95% must be managed. This is the red horizontal dotted line. Recall that this tolerance is for goods and services purchased.</p></li>
+<li><p>The 95th quantile of the price inflation series is 2.6348%</p></li>
+</ol>
+<p>Now that we have <em>made</em> some distributions out of live data, let’s estimate the parameters of specific distributions that might be fit to that data.</p>
+</div>
+</div>
+<div id="optimization" class="section level2">
+<h2><span class="header-section-number">3.5</span> Optimization</h2>
+<p>The optimization we will conduct here helps us to find the distribution that best fits the data. We will use results from optimization to simulate that data to help us make decisions <em>prospectively</em>.</p>
+<p>There are many distributions in <code>R</code>: <code>?distributions</code> will tell you all about them.</p>
+<ol style="list-style-type: decimal">
+<li>If <code>name</code> is the name of a distribution (e.g., <code>norm</code> for “normal”), then</li>
+</ol>
+<ul>
+<li>dname = the probability <em>d</em>ensity (if continuous) or probability mass function of <code>name</code> (pdf or pmf), think “histogram”</li>
+<li>pname = the cumulative <em>p</em>robability function (CDF), think “s-curve”</li>
+<li>qname = the <em>q</em>uantile function (inverse to CDF), “think tolerance line”</li>
+<li>rname = draw <em>r</em>andom numbers from <code>name</code> (first argument always the number of draws), think whatever you want…it’s kind of random</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>And ways to write your own (like the <code>pareto</code> distribution we use in finance)</li>
+</ol>
+<div id="try-this-exercise-5" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Try this exercise</h3>
+<p>Suppose the <code>EIUR</code> price series is the <em>benchmark</em> in several import contracts you write as the procurement officer of your organization. Your concern is with volatility. Thus you think that you need to simulate the size of the price rates, whatever direction they go in. Draw the histogram of the absolute value of price rates.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="co">#library(ggplot2)</span></a>
+<a class="sourceLine" id="cb182-2" title="2">r_tol &lt;-<span class="st"> </span><span class="kw">quantile</span>(xmprice_r_df<span class="op">$</span>Rate, <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb182-3" title="3">r_tol_label &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Tolerable Rate = &quot;</span>, <span class="kw">round</span>(r_tol, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb182-4" title="4"><span class="kw">ggplot</span>(xmprice_r_df, <span class="kw">aes</span>(Rate_abs)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb182-5" title="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;cornsilk&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;grey60&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb182-6" title="6"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb182-7" title="7"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> r_tol, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb182-8" title="8"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">.055</span> , <span class="dt">y =</span> <span class="dv">30</span>, <span class="dt">label =</span> r_tol_label, <span class="dt">colour =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb182-9" title="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;price inflation volatility&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;frequency&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb182-10" title="10"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Price inflation risk tolerance&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p>This series is right-skewed and thickly-tailed. We will use this function to pull several of the statistics calculations together.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="co">## r_moments function</span></a>
+<a class="sourceLine" id="cb183-2" title="2"><span class="co">## INPUTS: r vector</span></a>
+<a class="sourceLine" id="cb183-3" title="3"><span class="co">## OUTPUTS: list of scalars (mean, sd, median, skewness, kurtosis)</span></a>
+<a class="sourceLine" id="cb183-4" title="4">data_moments &lt;-<span class="st"> </span><span class="cf">function</span>(data){</a>
+<a class="sourceLine" id="cb183-5" title="5">  <span class="kw">require</span>(moments)</a>
+<a class="sourceLine" id="cb183-6" title="6">  mean_r &lt;-<span class="st"> </span><span class="kw">mean</span>(data)</a>
+<a class="sourceLine" id="cb183-7" title="7">  sd_r &lt;-<span class="st"> </span><span class="kw">sd</span>(data)</a>
+<a class="sourceLine" id="cb183-8" title="8">  median_r &lt;-<span class="st"> </span><span class="kw">median</span>(data)</a>
+<a class="sourceLine" id="cb183-9" title="9">  skewness_r &lt;-<span class="st"> </span><span class="kw">skewness</span>(data)</a>
+<a class="sourceLine" id="cb183-10" title="10">  kurtosis_r &lt;-<span class="st"> </span><span class="kw">kurtosis</span>(data)</a>
+<a class="sourceLine" id="cb183-11" title="11">  result &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mean =</span> mean_r, <span class="dt">std_dev =</span> sd_r, <span class="dt">median =</span> median_r, <span class="dt">skewness =</span> skewness_r, <span class="dt">kurtosis =</span> kurtosis_r)</a>
+<a class="sourceLine" id="cb183-12" title="12">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb183-13" title="13">}</a></code></pre></div>
+<p>We will need to <code>install.packages("moments")</code> to make this function operate. We then run these sentences.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">ans &lt;-<span class="st"> </span><span class="kw">data_moments</span>(xmprice_r_df<span class="op">$</span>Rate_abs)</a>
+<a class="sourceLine" id="cb184-2" title="2">ans &lt;-<span class="st"> </span><span class="kw">round</span>(ans, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb184-3" title="3">knitr<span class="op">::</span><span class="kw">kable</span>(ans)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+std_dev
+</th>
+<th style="text-align:right;">
+median
+</th>
+<th style="text-align:right;">
+skewness
+</th>
+<th style="text-align:right;">
+kurtosis
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0.0109
+</td>
+<td style="text-align:right;">
+0.0117
+</td>
+<td style="text-align:right;">
+0.0074
+</td>
+<td style="text-align:right;">
+2.523
+</td>
+<td style="text-align:right;">
+12.15
+</td>
+</tr>
+</tbody>
+</table>
+<p>As we visually surmised, the series is right-skewed and very thickly tailed. One interrpretation of teh thick tails is that price inflation volatility will beget further volatility. This is what is known as a <em>stylized fact</em> of many markets. For the manager it means that when volatility of purchased goods prices is low, the manager may expect that low volatility will persist until a major and substantive bit of news occurs. When the innovative news occurs then volatility will be pumped up and persist until the news cycle runs its course.</p>
+<p>This stylized fact may indicate that the <code>gamma</code> and <code>pareto</code> functions may help us to describe these series and prepare us for simulations, estimation, and inference. Next we will make liberal use of the <code>fitdistr</code> function from <code>MASS</code> and come back to this moments function.</p>
+</div>
+</div>
+<div id="estimate-until-morale-improves" class="section level2">
+<h2><span class="header-section-number">3.6</span> Estimate until morale improves…</h2>
+<p>Given data about an important series like export-import price changes, we might want to know how probable changes will occur in the future. We can estimate the parameters of anticipated movements using various probability distributions such as the <code>gamma</code> and <code>pareto</code> distributions. Of particular interest to managers is the simulation of the tail of the series, where the kurtotic thickness presides. Managers might choose to manage volatility in the tails using insurance, contracting, hedging, or even elimination of the problem altogether by, for example, moving facilities to other regions.</p>
+<p>We will try one method that works often enough in practice to estimate distributional parameters, the Method of Moments (“MM” or, more affectionately, “MOM”). This technique estimates the distribution parameters such that the moments of the data match the moments of the distribution. Other methods include:</p>
+<ul>
+<li><p><code>fitdistr</code>: Let the opaque box do the job for you; look at the package <code>MASS</code> which uses the “maximum likelihood” approach in the <code>fitdistr</code> estimating function (like <code>lm</code> for regression).</p></li>
+<li><p><code>fitdistrplus</code>: For the more adventurous analyst, this package contains several methods, including MM, to get the job done.</p></li>
+</ul>
+<p>Suppose we believe that absolute price rates somehow follow a <code>gamma</code> distribution. You can look up this distribution easily enough in <a href="https://en.wikipedia.org/wiki/Gamma_distribution">Wikipedia’s good article</a> on the subject. Behind managerial scenes, we can model potential losses with <code>gamma</code> severity function that allows for skewness and thick tails. We can specify the <code>gamma</code> distribution with shape, <span class="math inline">\(\alpha\)</span>, and scale, <span class="math inline">\(\beta\)</span>, parameters. We will find in operational loss analysis that this distribution is especially useful for time-sensitive losses.</p>
+<p>It turns out We can specify the shape and scale parameters using the mean, <span class="math inline">\(\mu\)</span>, and standard deviation, <span class="math inline">\(\sigma\)</span> of the random severities, <span class="math inline">\(X\)</span>. The scale parameter is</p>
+<p><span class="math display">\[
+\beta = \sigma^2 / \mu,
+\]</span></p>
+<p>and shape parameter,</p>
+<p><span class="math display">\[
+\alpha = \mu^2 / \sigma^2.
+\]</span></p>
+<p>The distribution itself is defined as</p>
+<p><span class="math display">\[
+f(x; alpha, \beta) = \frac{\beta^{\alpha}x^{\alpha-1}e^{-x\beta}}{\Gamma(\alpha)},
+\]</span></p>
+<p>where, to have a complete statement,</p>
+<p><span class="math display">\[
+\Gamma(x) = \int_{0}^{\infty} x^{t-1} e^{-x} dx.
+\]</span></p>
+<p>Let’s finally implement our method into <code>R</code>.</p>
+<p>First, we will load a cost sample and calculate moments and gamma parameters:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1">cost &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/cost.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb185-2" title="2">cost &lt;-<span class="st"> </span><span class="kw">abs</span>(cost<span class="op">$</span>x)</a>
+<a class="sourceLine" id="cb185-3" title="3">cost_moments &lt;-<span class="st"> </span><span class="kw">data_moments</span>(cost)</a>
+<a class="sourceLine" id="cb185-4" title="4">cost_mean &lt;-<span class="st"> </span>cost_moments<span class="op">$</span>mean</a>
+<a class="sourceLine" id="cb185-5" title="5">cost_sd &lt;-<span class="st"> </span>cost_moments<span class="op">$</span>std_dev</a>
+<a class="sourceLine" id="cb185-6" title="6">(cost_shape &lt;-<span class="st"> </span>cost_mean<span class="op">^</span><span class="dv">2</span><span class="op">/</span>cost_sd<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 19.07</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1">(cost_scale &lt;-<span class="st"> </span>cost_sd<span class="op">^</span><span class="dv">2</span><span class="op">/</span>cost_mean)</a></code></pre></div>
+<pre><code>## [1] 0.5576</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1">gamma_start &lt;-<span class="st"> </span><span class="kw">c</span>(cost_shape, cost_scale)</a></code></pre></div>
+<p>When performing these calculations, be sure to load the function <code>data_moments()</code> and <code>moments</code> library into the workspace.</p>
+<p>Second, we can use <code>fitdistr</code> from the <code>Mass</code> package to estimate the <code>gamma</code> parameters <code>alpha</code> and <code>beta</code>.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb190-2" title="2">fit_gamma_cost &lt;-<span class="st"> </span><span class="kw">fitdistr</span>(cost, <span class="st">&quot;gamma&quot;</span>)</a>
+<a class="sourceLine" id="cb190-3" title="3">fit_gamma_cost</a></code></pre></div>
+<pre><code>##    shape     rate 
+##   20.300    1.910 
+##  ( 2.373) ( 0.226)</code></pre>
+<p>Here we get a shape and rate parameter estimation with the standard deviations of these estimates in the parentheses below the estimates.</p>
+<p>Third, we construct the ratio of estimates to the standard error of estimates. This computes the number of standard deviations away from zero the estimates are. If they are “far” enough away from zero, we have reason to reject the null hypothesis that the estimates are no different from zero.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1">(cost_t &lt;-<span class="st"> </span>fit_gamma_cost<span class="op">$</span>estimate <span class="op">/</span><span class="st"> </span>fit_gamma_cost<span class="op">$</span>sd)</a></code></pre></div>
+<pre><code>## shape  rate 
+## 8.555 8.450</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(cost_t)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+shape
+</td>
+<td style="text-align:right;">
+8.555
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rate
+</td>
+<td style="text-align:right;">
+8.450
+</td>
+</tr>
+</tbody>
+</table>
+<p>Nice…but we also note that the scale parameter is <code>fit_gamma_cost$estimate[2] / gamma_start[2]</code> = 3.4247 times the moment estimates above.</p>
+<p>Suppose we believe that the method of moments works better for management decisions about cost. Also we believe that in the next quarter average and standard deviation of costs will follow history. Our risk management policy states that any cost volatility above the 95 quantile must be managed by the executive vice president of manufacturing, well above our pay grade. Using the gamma function how can we simulate this threshold?</p>
+<p>We start by loading up the paramters from the absolute value of cost.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1">cost_moments &lt;-<span class="st"> </span><span class="kw">data_moments</span>(cost)</a>
+<a class="sourceLine" id="cb195-2" title="2">cost_mean &lt;-<span class="st"> </span>cost_moments<span class="op">$</span>mean</a>
+<a class="sourceLine" id="cb195-3" title="3">cost_sd &lt;-<span class="st"> </span>cost_moments<span class="op">$</span>std_dev</a>
+<a class="sourceLine" id="cb195-4" title="4">(cost_shape &lt;-<span class="st"> </span>cost_mean<span class="op">^</span><span class="dv">2</span><span class="op">/</span>cost_sd<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 19.07</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1">(cost_scale &lt;-<span class="st"> </span>cost_sd<span class="op">^</span><span class="dv">2</span><span class="op">/</span>cost_mean)</a></code></pre></div>
+<pre><code>## [1] 0.5576</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1">gamma_start &lt;-<span class="st"> </span><span class="kw">c</span>(cost_shape, cost_scale)</a></code></pre></div>
+<p>Next we simply calculate the 95th quantile and locate it on a box plot of absolute values of costs.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1">cost_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">qgamma</span>(<span class="fl">0.95</span>, cost_shape, cost_scale)</a>
+<a class="sourceLine" id="cb200-2" title="2"><span class="co"># for comparison to the gamma indicated quantile</span></a>
+<a class="sourceLine" id="cb200-3" title="3">cost_<span class="dv">95</span>_hist &lt;-<span class="st"> </span><span class="kw">quantile</span>(cost, <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb200-4" title="4">cost_<span class="dv">95</span>_label &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;gamma anticipated 95th quantile = &quot;</span>, <span class="kw">round</span>(cost_<span class="dv">95</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb200-5" title="5">cost_<span class="dv">95</span>_hist_label &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;gamma anticipated 95th quantile = &quot;</span>, <span class="kw">round</span>(cost_<span class="dv">95</span>_hist, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb200-6" title="6">cost_abs_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">abs_cost =</span> cost, <span class="dt">name =</span> <span class="st">&quot;cost volatility&quot;</span>)</a>
+<a class="sourceLine" id="cb200-7" title="7"><span class="kw">ggplot</span>(cost_abs_df, <span class="kw">aes</span>(<span class="dt">x =</span> name, <span class="dt">y =</span> abs_cost)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-8" title="8"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.colour=</span><span class="st">&quot;black&quot;</span>, <span class="dt">outlier.shape=</span><span class="dv">16</span>, <span class="dt">outlier.size=</span><span class="dv">2</span>, <span class="dt">notch=</span><span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-9" title="9"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">shape=</span><span class="dv">16</span>, <span class="dt">position=</span><span class="kw">position_jitter</span>(<span class="fl">0.1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-10" title="10"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> cost_<span class="dv">95</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">size =</span> <span class="fl">1.25</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-11" title="11"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> cost_<span class="dv">95</span>_hist, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">size =</span> <span class="fl">1.25</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-12" title="12"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">0.75</span>, <span class="dt">y =</span> cost_<span class="dv">95</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">label =</span> cost_<span class="dv">95</span>_label) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-13" title="13"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">0.75</span>, <span class="dt">y =</span> cost_<span class="dv">95</span>_hist <span class="op">+</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">label =</span> cost_<span class="dv">95</span>_hist_label)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/cost-7-1.png" width="672" /></p>
+<p>The boxplot uses a notch to indicate the confidence interval for the median. The jitter allows us to see the original data on the same plot. But the gamma function exercise seems way off! The maximum historical cost volatility is only 20.5. But that is the point. If management believes that costs are so distributed, then a large cost variance might be anticipated.</p>
+<div id="try-this-exercise-6" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Try this exercise</h3>
+<p>Let’s use the export-input price series rates and the <code>t</code> distribution instead of the <code>gamma</code>.</p>
+<p>First, we calculate the moments (mean, etc.).</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1">rate &lt;-<span class="st"> </span>xmprice_r_df<span class="op">$</span>Rate</a>
+<a class="sourceLine" id="cb201-2" title="2">rate_moments &lt;-<span class="st"> </span><span class="kw">data_moments</span>(rate)</a>
+<a class="sourceLine" id="cb201-3" title="3">(rate_mean &lt;-<span class="st"> </span>rate_moments<span class="op">$</span>mean)</a></code></pre></div>
+<pre><code>## [1] 0.0004596</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1">(rate_sd &lt;-<span class="st"> </span>rate_moments<span class="op">$</span>std_dev)</a></code></pre></div>
+<pre><code>## [1] 0.01602</code></pre>
+<p>Second, we use <code>fitdistr</code> from the <code>Mass</code> package to estimate the parameters of the <code>t</code> distribution.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1">fit_t_rate &lt;-<span class="st"> </span><span class="kw">fitdistr</span>(rate, <span class="st">&quot;t&quot;</span>, <span class="dt">hessian =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb205-2" title="2">fit_t_rate</a></code></pre></div>
+<pre><code>##       m          s          df   
+##   0.001792   0.009833   2.888001 
+##  (0.001059) (0.001132) (0.843729)</code></pre>
+<p>Third, we infer if we did a good job or not. The null hypothesis is that the parameters are no different than zero (<span class="math inline">\(H_0\)</span>). We calculate t statistics to approximate the mapping of parameter estimates to a dimensionless scale that will compute the number of standard deviations from the null hypothesis that the parameters are just zero and of no further use. The <code>hessian = TRUE</code> parameter allows us to view the hessian matrix, the diagonals of which contain the variances of the estimated parameters.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1">(rate_tstat &lt;-<span class="st"> </span>fit_t_rate<span class="op">$</span>estimate <span class="op">/</span><span class="st"> </span>fit_t_rate<span class="op">$</span>sd)</a></code></pre></div>
+<pre><code>##     m     s    df 
+## 1.692 8.689 3.423</code></pre>
+<p>Nice…but that location parameter is a bit low relative to the moment estimate. What else can we do? Simulate the estimated results and see if, at least, skewness and kurtosis line up with the moments.</p>
+</div>
+</div>
+<div id="summary-1" class="section level2">
+<h2><span class="header-section-number">3.7</span> Summary</h2>
+<p>We used our newly found ability to write functions and built insightful pictures of distributions. We also ran nonlinear (gamma and t-distributions are indeed very nonlinear) regressions using a package and the method of moments. All of this we did to answer critical business questions.</p>
+<p>More specifically we waded into:</p>
+<ul>
+<li>Excel look alike processes: Pivot tables and VLOOKUP</li>
+<li>Excel look alike functions</li>
+<li>Graphics to get insights into distributions</li>
+<li>Estimating parameters of distribution</li>
+<li>Goodness of fit</li>
+</ul>
+</div>
+<div id="further-reading-1" class="section level2">
+<h2><span class="header-section-number">3.8</span> Further Reading</h2>
+<p>Teetor’s various chapters have much to guide us in the writing of functions and the building of expressions. Present value and internal rate of return can be found in Brealey et al. <span class="citation">(<span class="citeproc-not-found" data-reference-id="brealey2003principles"><strong>???</strong></span>)</span>. Use of <code>ggplot2</code> <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2" role="doc-biblioref">2019</a>)</span> in this chapter relies heavily on <span class="citation">Chang (<a href="#ref-chang2013r" role="doc-biblioref">2013</a>)</span>.</p>
+</div>
+<div id="practice-sets" class="section level2">
+<h2><span class="header-section-number">3.9</span> Practice Sets</h2>
+<p>These practice sets reference materials developed in this chapter. We will explore new problems and data with models, <code>R</code> packages, tables, and plots worked out already in the chapter.</p>
+<div id="set-a" class="section level3">
+<h3><span class="header-section-number">3.9.1</span> Set A</h3>
+<p>In this set we will build a data set using filters and <code>if</code> and <code>diff</code> statements. We will then answer some questions using plots and a pivot table report. We will then review a function to house our approach in case we would like to run the same analysis on other data sets.</p>
+<div id="problem-2" class="section level4">
+<h4><span class="header-section-number">3.9.1.1</span> Problem</h4>
+<p>Supply chain managers at our company continue to note we have a significant exposure to heating oil prices (Heating Oil No. 2, or HO2), specifically New York Harbor. The exposure hits the variable cost of producing several products. When HO2 is volatile, so is earnings. Our company has missed earnings forecasts for five straight quarters. To get a handle on Brent we download this data set and review some basic aspects of the prices.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="co"># Read in data</span></a>
+<a class="sourceLine" id="cb209-2" title="2">HO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nyhh02.csv&quot;</span>, <span class="dt">header =</span> T, <span class="dt">stringsAsFactors =</span> F)</a>
+<a class="sourceLine" id="cb209-3" title="3"><span class="co"># stringsAsFactors sets dates as character type</span></a>
+<a class="sourceLine" id="cb209-4" title="4"><span class="kw">head</span>(HO2)</a>
+<a class="sourceLine" id="cb209-5" title="5">HO2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(HO2) <span class="co">## to clean up any missing data</span></a>
+<a class="sourceLine" id="cb209-6" title="6"><span class="kw">str</span>(HO2) <span class="co"># review the structure of the data so far</span></a></code></pre></div>
+</div>
+<div id="questions-2" class="section level4">
+<h4><span class="header-section-number">3.9.1.2</span> Questions</h4>
+<ol style="list-style-type: decimal">
+<li>What is the nature of HO2 returns? We want to reflect the ups and downs of price movements, something of prime interest to management. First, we calculate percentage changes as log returns. Our interest is in the ups and downs. To look at that we use <code>if</code> and <code>else</code> statements to define a new column called <code>direction</code>. We will build a data frame to house this analysis.</li>
+</ol>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="co"># Construct expanded data frame</span></a>
+<a class="sourceLine" id="cb210-2" title="2">return &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">diff</span>(<span class="kw">log</span>(HO2<span class="op">$</span>DHOILNYH))) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb210-3" title="3">size &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">abs</span>(return)) <span class="co"># size is indicator of volatility</span></a>
+<a class="sourceLine" id="cb210-4" title="4">direction &lt;-<span class="st"> </span><span class="kw">ifelse</span>(return <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;up&quot;</span>, <span class="kw">ifelse</span>(return <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;down&quot;</span>, <span class="st">&quot;same&quot;</span>)) <span class="co"># another indicator of volatility</span></a>
+<a class="sourceLine" id="cb210-5" title="5">date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(HO2<span class="op">$</span>DATE[<span class="op">-</span><span class="dv">1</span>], <span class="st">&quot;%m/%d/%Y&quot;</span>) <span class="co"># length of DATE is length of return +1: omit 1st observation</span></a>
+<a class="sourceLine" id="cb210-6" title="6">price &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(HO2<span class="op">$</span>DHOILNYH[<span class="op">-</span><span class="dv">1</span>]) <span class="co"># length of DHOILNYH is length of return +1: omit first observation</span></a>
+<a class="sourceLine" id="cb210-7" title="7">HO2.df &lt;-<span class="st"> </span><span class="kw">na.omit</span>(<span class="kw">data.frame</span>(<span class="dt">date =</span> date, <span class="dt">price =</span> price, <span class="dt">return =</span> return, <span class="dt">size =</span> size, <span class="dt">direction =</span> direction)) <span class="co"># clean up data frame by omitting NAs</span></a>
+<a class="sourceLine" id="cb210-8" title="8"><span class="kw">str</span>(HO2.df)</a></code></pre></div>
+<p>We can plot with the <code>ggplot2</code> package. In the <code>ggplot</code> statements we use <code>aes</code>, “aesthetics”, to pick <code>x</code> (horizontal) and <code>y</code> (vertical) axes. Use <code>group =1</code> to ensure that all data is plotted. The added (<code>+</code>) <code>geom_line</code> is the geometrical method that builds the line plot.</p>
+<p>Let’s try a bar graph of the absolute value of price rates. We use <code>geom_bar</code> to build this picture.</p>
+<p>Now let’s build an overlay of <code>return</code> on <code>size</code>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Let’s dig deeper and compute mean, standard deviation, etc. Load the <code>data_moments()</code> function. Run the function using the <code>HO2.df$return</code> subset and write a <code>knitr::kable()</code> report.</p></li>
+<li><p>Let’s pivot <code>size</code> and <code>return</code> on <code>direction</code>. What is the average and range of returns by direction? How often might we view positive or negative movements in HO2?</p></li>
+</ol>
+</div>
+</div>
+<div id="set-b" class="section level3">
+<h3><span class="header-section-number">3.9.2</span> Set B</h3>
+<p>We will use the data from the previous set to investigate the distribution of returns we generated. This will entail fitting the data to some parametric distributions as well as plotting and building supporting data frames.</p>
+<div id="problem-3" class="section level4">
+<h4><span class="header-section-number">3.9.2.1</span> Problem</h4>
+<p>We want to further characterize the distribution of up and down movements visually. Also we would like to repeat the analysis periodically for inclusion in management reports.</p>
+</div>
+<div id="questions-3" class="section level4">
+<h4><span class="header-section-number">3.9.2.2</span> Questions</h4>
+<ol style="list-style-type: decimal">
+<li><p>How can we show the differences in the shape of ups and downs in HO2, especially given our tolerance for risk? Let’s use the <code>HO2.df</code> data frame with <code>ggplot2</code> and the cumulative relative frequency function <code>stat_ecdf</code>.</p></li>
+<li><p>How can we regularly, and reliably, analyze HO2 price movements? For this requirement, let’s write a function similar to <code>data_moments</code>.</p></li>
+</ol>
+<p>Let’s test <code>HO2_movement()</code>.</p>
+<p>Morale: more work today (build the function) means less work tomorrow (write yet another report).</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Suppose we wanted to simulate future movements in HO2 returns. What distribution might we use to run those scenarios? Here, let’s use the <code>MASS</code> package’s <code>fitdistr()</code> function to find the optimal fit of the HO2 data to a parametric distribution.</li>
+</ol>
+</div>
+</div>
+<div id="practice-set-debrief" class="section level3">
+<h3><span class="header-section-number">3.9.3</span> Practice Set Debrief</h3>
+<ol style="list-style-type: decimal">
+<li><p>List the R skills needed to complete these practice sets.</p></li>
+<li><p>What are the packages used to compute and graph results. Explain each of them.</p></li>
+<li><p>How well did the results begin to answer the business questions posed at the beginning of each practice set?</p></li>
+</ol>
+</div>
+</div>
+<div id="project" class="section level2">
+<h2><span class="header-section-number">3.10</span> Project</h2>
+<div id="background" class="section level3">
+<h3><span class="header-section-number">3.10.1</span> Background</h3>
+<p>Your company uses natural gas as a major input to recycle otherwise non-recoverable waste. The only thing that prevents the operation from being a little better than break-even is volatile natural gas prices. In its annual review, management requires information and analysis of recycling operations with a view to making decisions about outsourcing contracts. These contracts typically have three year tenors.</p>
+<p>Since management will be making do or outsource decisions over a three year forward span, analysts will build models that characterize historical movements in natural gas prices, the volatility of those prices, and probability distributions to simulate future natural gas scenarios.</p>
+</div>
+<div id="data" class="section level3">
+<h3><span class="header-section-number">3.10.2</span> Data</h3>
+<p>In a preliminary analysis, you gather data from FRED on daily natural gas prices. You will use this data to characterize historical natural gas price movements and construct provisional probability distributions for eventual generation of forward scenarios.</p>
+</div>
+<div id="workflow" class="section level3">
+<h3><span class="header-section-number">3.10.3</span> Workflow</h3>
+<ol style="list-style-type: decimal">
+<li><p>Data collection. Collect, clean, and review data definitions, and data transformations of price into returns. Use tables and graphs to report results.</p></li>
+<li><p>Analysis.</p></li>
+</ol>
+<ul>
+<li>Group prices into up, same (no movement), and down movements using percent change in daily price as the criterion.</li>
+<li>Build a table of summary statistics that pivots the data and computes metrics.</li>
+<li>Graph the cumulative probability of an up, same, and down group of historical returns.</li>
+<li>Estimate Student’s t distribution parameters for up, same, and down movements in natural gas returns.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Observations and Recommendations.</li>
+</ol>
+<ul>
+<li>Summarize the data, its characteristics, and applicability to attend to the problem being solved for management.</li>
+<li>Discuss key take-aways from analytical results that are relevant to the decisions that managers will make.</li>
+<li>Produce an <code>R Markdown</code> document with code chunks to document and interpret results.</li>
+<li>The format will introduce the problem to be analyzed, with sections that discuss the data used, and which follow the work flow.</li>
+</ul>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2><span class="header-section-number">3.11</span> References</h2>
+<p>Brealey</p>
+<p>Chang</p>
+<p>Teetor</p>
+<p>knitr</p>
+<p>xts</p>
+<p>zoo</p>
+<p>BLS</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-chang2013r">
+<p>Chang, W. 2013. <em>R Graphics Cookbook</em>. Oreilly and Associate Series. O’Reilly Media, Incorporated. <a href="http://www.cookbook-r.com/">http://www.cookbook-r.com/</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, and Hiroaki Yutani. 2019. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-warm-ups-in-finance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="macrofinancial-data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-rdatamodel.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

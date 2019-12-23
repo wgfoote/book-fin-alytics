@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Macrofinancial Data Analysis | Financial Analytics</title>
+  <meta name="description" content="This is a practice manual using R for financial analytics." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Macrofinancial Data Analysis | Financial Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a practice manual using R for financial analytics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Macrofinancial Data Analysis | Financial Analytics" />
+  
+  <meta name="twitter:description" content="This is a practice manual using R for financial analytics." />
+  
+
+<meta name="author" content="Bill Foote" />
+
+
+<meta name="date" content="2019-12-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-data-modeling.html"/>
+<link rel="next" href="market-risk.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-basic-problem"><i class="fa fa-check"></i><b>1.1</b> The basic problem</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#analytics"><i class="fa fa-check"></i><b>1.2</b> Analytics</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.3</b> Why this book?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-useful-way-to-start-private-placement-finance"><i class="fa fa-check"></i><b>1.4</b> A useful way to start: private placement finance</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#the-market-for-private-placement"><i class="fa fa-check"></i><b>1.4.1</b> The market for private placement</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#a-deal-emerges-from-the-mist"><i class="fa fa-check"></i><b>1.4.2</b> A deal emerges from the mist</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#chapter-outline"><i class="fa fa-check"></i><b>1.5</b> Chapter Outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html"><i class="fa fa-check"></i><b>2</b> R Warm-ups in Finance</a><ul>
+<li class="chapter" data-level="2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#imagine-this"><i class="fa fa-check"></i><b>2.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#modeling-process"><i class="fa fa-check"></i><b>2.1.1</b> Modeling process</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#chapter-overview"><i class="fa fa-check"></i><b>2.1.2</b> Chapter overview</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#what-is-r"><i class="fa fa-check"></i><b>2.1.3</b> What is <code>R</code>?</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-for-analytics"><i class="fa fa-check"></i><b>2.1.4</b> <code>R</code> for analytics</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#hot-and-cold-running-resources"><i class="fa fa-check"></i><b>2.1.5</b> Hot and cold running resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#tickling-the-ivories"><i class="fa fa-check"></i><b>2.2</b> Tickling the Ivories</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise"><i class="fa fa-check"></i><b>2.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#building-some-character"><i class="fa fa-check"></i><b>2.3</b> Building Some Character</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#the-plot-thickens"><i class="fa fa-check"></i><b>2.3.1</b> The plot thickens</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-example"><i class="fa fa-check"></i><b>2.3.2</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#arrays-and-you"><i class="fa fa-check"></i><b>2.4</b> Arrays and You</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#try-this-exercise-1"><i class="fa fa-check"></i><b>2.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-about-residuals"><i class="fa fa-check"></i><b>2.4.2</b> More about residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#more-array-work"><i class="fa fa-check"></i><b>2.5</b> More Array Work</a></li>
+<li class="chapter" data-level="2.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+<li class="chapter" data-level="2.7" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#further-reading"><i class="fa fa-check"></i><b>2.7</b> Further Reading</a></li>
+<li class="chapter" data-level="2.8" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#practice-set"><i class="fa fa-check"></i><b>2.8</b> Practice Set</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#purpose-process-product"><i class="fa fa-check"></i><b>2.8.1</b> Purpose, Process, Product</a></li>
+<li class="chapter" data-level="2.8.2" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#r-markdown-set-up"><i class="fa fa-check"></i><b>2.8.2</b> <code>R Markdown</code> set up</a></li>
+<li class="chapter" data-level="2.8.3" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-1-a-financial-planning-problem"><i class="fa fa-check"></i><b>2.8.3</b> Exercise 1: a financial planning problem</a></li>
+<li class="chapter" data-level="2.8.4" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-2-risk-driver-model-using-regression-analysis"><i class="fa fa-check"></i><b>2.8.4</b> Exercise 2: risk driver model using regression analysis</a></li>
+<li class="chapter" data-level="2.8.5" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#exercise-3-commercial-loan-projection-using-regression"><i class="fa fa-check"></i><b>2.8.5</b> Exercise 3: commercial loan projection using regression</a></li>
+<li class="chapter" data-level="2.8.6" data-path="r-warm-ups-in-finance.html"><a href="r-warm-ups-in-finance.html#work-flow"><i class="fa fa-check"></i><b>2.8.6</b> Work Flow</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-data-modeling.html"><a href="r-data-modeling.html"><i class="fa fa-check"></i><b>3</b> R Data Modeling</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#imagine-this-1"><i class="fa fa-check"></i><b>3.1</b> Imagine This</a></li>
+<li class="chapter" data-level="3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-tables-and-vertical-lookups"><i class="fa fa-check"></i><b>3.2</b> Pivot tables and Vertical Lookups</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#some-definitions"><i class="fa fa-check"></i><b>3.2.1</b> Some definitions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#pivot-and-parry"><i class="fa fa-check"></i><b>3.2.2</b> Pivot and Parry</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-2"><i class="fa fa-check"></i><b>3.2.3</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#now-to-vlookup"><i class="fa fa-check"></i><b>3.2.4</b> Now to VLOOKUP</a></li>
+<li class="chapter" data-level="3.2.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-3"><i class="fa fa-check"></i><b>3.2.5</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#why-functions"><i class="fa fa-check"></i><b>3.3</b> Why Functions?</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-should-be-a-function"><i class="fa fa-check"></i><b>3.3.1</b> What should be a function?</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#shooting-trouble"><i class="fa fa-check"></i><b>3.3.2</b> Shooting trouble</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#what-the-function-can-see-and-do"><i class="fa fa-check"></i><b>3.3.3</b> What the function can see and do</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this"><i class="fa fa-check"></i><b>3.3.4</b> Try this …</a></li>
+<li class="chapter" data-level="3.3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#mind-the-interface"><i class="fa fa-check"></i><b>3.3.5</b> Mind the Interface!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-data-modeling.html"><a href="r-data-modeling.html#making-distributions"><i class="fa fa-check"></i><b>3.4</b> Making distributions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-4"><i class="fa fa-check"></i><b>3.4.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#picture-this"><i class="fa fa-check"></i><b>3.4.2</b> Picture this</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-another-exercise"><i class="fa fa-check"></i><b>3.4.3</b> Try another exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-data-modeling.html"><a href="r-data-modeling.html#optimization"><i class="fa fa-check"></i><b>3.5</b> Optimization</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-5"><i class="fa fa-check"></i><b>3.5.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="r-data-modeling.html"><a href="r-data-modeling.html#estimate-until-morale-improves"><i class="fa fa-check"></i><b>3.6</b> Estimate until morale improves…</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#try-this-exercise-6"><i class="fa fa-check"></i><b>3.6.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="r-data-modeling.html"><a href="r-data-modeling.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
+<li class="chapter" data-level="3.8" data-path="r-data-modeling.html"><a href="r-data-modeling.html#further-reading-1"><i class="fa fa-check"></i><b>3.8</b> Further Reading</a></li>
+<li class="chapter" data-level="3.9" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-sets"><i class="fa fa-check"></i><b>3.9</b> Practice Sets</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-a"><i class="fa fa-check"></i><b>3.9.1</b> Set A</a></li>
+<li class="chapter" data-level="3.9.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#set-b"><i class="fa fa-check"></i><b>3.9.2</b> Set B</a></li>
+<li class="chapter" data-level="3.9.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#practice-set-debrief"><i class="fa fa-check"></i><b>3.9.3</b> Practice Set Debrief</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="r-data-modeling.html"><a href="r-data-modeling.html#project"><i class="fa fa-check"></i><b>3.10</b> Project</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="r-data-modeling.html"><a href="r-data-modeling.html#background"><i class="fa fa-check"></i><b>3.10.1</b> Background</a></li>
+<li class="chapter" data-level="3.10.2" data-path="r-data-modeling.html"><a href="r-data-modeling.html#data"><i class="fa fa-check"></i><b>3.10.2</b> Data</a></li>
+<li class="chapter" data-level="3.10.3" data-path="r-data-modeling.html"><a href="r-data-modeling.html#workflow"><i class="fa fa-check"></i><b>3.10.3</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="r-data-modeling.html"><a href="r-data-modeling.html#references"><i class="fa fa-check"></i><b>3.11</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Macrofinancial Data Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#imagine-this-2"><i class="fa fa-check"></i><b>4.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#working-an-example"><i class="fa fa-check"></i><b>4.1.1</b> Working an example</a></li>
+<li class="chapter" data-level="4.1.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#how-we-will-proceed"><i class="fa fa-check"></i><b>4.1.2</b> How we will proceed</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#building-the-stylized-facts"><i class="fa fa-check"></i><b>4.2</b> Building the Stylized Facts</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#implications"><i class="fa fa-check"></i><b>4.2.1</b> Implications</a></li>
+<li class="chapter" data-level="4.2.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#now-for-somthing-really-interestingagain"><i class="fa fa-check"></i><b>4.2.2</b> Now for somthing really interesting…again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#getting-caught-in-the-cross-current"><i class="fa fa-check"></i><b>4.3</b> Getting Caught in the Cross-Current</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#on-to-quantiles"><i class="fa fa-check"></i><b>4.3.1</b> On to quantiles</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#time-is-on-our-side"><i class="fa fa-check"></i><b>4.4</b> Time is on our Side</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#forecasting-gnp"><i class="fa fa-check"></i><b>4.4.1</b> Forecasting GNP</a></li>
+<li class="chapter" data-level="4.4.2" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#residuals-again"><i class="fa fa-check"></i><b>4.4.2</b> Residuals again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#give-it-the-boot"><i class="fa fa-check"></i><b>4.5</b> Give it the Boot</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#exercises"><i class="fa fa-check"></i><b>4.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#summary-2"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
+<li class="chapter" data-level="4.7" data-path="macrofinancial-data-analysis.html"><a href="macrofinancial-data-analysis.html#further-reading-2"><i class="fa fa-check"></i><b>4.7</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="market-risk.html"><a href="market-risk.html"><i class="fa fa-check"></i><b>5</b> Market Risk</a><ul>
+<li class="chapter" data-level="5.1" data-path="market-risk.html"><a href="market-risk.html#imagine-this-3"><i class="fa fa-check"></i><b>5.1</b> Imagine This</a></li>
+<li class="chapter" data-level="5.2" data-path="market-risk.html"><a href="market-risk.html#what-is-market-risk"><i class="fa fa-check"></i><b>5.2</b> What is Market Risk?</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="market-risk.html"><a href="market-risk.html#try-this-exercise-7"><i class="fa fa-check"></i><b>5.2.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="market-risk.html"><a href="market-risk.html#history-speaks"><i class="fa fa-check"></i><b>5.3</b> History Speaks</a></li>
+<li class="chapter" data-level="5.4" data-path="market-risk.html"><a href="market-risk.html#now-to-the-matter-at-hand"><i class="fa fa-check"></i><b>5.4</b> Now to the Matter at Hand</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-1"><i class="fa fa-check"></i><b>5.4.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="market-risk.html"><a href="market-risk.html#carl-friedrich-gauss-i-presume"><i class="fa fa-check"></i><b>5.5</b> Carl Friedrich Gauss, I Presume…</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-2"><i class="fa fa-check"></i><b>5.5.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="market-risk.html"><a href="market-risk.html#back-to-the-future"><i class="fa fa-check"></i><b>5.6</b> Back to the Future</a></li>
+<li class="chapter" data-level="5.7" data-path="market-risk.html"><a href="market-risk.html#try-this-example-3"><i class="fa fa-check"></i><b>5.7</b> Try this example</a></li>
+<li class="chapter" data-level="5.8" data-path="market-risk.html"><a href="market-risk.html#lets-go-to-extremes"><i class="fa fa-check"></i><b>5.8</b> Let’s Go to Extremes</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="market-risk.html"><a href="market-risk.html#try-this-example-4"><i class="fa fa-check"></i><b>5.8.1</b> Try this example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="market-risk.html"><a href="market-risk.html#all-together-now"><i class="fa fa-check"></i><b>5.9</b> All Together Now</a></li>
+<li class="chapter" data-level="5.10" data-path="market-risk.html"><a href="market-risk.html#summary-3"><i class="fa fa-check"></i><b>5.10</b> Summary</a></li>
+<li class="chapter" data-level="5.11" data-path="market-risk.html"><a href="market-risk.html#further-reading-3"><i class="fa fa-check"></i><b>5.11</b> Further Reading</a></li>
+<li class="chapter" data-level="5.12" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory"><i class="fa fa-check"></i><b>5.12</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="5.12.1" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-1"><i class="fa fa-check"></i><b>5.12.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="5.12.2" data-path="market-risk.html"><a href="market-risk.html#practice-laboratory-2"><i class="fa fa-check"></i><b>5.12.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="market-risk.html"><a href="market-risk.html#project-1"><i class="fa fa-check"></i><b>5.13</b> Project</a><ul>
+<li class="chapter" data-level="5.13.1" data-path="market-risk.html"><a href="market-risk.html#background-1"><i class="fa fa-check"></i><b>5.13.1</b> Background</a></li>
+<li class="chapter" data-level="5.13.2" data-path="market-risk.html"><a href="market-risk.html#data-1"><i class="fa fa-check"></i><b>5.13.2</b> Data</a></li>
+<li class="chapter" data-level="5.13.3" data-path="market-risk.html"><a href="market-risk.html#workflow-1"><i class="fa fa-check"></i><b>5.13.3</b> Workflow</a></li>
+<li class="chapter" data-level="5.13.4" data-path="market-risk.html"><a href="market-risk.html#assessment"><i class="fa fa-check"></i><b>5.13.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="market-risk.html"><a href="market-risk.html#references-1"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html"><i class="fa fa-check"></i><b>6</b> Portfolio Analytics</a><ul>
+<li class="chapter" data-level="6.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#imagine-this-4"><i class="fa fa-check"></i><b>6.1</b> Imagine This</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#our-working-example"><i class="fa fa-check"></i><b>6.1.1</b> Our “working example”</a></li>
+<li class="chapter" data-level="6.1.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#this-chapter"><i class="fa fa-check"></i><b>6.1.2</b> This chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-walk-before-we-run"><i class="fa fa-check"></i><b>6.2</b> Let’s Walk Before We Run</a></li>
+<li class="chapter" data-level="6.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#all-in"><i class="fa fa-check"></i><b>6.3</b> All In</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-8"><i class="fa fa-check"></i><b>6.3.1</b> Try this exercise</a></li>
+<li class="chapter" data-level="6.3.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#lets-keep-moving-on"><i class="fa fa-check"></i><b>6.3.2</b> Let’s keep moving on…</a></li>
+<li class="chapter" data-level="6.3.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-9"><i class="fa fa-check"></i><b>6.3.3</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#optimizing-a-portfolio"><i class="fa fa-check"></i><b>6.4</b> Optimizing a Portfolio</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#try-this-exercise-10"><i class="fa fa-check"></i><b>6.4.1</b> Try this exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#summary-4"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#further-reading-4"><i class="fa fa-check"></i><b>6.6</b> Further Reading</a></li>
+<li class="chapter" data-level="6.7" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-3"><i class="fa fa-check"></i><b>6.7</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-1-1"><i class="fa fa-check"></i><b>6.7.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="6.7.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#practice-laboratory-2-1"><i class="fa fa-check"></i><b>6.7.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#project-2"><i class="fa fa-check"></i><b>6.8</b> Project</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#background-2"><i class="fa fa-check"></i><b>6.8.1</b> Background</a></li>
+<li class="chapter" data-level="6.8.2" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#data-2"><i class="fa fa-check"></i><b>6.8.2</b> Data</a></li>
+<li class="chapter" data-level="6.8.3" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#workflow-2"><i class="fa fa-check"></i><b>6.8.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.8.4" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#assessment-1"><i class="fa fa-check"></i><b>6.8.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="portfolio-analytics.html"><a href="portfolio-analytics.html#references-2"><i class="fa fa-check"></i><b>6.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html"><i class="fa fa-check"></i><b>7</b> Aggregating Enterprise Risk</a><ul>
+<li class="chapter" data-level="7.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-problem-with-enterprise-risk"><i class="fa fa-check"></i><b>7.1</b> The Problem with Enterprise Risk</a></li>
+<li class="chapter" data-level="7.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-make-copulas"><i class="fa fa-check"></i><b>7.2</b> Let’s make copulas</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#we-do-this-from-scratch."><i class="fa fa-check"></i><b>7.2.1</b> We do this from scratch.</a></li>
+<li class="chapter" data-level="7.2.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example"><i class="fa fa-check"></i><b>7.2.2</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#sklars-in-the-house"><i class="fa fa-check"></i><b>7.3</b> Sklar’s in the house…</a></li>
+<li class="chapter" data-level="7.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analyze-that"><i class="fa fa-check"></i><b>7.4</b> Analyze that…</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-1"><i class="fa fa-check"></i><b>7.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#risk-measures"><i class="fa fa-check"></i><b>7.5</b> Risk measures</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#example-2"><i class="fa fa-check"></i><b>7.5.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#lets-build-an-app"><i class="fa fa-check"></i><b>7.6</b> Let’s build an app …</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#analytics-1"><i class="fa fa-check"></i><b>7.6.1</b> Analytics</a></li>
+<li class="chapter" data-level="7.6.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#ui"><i class="fa fa-check"></i><b>7.6.2</b> UI</a></li>
+<li class="chapter" data-level="7.6.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#server"><i class="fa fa-check"></i><b>7.6.3</b> Server</a></li>
+<li class="chapter" data-level="7.6.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#application-generator"><i class="fa fa-check"></i><b>7.6.4</b> Application generator</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-simulation-function"><i class="fa fa-check"></i><b>7.7</b> The simulation function</a></li>
+<li class="chapter" data-level="7.8" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-ui"><i class="fa fa-check"></i><b>7.8</b> The UI</a></li>
+<li class="chapter" data-level="7.9" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#the-server"><i class="fa fa-check"></i><b>7.9</b> The server</a></li>
+<li class="chapter" data-level="7.10" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#run-the-app"><i class="fa fa-check"></i><b>7.10</b> Run the app</a></li>
+<li class="chapter" data-level="7.11" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#what-else-could-we-do"><i class="fa fa-check"></i><b>7.11</b> What else could we do?</a></li>
+<li class="chapter" data-level="7.12" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#summary-5"><i class="fa fa-check"></i><b>7.12</b> Summary</a></li>
+<li class="chapter" data-level="7.13" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#further-reading-5"><i class="fa fa-check"></i><b>7.13</b> Further Reading</a></li>
+<li class="chapter" data-level="7.14" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-4"><i class="fa fa-check"></i><b>7.14</b> Practice Laboratory</a><ul>
+<li class="chapter" data-level="7.14.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-1-2"><i class="fa fa-check"></i><b>7.14.1</b> Practice laboratory #1</a></li>
+<li class="chapter" data-level="7.14.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#practice-laboratory-2-2"><i class="fa fa-check"></i><b>7.14.2</b> Practice laboratory #2</a></li>
+</ul></li>
+<li class="chapter" data-level="7.15" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#project-3"><i class="fa fa-check"></i><b>7.15</b> Project</a><ul>
+<li class="chapter" data-level="7.15.1" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#background-3"><i class="fa fa-check"></i><b>7.15.1</b> Background</a></li>
+<li class="chapter" data-level="7.15.2" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#data-3"><i class="fa fa-check"></i><b>7.15.2</b> Data</a></li>
+<li class="chapter" data-level="7.15.3" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#workflow-3"><i class="fa fa-check"></i><b>7.15.3</b> Workflow</a></li>
+<li class="chapter" data-level="7.15.4" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#assessment-2"><i class="fa fa-check"></i><b>7.15.4</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.16" data-path="aggregating-enterprise-risk.html"><a href="aggregating-enterprise-risk.html#references-3"><i class="fa fa-check"></i><b>7.16</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html"><i class="fa fa-check"></i><b>8</b> Appendix 1 – R environment for financial analytics</a><ul>
+<li class="chapter" data-level="8.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#setting-up-r-for-analytics"><i class="fa fa-check"></i><b>8.1</b> Setting Up R for Analytics</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#some-useful-r-resources"><i class="fa fa-check"></i><b>8.1.2</b> Some useful <code>R</code> resources</a></li>
+<li class="chapter" data-level="8.1.3" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>8.1.3</b> Install <code>R</code> on your computer</a></li>
+<li class="chapter" data-level="8.1.4" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-rstudio"><i class="fa fa-check"></i><b>8.1.4</b> Install <code>RStudio</code></a></li>
+<li class="chapter" data-level="8.1.5" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-r-markdown"><i class="fa fa-check"></i><b>8.1.5</b> Install <code>R Markdown</code></a></li>
+<li class="chapter" data-level="8.1.6" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#install-latex"><i class="fa fa-check"></i><b>8.1.6</b> Install LaTex</a></li>
+<li class="chapter" data-level="8.1.7" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#r-markdown"><i class="fa fa-check"></i><b>8.1.7</b> R Markdown</a></li>
+<li class="chapter" data-level="8.1.8" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#jargon"><i class="fa fa-check"></i><b>8.1.8</b> jaRgon</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="appendix-1-r-environment-for-financial-analytics.html"><a href="appendix-1-r-environment-for-financial-analytics.html#nomenclature"><i class="fa fa-check"></i><b>8.2</b> Nomenclature</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html"><i class="fa fa-check"></i><b>9</b> Appendix: useful financial concepts</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#a-question-is-raised"><i class="fa fa-check"></i><b>9.0.1</b> A question is raised</a></li>
+<li class="chapter" data-level="9.0.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#jacob-bernoulli-has-a-story-to-tell"><i class="fa fa-check"></i><b>9.0.2</b> Jacob Bernoulli has a story to tell</a></li>
+<li class="chapter" data-level="9.0.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#wheres-the-finance"><i class="fa fa-check"></i><b>9.0.3</b> Where’s the finance?</a></li>
+<li class="chapter" data-level="9.0.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#the-answer-please"><i class="fa fa-check"></i><b>9.0.4</b> The answer please?</a></li>
+<li class="chapter" data-level="9.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#net-present-value"><i class="fa fa-check"></i><b>9.1</b> Net present value</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-net-present-value"><i class="fa fa-check"></i><b>9.1.1</b> What is net present value?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-do-companies-typically-use-it-for"><i class="fa fa-check"></i><b>9.1.2</b> What do companies typically use it for?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-npv"><i class="fa fa-check"></i><b>9.1.3</b> How can we calculate NPV?</a></li>
+<li class="chapter" data-level="9.1.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong"><i class="fa fa-check"></i><b>9.1.4</b> What can go wrong?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#internal-rate-of-return"><i class="fa fa-check"></i><b>9.2</b> Internal rate of return</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-internal-rate-of-return"><i class="fa fa-check"></i><b>9.2.1</b> What is the internal rate of return?</a></li>
+<li class="chapter" data-level="9.2.2" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-we-calculate-irr"><i class="fa fa-check"></i><b>9.2.2</b> How can we calculate IRR?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-can-go-wrong-1"><i class="fa fa-check"></i><b>9.2.3</b> What can go wrong?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-the-foreign-exchange-market"><i class="fa fa-check"></i><b>9.2.4</b> What is the foreign exchange market?</a></li>
+<li class="chapter" data-level="9.2.5" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rates"><i class="fa fa-check"></i><b>9.2.5</b> What are exchange rates?</a></li>
+<li class="chapter" data-level="9.2.6" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-is-a-foreign-exchange-arrbitrage"><i class="fa fa-check"></i><b>9.2.6</b> What is a foreign exchange arrbitrage?</a></li>
+<li class="chapter" data-level="9.2.7" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-you-hedge-with-foreign-exchange"><i class="fa fa-check"></i><b>9.2.7</b> How can you hedge with foreign exchange?</a></li>
+<li class="chapter" data-level="9.2.8" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#covered-interest-arbitrage"><i class="fa fa-check"></i><b>9.2.8</b> Covered interest arbitrage</a></li>
+<li class="chapter" data-level="9.2.9" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#what-are-exchange-rate-movements"><i class="fa fa-check"></i><b>9.2.9</b> What are exchange rate movements?</a></li>
+<li class="chapter" data-level="9.2.10" data-path="appendix-useful-financial-concepts.html"><a href="appendix-useful-financial-concepts.html#how-can-financial-services-benefit"><i class="fa fa-check"></i><b>9.2.10</b> How can financial services benefit?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-4.html"><a href="references-4.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Financial Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="macrofinancial-data-analysis" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Macrofinancial Data Analysis</h1>
+<div id="imagine-this-2" class="section level2">
+<h2><span class="header-section-number">4.1</span> Imagine This</h2>
+<p>Your US-based company just landed a contract worth more than 20 percent of your company’s current revenue in Spain. Now that everyone has recovered from this coup, your management wants you to</p>
+<ol style="list-style-type: decimal">
+<li>Retrieve and begin to analyze data about the Spanish economy</li>
+<li>Compare and contrast Spanish stock market and government-issued debt value versus the United States and several other countries</li>
+<li>Begin to generate economic scenarios based on political events that may, or may not, happen in Spain</li>
+</ol>
+<p>Up to this point we had reviewed several ways to manipulate data in <code>R</code>. We then reviewed some basic finance and statistics concepts in <code>R</code>. We also got some idea of the financial analytics workflow.</p>
+<ol style="list-style-type: decimal">
+<li>What decision(s) are we making?</li>
+<li>What are the key business questions we need to support this decision?</li>
+<li>What data do we need?</li>
+<li>What tools do we need to analyze the data?</li>
+<li>How do we communicate answers to inform the decision?</li>
+</ol>
+<div id="working-an-example" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Working an example</h3>
+<p>Let’s use this sequence to motivate our work in this here.</p>
+<ol style="list-style-type: decimal">
+<li><p>We identify a decision at work (e.g., investment in a new machine, financing a building, acquisition of customers, hiring talent, locating manufacturing).</p></li>
+<li><p>For this decision we will list three business questions we need to inform the decision we chose.</p></li>
+<li><p>Now we consider data we might need to answer one of those questions and choose from this set:</p></li>
+</ol>
+<ul>
+<li>Macroeconomic data: GDP, inflation, wages, population</li>
+<li>Financial data: stock market prices, bond prices, exchange rates, commodity prices</li>
+</ul>
+<p>Here is the example using the scenario that started us off.</p>
+<ol style="list-style-type: decimal">
+<li>Our decision is <strong>supply a new market segment</strong></li>
+</ol>
+<ul>
+<li>Product: voltage devices with supporting software</li>
+<li>Geography: Spain</li>
+<li>Customers: major buyers at Iberdrola, Repsol, and Endesa</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>We pose three business questions:</li>
+</ol>
+<ul>
+<li>How would the performance of these companies affect our ability to serve our customers and produce?</li>
+<li>How would the value of their products affect the value of our business with these companies?</li>
+<li>We are a US functional currency firm (see FAS 52), so how would we manage the repatriation of accounts receivable from Spain?</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Some data and analysis to inform the decision could include</li>
+</ol>
+<ul>
+<li>Customer stock prices: volatility and correlation</li>
+<li>Oil prices: volatility</li>
+<li>USD/EUR exchange rates: volatility</li>
+<li>All together: correlations among these indicators</li>
+</ul>
+<p>Volatility and correlation relate to the variability and co-variability of the values of these three companies. Each can have an up and a downside. Are there any systematically occurring patterns we need to be aware of as we design and implement our business plan?</p>
+</div>
+<div id="how-we-will-proceed" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> How we will proceed</h3>
+<p>This chapter will develop stylized facts of the market. These continue to be learned the hard Way: financial data is not independent, it possesses volatile volatility, and has extremes.</p>
+<ul>
+<li>Financial stock, bond, commodity…you name it…have highly interdependent relationships.</li>
+<li>Volatility is rarely constant and often has a structure (mean reversion) and is dependent on the past.</li>
+<li>Past shocks persist and may or may not dampen (rock in a pool).</li>
+<li>Extreme events are likely to happen with other extreme events.</li>
+<li>Negative returns are more likely than positive returns (left skew).</li>
+<li>One market’s volatility can spill over into another markets’s volatility further exacerbating persistent high aand low volatility.</li>
+</ul>
+<p>Many of these stylized facts are common to several areas of economic life and even more so to financial assets <span class="citation">(<span class="citeproc-not-found" data-reference-id="cont2000"><strong>???</strong></span>)</span>. Some of the mechanisms for persistent volatility include trading strategies (e.g., momentum and level trading). Others involve the digestion of information by traders who hedge versus those who speculate. Whatever the reasons, managers who depend on prices of purchased goods and services as well as receipts from customers, will see volatility in their earnings and cash flow.</p>
+</div>
+</div>
+<div id="building-the-stylized-facts" class="section level2">
+<h2><span class="header-section-number">4.2</span> Building the Stylized Facts</h2>
+<p>Examples from the 70s, 80s, and 90s have multiple intersecting global events influencing decision makers. We will load some computational help and some data from Brent, format dates, and create a time series object (package <code>zoo' will be needed by packages</code>fBasics<code>and</code>evir`):</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="kw">library</span>(fBasics)</a>
+<a class="sourceLine" id="cb211-2" title="2"><span class="kw">library</span>(evir)</a>
+<a class="sourceLine" id="cb211-3" title="3"><span class="kw">library</span>(qrmdata)</a>
+<a class="sourceLine" id="cb211-4" title="4"><span class="kw">library</span>(zoo)</a>
+<a class="sourceLine" id="cb211-5" title="5"><span class="kw">data</span>(OIL_Brent)</a>
+<a class="sourceLine" id="cb211-6" title="6"><span class="kw">str</span>(OIL_Brent)</a></code></pre></div>
+<pre><code>## An &#39;xts&#39; object on 1987-05-20/2015-12-28 containing:
+##   Data: num [1:7258, 1] 18.6 18.4 18.6 18.6 18.6 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : NULL
+##   ..$ : chr &quot;OIL_Brent&quot;
+##   Indexed by objects of class: [Date] TZ: UTC
+##   xts Attributes:  
+##  NULL</code></pre>
+<p>We will compute rates of change for Brent oil prices next.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1">Brent.price &lt;-<span class="st"> </span><span class="kw">as.zoo</span>(OIL_Brent)</a>
+<a class="sourceLine" id="cb213-2" title="2"><span class="kw">str</span>(Brent.price)</a></code></pre></div>
+<pre><code>## &#39;zoo&#39; series from 1987-05-20 to 2015-12-28
+##   Data: num [1:7258, 1] 18.6 18.4 18.6 18.6 18.6 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : NULL
+##   ..$ : chr &quot;OIL_Brent&quot;
+##   Index:  Date[1:7258], format: &quot;1987-05-20&quot; &quot;1987-05-21&quot; &quot;1987-05-22&quot; &quot;1987-05-25&quot; &quot;1987-05-26&quot; ...</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1">Brent.return &lt;-<span class="st"> </span><span class="kw">diff</span>(<span class="kw">log</span>(Brent.price))[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb215-2" title="2"><span class="kw">colnames</span>(Brent.return) &lt;-<span class="st"> &quot;Brent.return&quot;</span></a>
+<a class="sourceLine" id="cb215-3" title="3"><span class="kw">head</span>(Brent.return, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>##            Brent.return
+## 1987-05-22       0.5405
+## 1987-05-25       0.2692
+## 1987-05-26       0.1612
+## 1987-05-27      -0.1612
+## 1987-05-28       0.0000</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1"><span class="kw">tail</span>(Brent.return, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>##            Brent.return
+## 2015-12-21      -3.9395
+## 2015-12-22      -0.2266
+## 2015-12-23       1.4919
+## 2015-12-24       3.9178
+## 2015-12-28      -0.3769</code></pre>
+<p>Let’s look at this data with box plots and autocorrelation functions. Box plots will show minimum to maximum with the mean in the middle of the box. Autocorrelation plots will reveal how persistent the returns are over time.</p>
+<p>We run these statements.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1"><span class="kw">boxplot</span>(<span class="kw">as.vector</span>(Brent.return), <span class="dt">title =</span> <span class="ot">FALSE</span>, <span class="dt">main =</span> <span class="st">&quot;Brent Daily % Change&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</a>
+<a class="sourceLine" id="cb219-2" title="2"><span class="kw">skewness</span>(Brent.return)</a>
+<a class="sourceLine" id="cb219-3" title="3"><span class="kw">kurtosis</span>(Brent.return)</a></code></pre></div>
+<p>This time series plot shows lots of return clustering and spikes, especially negative ones.</p>
+<p>Performing some “eyeball econometrics” these clusters seem to occur around
+- The oil embargo of the ’70s
+- The height of the new interest rate regime of Paul Volcker at the Fed
+- “Black Monday” stock market crash in 1987
+- Gulf I
+- Barings and other derivatives business collapses in the ’90s</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Let’s look at the likelihood of positive versus negative returns. We might want to review skewness and kurtosis definitions and ranges to help us.</li>
+</ol>
+<p>Now to look at persistence:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">acf</span>(<span class="kw">coredata</span>(Brent.return), <span class="dt">main =</span> <span class="st">&quot;Brent Daily Autocorrelogram&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">20</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb220-2" title="2"><span class="kw">pacf</span>(<span class="kw">coredata</span>(Brent.return), <span class="dt">main =</span> <span class="st">&quot;Brent Daily Partial Autocorrelogram&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">20</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p>Confidence intervals are the red dashed lines. ACF at lag 6 means the correlation of current Brent returns with returns 6 trading days ago, including any correlations from trading day 1 through 6. PACF is simpler: it is the raw correlation between day 0 and day 6. ACF starts at lag 0 (today); PACF starts at lag 1 (yesterday).</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>How many trading days in a typical week or in a month? Comment on the spikes (blue lines that grow over or under the red dashed lines).</p></li>
+<li><p>How thick is that tail?</p></li>
+</ol>
+<p>Here is a first look:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="kw">boxplot</span>(<span class="kw">as.vector</span>(Brent.return), <span class="dt">title =</span> <span class="ot">FALSE</span>, <span class="dt">main =</span> <span class="st">&quot;Brent Daily Returns&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>, <span class="dt">pch =</span> <span class="dv">10</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>… with some basic stats to back up the eyeball econometrics in the box plot:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="kw">skewness</span>(Brent.return)</a></code></pre></div>
+<pre><code>## [1] -0.621
+## attr(,&quot;method&quot;)
+## [1] &quot;moment&quot;</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">kurtosis</span>(Brent.return)</a></code></pre></div>
+<pre><code>## [1] 14.62
+## attr(,&quot;method&quot;)
+## [1] &quot;excess&quot;</code></pre>
+<ul>
+<li>A negative skew means there are more observations less than the median than greater.</li>
+<li>This high a kurtosis means a pretty heavy tail, especially in negative returns. That means they have happened more often than positive returns.</li>
+<li>A preponderance of negative returns frequently happening spells trouble for anyone owning these assets.</li>
+</ul>
+<div id="implications" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Implications</h3>
+<ul>
+<li>We should recommend that management budget for the body of the distribution from the mean and out to positive levels.</li>
+<li>At the same time management should build a comprehensive playbook for the strong possibility that bad tail events frequently happen and might happen again (and why shouldn’t they?).</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Now for something really interesting</li>
+</ol>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="kw">acf</span>(<span class="kw">coredata</span>(Brent.return), <span class="dt">main =</span> <span class="st">&quot;Brent Autocorrelogram&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">20</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">pacf</span>(<span class="kw">coredata</span>(Brent.return), <span class="dt">main =</span> <span class="st">&quot;Brent Partial Autocorrelogram&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">20</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<p>On average there are 5 days in the trading week and 20 in the trading month.</p>
+<p>Some further thoughts:</p>
+<ul>
+<li>There seems to be positive weekly and negative monthly cycles.</li>
+<li>On a weekly basis negative rates (5 trading days ago) are followed by negative rates (today) and vice-versa with positive rates.</li>
+<li>On a monthly basis negative rates (20 days ago) are followed by positive rates (today).</li>
+<li>There is memory in the markets: positive correlation at least weekly up to a month ago reinforces the strong and frequently occurring negative rates (negative skew and leptokurtotic, a.k.a. heavy tails).</li>
+<li>Run the PACF for 60 days to see a 40-day negative correlation as well.</li>
+</ul>
+</div>
+<div id="now-for-somthing-really-interestingagain" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Now for somthing really interesting…again</h3>
+<p>Let’s look just at the size of the Brent returns. The absolute value of the returns (think of oil and countries entering and leaving the EU!) can signal contagion, herd mentality, and simply very large margin calls (and the collateral to back it all up!). Let’s run this code:</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1">Brent.return.abs &lt;-<span class="st">  </span><span class="kw">abs</span>(Brent.return) </a>
+<a class="sourceLine" id="cb228-2" title="2"><span class="co">## Trading position size matters</span></a>
+<a class="sourceLine" id="cb228-3" title="3">Brent.return.tail &lt;-<span class="st"> </span><span class="kw">tail</span>(Brent.return.abs[<span class="kw">order</span>(Brent.return.abs)], <span class="dv">100</span>)[<span class="dv">1</span>] </a>
+<a class="sourceLine" id="cb228-4" title="4"><span class="co">## Take just the first of the 100 observations and pick the first</span></a>
+<a class="sourceLine" id="cb228-5" title="5">index &lt;-<span class="st"> </span><span class="kw">which</span>(Brent.return.abs <span class="op">&gt;</span><span class="st"> </span>Brent.return.tail, <span class="dt">arr.ind =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb228-6" title="6"><span class="co">## Build an index of those sizes that exceed the heavy tail threshold</span></a>
+<a class="sourceLine" id="cb228-7" title="7">Brent.return.abs.tail &lt;-<span class="st"> </span><span class="kw">timeSeries</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(Brent.return)), <span class="dt">charvec =</span> <span class="kw">time</span>(Brent.return)) </a>
+<a class="sourceLine" id="cb228-8" title="8"><span class="co">## just a lot of zeros we will fill up next</span></a>
+<a class="sourceLine" id="cb228-9" title="9">Brent.return.abs.tail[index, <span class="dv">1</span>] &lt;-<span class="st"> </span>Brent.return.abs[index]</a>
+<a class="sourceLine" id="cb228-10" title="10"><span class="co">## A Phew! is in order</span></a></code></pre></div>
+<p>What did we do? Let’s run some plots next.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">plot</span>(Brent.return.abs, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Brent Daily Return Sizes&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<p>We see lots of return volatility – just in the pure size along. These are correlated with financial innovations from the ’80s and ’90s, as well as Gulf 1, Gulf 2, Great Recession, and its 9/11 antecedents.</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1"><span class="kw">acf</span>(<span class="kw">coredata</span>(Brent.return.abs), <span class="dt">main =</span> <span class="st">&quot;Brent Autocorrelogram&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">60</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1"><span class="kw">pacf</span>(<span class="kw">coredata</span>(Brent.return.abs), <span class="dt">main =</span> <span class="st">&quot;Brent Partial Autocorrelogram&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">60</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-121-2.png" width="672" /></p>
+<p>There is <em>Volatility Clustering</em> galore. Strong persistent lags of absolute movements in returns evidenced by the <code>ACF</code> plot. There is evidence of dampening with after shocks past trading 10 days 10 ago. Monthly volatility affects today’s performance.</p>
+<p>Some of this volatility arises from the way Brent is traded. It is lifted through well-heads in the North Sea. It then is scheduled for loading onto ships and loads are then bid, along with routes to destination. It takes about five days to load crude and another five to unload. At each partial loading and unloading, the crude is re-priced. Then there is the voyage lag itself, where paper claims to wet crude create further pricing, and volatility.</p>
+<p>Next we explore the relationships among financial variables.</p>
+</div>
+</div>
+<div id="getting-caught-in-the-cross-current" class="section level2">
+<h2><span class="header-section-number">4.3</span> Getting Caught in the Cross-Current</h2>
+<p>Now our job is to ask the really important questions around connectivity. Suppose we are banking our investments in certain sectors of an economy, with its GDP, financial capability, employment, exports and imports, and so on.</p>
+<ul>
+<li>How will we decide to contract for goods and services, segment vendors, segment customers, based on these interactions?</li>
+<li>How do we construct out portfolio of business opportunities?</li>
+<li>How do we identify insurgent and relational risks and build a playbook to manage these?</li>
+<li>How will changes in one sector’s factors (say, finance, political will) affect factors in another?</li>
+</ul>
+<p>We will now stretch our univariate analysis a bit and look at <em>cross-correlations</em> to help us get the ground truth around these relationships, and <em>begin</em> to answer some of these business questions in a more specific context.</p>
+<p>Let’s load the <code>zoo</code> and <code>qrmdata</code> libraries first and look at the <code>EuroStoxx50</code> data set. Here we can imagine we are rebuilding our brand and footprint in the European Union and United Kingdom. Our customers might be the companies based in these countries as our target market.</p>
+<ul>
+<li>The data: 4 stock exchange indices across Europe (and the United Kingdom)</li>
+<li>This will allow us to profile the forward capabilities of these companies across their economies.</li>
+<li>Again we will look at returns data using the <code>diff(log(data))[-1]</code> formula.</li>
+</ul>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1"><span class="kw">library</span>(zoo)</a>
+<a class="sourceLine" id="cb232-2" title="2"><span class="kw">library</span>(qrmdata)</a>
+<a class="sourceLine" id="cb232-3" title="3"><span class="kw">library</span>(xts)</a>
+<a class="sourceLine" id="cb232-4" title="4"><span class="kw">data</span>(<span class="st">&quot;EuStockMarkets&quot;</span>)</a>
+<a class="sourceLine" id="cb232-5" title="5">EuStockMarkets.price &lt;-<span class="st"> </span><span class="kw">as.zoo</span>(EuStockMarkets)</a>
+<a class="sourceLine" id="cb232-6" title="6">EuStockMarkets.return &lt;-<span class="st"> </span><span class="kw">diff</span>(<span class="kw">log</span>(EuStockMarkets.price))[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<p>We then plot price levels and returns.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="kw">plot</span>(EuStockMarkets.price, <span class="dt">xlab =</span> <span class="st">&quot; &quot;</span>, <span class="dt">main =</span> <span class="st">&quot; &quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="kw">plot</span>(EuStockMarkets.return, <span class="dt">xlab =</span> <span class="st">&quot; &quot;</span>, <span class="dt">main =</span> <span class="st">&quot; &quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-123-2.png" width="672" /></p>
+<p>We see much the same thing as Brent oil with volatility clustering and heavily weighted tails.</p>
+<p>Let’s then look at cross-correlations among one pair of these indices to see how they are related across time (lags) for returns and the absolute value of returns. THe function <code>ccf</code> will aid us tremendously.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1"><span class="kw">ccf</span>(EuStockMarkets.return[, <span class="dv">1</span>], EuStockMarkets.return[, <span class="dv">2</span>], <span class="dt">main =</span> <span class="st">&quot;Returns DAX vs. CAC&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">20</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="kw">ccf</span>(<span class="kw">abs</span>(EuStockMarkets.return[, <span class="dv">1</span>]), <span class="kw">abs</span>(EuStockMarkets.return[, <span class="dv">2</span>]), <span class="dt">main =</span> <span class="st">&quot;Absolute Returns DAX vs. CAC&quot;</span>, <span class="dt">lag.max =</span> <span class="dv">20</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">ci.col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-124-2.png" width="672" /></p>
+<p>We see some small raw correlations across time with raw returns. More revealing, we see volatility of correlation clustering using return sizes. We can conduct one more experiment: a rolling correlation using this function:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1">corr.rolling &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb237-2" title="2">  dim &lt;-<span class="st"> </span><span class="kw">ncol</span>(x)</a>
+<a class="sourceLine" id="cb237-3" title="3">  corr.r &lt;-<span class="st"> </span><span class="kw">cor</span>(x)[<span class="kw">lower.tri</span>(<span class="kw">diag</span>(dim), <span class="dt">diag =</span> <span class="ot">FALSE</span>)]</a>
+<a class="sourceLine" id="cb237-4" title="4">  <span class="kw">return</span>(corr.r)</a>
+<a class="sourceLine" id="cb237-5" title="5">}</a></code></pre></div>
+<p>We then embed our rolling correlation function, <code>corr.rolling</code>, into the function <code>rollapply</code> (look this one up using <code>??rollapply</code> at the console). The question we need to answer is: What is the history of correlations, and from the history, the pattern of correlations in the UK and EU stock markets? If there is a “history” with a “pattern,” then we have to manage the risk that conducting business in one country will definitely affect business in another. The implication is that bad things will be followed by more bad things more often than good things. The implication compounds a similar implication across markets.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1">corr.returns &lt;-<span class="st"> </span><span class="kw">rollapply</span>(EuStockMarkets.return, <span class="dt">width =</span> <span class="dv">250</span>, corr.rolling, <span class="dt">align =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">by.column =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb238-2" title="2"><span class="kw">colnames</span>(corr.returns) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DAX &amp; CAC&quot;</span>, <span class="st">&quot;DAX &amp; SMI&quot;</span>, <span class="st">&quot;DAX &amp; FTSE&quot;</span>, <span class="st">&quot;CAC &amp; SMI&quot;</span>, <span class="st">&quot;CAC &amp; FTSE&quot;</span>, <span class="st">&quot;SMI &amp; FTSE&quot;</span> )</a>
+<a class="sourceLine" id="cb238-3" title="3"><span class="kw">plot</span>(corr.returns, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p>Again we observe the volatility clustering from bunching up of the the absolute sizes of returns. Economic performance is certainly subject here to the same dynamics we saw for a single financial variable such as Brent.</p>
+<p>Let’s redo some of the work we just did using another set of techniques. This time we are using the “Fisher” transformation. Look up Fisher in Wikipedia and in your reference texts.</p>
+<ul>
+<li>How can the Fisher Transformation possibly help us answer our business questions?</li>
+<li>For three Spanish companies, Iberdrola, Endesa, and Repsol, replicate the Brent and EU stock market experiments above with absolute sizes and tails. Here we already have “series” covered.</li>
+</ul>
+<p>First, the Fisher transformation is a smoothing routine that helps us tabilize the volitility of a variate. It does this by pulling some of the shockiness (i.e., outliers and aberrant noise) out of the original time series. In a phrase, it helps us see the forest (or the wood) for the trees.</p>
+<p>We now replicate the Brent and EU stock exchange experiments. We again load some packages and get some data using <code>quantmod</code>’s <code>getSymbols</code> off the Madrid stock exchange to match our initial working example of Iberian companies on account. Then compute returns and merge into a master file.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1"><span class="kw">library</span>(xts)</a>
+<a class="sourceLine" id="cb239-2" title="2"><span class="kw">library</span>(qrmdata)</a>
+<a class="sourceLine" id="cb239-3" title="3"><span class="kw">library</span>(quantreg)</a>
+<a class="sourceLine" id="cb239-4" title="4"><span class="kw">library</span>(quantmod)</a>
+<a class="sourceLine" id="cb239-5" title="5"><span class="kw">library</span>(matrixStats)</a>
+<a class="sourceLine" id="cb239-6" title="6"></a>
+<a class="sourceLine" id="cb239-7" title="7">tickers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ELE.MC&quot;</span>, <span class="st">&quot;IBE.MC&quot;</span>, <span class="st">&quot;REP.MC&quot;</span>)</a>
+<a class="sourceLine" id="cb239-8" title="8"><span class="kw">getSymbols</span>(tickers)</a></code></pre></div>
+<pre><code>## [1] &quot;ELE.MC&quot; &quot;IBE.MC&quot; &quot;REP.MC&quot;</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1">REP.r &lt;-<span class="st"> </span><span class="kw">diff</span>(<span class="kw">log</span>(REP.MC[, <span class="dv">4</span>]))[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb241-2" title="2">IBE.r &lt;-<span class="st"> </span><span class="kw">diff</span>(<span class="kw">log</span>(IBE.MC[, <span class="dv">4</span>]))[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb241-3" title="3">ELE.r &lt;-<span class="st"> </span><span class="kw">diff</span>(<span class="kw">log</span>(ELE.MC[, <span class="dv">4</span>]))[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb241-4" title="4"></a>
+<a class="sourceLine" id="cb241-5" title="5">ALL.r &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">REP =</span> REP.r, <span class="dt">IBE =</span> IBE.r, <span class="dt">ELE =</span> ELE.r, <span class="dt">all =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Next we plot the returns and their absolute values, acf and pacf, all like we did in Brent. Again we see these <em>univariate stylized facts</em>:</p>
+<ol style="list-style-type: decimal">
+<li>The persistence of returns</li>
+<li>The importance of return size</li>
+<li>Clustering of volatility</li>
+</ol>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">plot</span>(ALL.r)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb243-2" title="2"><span class="kw">acf</span>(ALL.r)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-128-2.png" width="672" /></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb244-2" title="2"><span class="kw">acf</span>(<span class="kw">abs</span>(ALL.r))</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-128-3.png" width="672" /></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb245-2" title="2"><span class="kw">pacf</span>(ALL.r)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-128-4.png" width="672" /></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb246-2" title="2"><span class="kw">pacf</span>(<span class="kw">abs</span>(ALL.r))</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-128-5.png" width="672" /></p>
+<p>Let’s examine the correlation structure of markets where we can observe</p>
+<ol style="list-style-type: decimal">
+<li>The relationship between correlation and volatility</li>
+<li>How quantile regression gets us to an understanding of high stress (high and low quantile) episodes</li>
+</ol>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1">R.corr &lt;-<span class="st"> </span><span class="kw">apply.monthly</span>(ALL.r, <span class="dt">FUN =</span> cor)</a>
+<a class="sourceLine" id="cb247-2" title="2">R.vols &lt;-<span class="st"> </span><span class="kw">apply.monthly</span>(ALL.r, <span class="dt">FUN =</span> colSds) <span class="co">## from MatrixStats</span></a>
+<a class="sourceLine" id="cb247-3" title="3"><span class="kw">head</span>(R.corr, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##            [,1]   [,2]     [,3]   [,4] [,5]    [,6]     [,7]    [,8] [,9]
+## 2007-01-31    1 0.3614 -0.27541 0.3614    1 0.10414 -0.27541 0.10414    1
+## 2007-02-28    1 0.5662 -0.09856 0.5662    1 0.10760 -0.09856 0.10760    1
+## 2007-03-30    1 0.4501 -0.08875 0.4501    1 0.08538 -0.08875 0.08538    1</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">head</span>(R.vols, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##            REP.MC.Close IBE.MC.Close ELE.MC.Close
+## 2007-01-31     0.009788     0.007893     0.009777
+## 2007-02-28     0.009181     0.014572     0.007675
+## 2007-03-30     0.015317     0.012720     0.010919</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1">R.corr<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(R.corr[<span class="dv">1</span>,], <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb251-2" title="2"><span class="kw">rownames</span>(R.corr<span class="fl">.1</span>) &lt;-<span class="st"> </span>tickers</a>
+<a class="sourceLine" id="cb251-3" title="3"><span class="kw">colnames</span>(R.corr<span class="fl">.1</span>) &lt;-<span class="st"> </span>tickers</a>
+<a class="sourceLine" id="cb251-4" title="4"><span class="kw">head</span>(R.corr<span class="fl">.1</span>)</a></code></pre></div>
+<pre><code>##         ELE.MC IBE.MC  REP.MC
+## ELE.MC  1.0000 0.3614 -0.2754
+## IBE.MC  0.3614 1.0000  0.1041
+## REP.MC -0.2754 0.1041  1.0000</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1">R.corr &lt;-<span class="st"> </span>R.corr[, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>)]</a>
+<a class="sourceLine" id="cb253-2" title="2"><span class="kw">colnames</span>(R.corr) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ELE.IBE&quot;</span>, <span class="st">&quot;ELE.REP&quot;</span>, <span class="st">&quot;IBE.REP&quot;</span>)</a>
+<a class="sourceLine" id="cb253-3" title="3"><span class="kw">colnames</span>(R.vols) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ELE.vols&quot;</span>, <span class="st">&quot;IBE.vols&quot;</span>, <span class="st">&quot;REP.vols&quot;</span>)</a>
+<a class="sourceLine" id="cb253-4" title="4"><span class="kw">head</span>(R.corr, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##            ELE.IBE  ELE.REP IBE.REP
+## 2007-01-31  0.3614 -0.27541 0.10414
+## 2007-02-28  0.5662 -0.09856 0.10760
+## 2007-03-30  0.4501 -0.08875 0.08538</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">head</span>(R.vols, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##            ELE.vols IBE.vols REP.vols
+## 2007-01-31 0.009788 0.007893 0.009777
+## 2007-02-28 0.009181 0.014572 0.007675
+## 2007-03-30 0.015317 0.012720 0.010919</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1">R.corr.vols &lt;-<span class="st"> </span><span class="kw">merge</span>(R.corr, R.vols)</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="kw">plot.zoo</span>(<span class="kw">merge</span>(R.corr.vols))</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1">ELE.vols &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(R.corr.vols[,<span class="st">&quot;ELE.vols&quot;</span>])</a>
+<a class="sourceLine" id="cb259-2" title="2">IBE.vols &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(R.vols[,<span class="st">&quot;IBE.vols&quot;</span>])</a>
+<a class="sourceLine" id="cb259-3" title="3">REP.vols &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(R.vols[,<span class="st">&quot;REP.vols&quot;</span>])</a>
+<a class="sourceLine" id="cb259-4" title="4"><span class="kw">length</span>(ELE.vols)</a></code></pre></div>
+<pre><code>## [1] 156</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1">fisher &lt;-<span class="st"> </span><span class="cf">function</span>(r)</a>
+<a class="sourceLine" id="cb261-2" title="2">{<span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">log</span>((<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>r)<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>r))}</a>
+<a class="sourceLine" id="cb261-3" title="3">rho.fisher &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">fisher</span>(<span class="kw">as.numeric</span>(R.corr.vols[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])), <span class="dt">nrow =</span> <span class="kw">length</span>(ELE.vols), <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow=</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div id="on-to-quantiles" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> On to quantiles</h3>
+<p>Here is the quantile regression part of the story. Quantile regression finds the average relationship between dependent and independent variables just like ordinary least squares with one exception. Instead of centering the regression on the arithmetic mean of the dependent variable, quantile regression centers the regression on a specified quantile of the dependent variable. So instead of using the arithemetic average of the rolling correlations, we now use the 10th quantile, or the median, which is the 50th quantile as our reference. This makes great intuitive sense since we have already established that the series we deal with here are thick tailed, skewed, and certainly not normally distributed. This technique will allow us to examine the <em>multivariate stylized facts</em> of financial markets, especially the spillover from one market’s volatility into anothers through the mechanism of correlation of returns.</p>
+<p>Here is how we use the <code>quantreg</code> package.</p>
+<ol style="list-style-type: decimal">
+<li>We set <code>taus</code> as the quantiles of interest.</li>
+<li>We run the quantile regression using the <code>quantreg</code> package and a call to the <code>rq</code> function.</li>
+<li>We can overlay the quantile regression results onto the standard linear model regression.</li>
+<li>We can sensitize our analysis with the range of upper and lower bounds on the parameter estimates of the relationship between correlation and volatility. This sensitivity analysis is really a quantile-based confidence interval.</li>
+</ol>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1">taus &lt;-<span class="st"> </span><span class="kw">seq</span>(.<span class="dv">05</span>,.<span class="dv">95</span>,.<span class="dv">05</span>)</a>
+<a class="sourceLine" id="cb262-2" title="2">fit.rq.ELE.IBE &lt;-<span class="st"> </span><span class="kw">rq</span>(rho.fisher[,<span class="dv">1</span>] <span class="op">~</span><span class="st"> </span>ELE.vols, <span class="dt">tau =</span> taus)</a>
+<a class="sourceLine" id="cb262-3" title="3">fit.lm.ELE.IBE &lt;-<span class="st"> </span><span class="kw">lm</span>(rho.fisher[,<span class="dv">1</span>] <span class="op">~</span><span class="st"> </span>ELE.vols)</a>
+<a class="sourceLine" id="cb262-4" title="4"><span class="kw">plot</span>(<span class="kw">summary</span>(fit.rq.ELE.IBE), <span class="dt">parm =</span> <span class="st">&quot;ELE.vols&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p>Here we build the estimations and plot the upper and lower bounds.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1">taus1 &lt;-<span class="st"> </span><span class="kw">c</span>(.<span class="dv">05</span>, <span class="fl">.95</span>) <span class="co">## fit the confidence interval (CI)</span></a>
+<a class="sourceLine" id="cb263-2" title="2"><span class="kw">plot</span>(ELE.vols,rho.fisher[, <span class="dv">1</span>], <span class="dt">xlab=</span><span class="st">&quot;ELE.vol&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;ELE.IBE&quot;</span>)</a>
+<a class="sourceLine" id="cb263-3" title="3"><span class="kw">abline</span>(fit.lm.ELE.IBE, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb263-4" title="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(taus1)){ <span class="co">## these lines will be the CI</span></a>
+<a class="sourceLine" id="cb263-5" title="5">    <span class="kw">abline</span>(<span class="kw">rq</span>(rho.fisher[,<span class="dv">1</span>] <span class="op">~</span><span class="st"> </span>ELE.vols, <span class="dt">tau =</span> taus1[i]), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb263-6" title="6">}</a>
+<a class="sourceLine" id="cb263-7" title="7"><span class="kw">grid</span>()</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p>Quantile regression helps us to see the upper and lower bounds. Relationships between high-stress periods and correlation are abundant. These markets simply reflect normal buying behaviors across many types of exchanges: buying food at Safeway or Whole Foods, buying collateral to insure a project, selling off illiquid assets.</p>
+</div>
+</div>
+<div id="time-is-on-our-side" class="section level2">
+<h2><span class="header-section-number">4.4</span> Time is on our Side</h2>
+<p>Off to another important variable, the level and growth rate of Gross National Product. Let’s start with some US Gross National Product (GNP) data from the St. Louis Fed’s open data website (“FRED”). We build a <code>URL</code> using the <code>paste()</code> function.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1">name &lt;-<span class="st">  &quot;GNP&quot;</span></a>
+<a class="sourceLine" id="cb264-2" title="2">URL &lt;-<span class="st">  </span><span class="kw">paste</span>(<span class="st">&quot;http://research.stlouisfed.org/fred2/series/&quot;</span>, name,</a>
+<a class="sourceLine" id="cb264-3" title="3"><span class="st">&quot;/&quot;</span>, <span class="st">&quot;downloaddata/&quot;</span>, name, <span class="st">&quot;.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb264-4" title="4">download &lt;-<span class="st">  </span><span class="kw">read.csv</span>(URL)</a></code></pre></div>
+<p>Look at the data:</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="kw">hist</span>(download[,<span class="dv">2</span>])</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="kw">summary</span>(download[, <span class="dv">2</span>])</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     244     730    3616    6197   10632   21852</code></pre>
+<p>We create a raw time series object using the <code>ts</code> function where rownames are dates, select some data, and calculate growth rates. This will allow us and plotting functions to use the dates to index the data. Again we make use of the `diff(log(data))</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1">GNP &lt;-<span class="st"> </span><span class="kw">ts</span>(download[<span class="dv">1</span><span class="op">:</span><span class="dv">85</span>, <span class="dv">2</span>], <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1995</span>, <span class="dv">1</span>), <span class="dt">freq =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb268-2" title="2">GNP.rate &lt;-<span class="st">  </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">diff</span>(<span class="kw">log</span>(GNP)) <span class="co"># In percentage terms</span></a>
+<a class="sourceLine" id="cb268-3" title="3"><span class="kw">str</span>(GNP)</a></code></pre></div>
+<pre><code>##  Time-Series [1:85] from 1995 to 2016: 244 247 251 261 267 ...</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1"><span class="kw">head</span>(GNP)</a></code></pre></div>
+<pre><code>## [1] 244.1 247.1 250.7 261.0 267.1 274.0</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1"><span class="kw">head</span>(GNP.rate)</a></code></pre></div>
+<pre><code>## [1] 1.189 1.468 4.013 2.330 2.555 2.392</code></pre>
+<p>Let’s plot the GNP level and rate and comment on the patterns.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1"><span class="kw">plot</span>(GNP, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;US GNP Level&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="kw">plot</span>(GNP.rate, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;GNP quarterly growth rates&quot;</span>)</a>
+<a class="sourceLine" id="cb275-2" title="2"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-140-2.png" width="672" /></p>
+<p>We see a phenomenon called “nonstationarity.” The probability distribution (think <code>hist()</code>) would seem to change over time (many versions of a <code>hist()</code>). This means that the standard deviation and mean change as well (and higher moments such as skewness and kurtosis). There is trend in the level and simply dampened sinusoidal activity in the rate. In a nutshell we observe several distributions mixed together in this series.</p>
+<div id="forecasting-gnp" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Forecasting GNP</h3>
+<p>As always let’s look at ACF and PACF:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>)) <span class="co">##stacked up and down</span></a>
+<a class="sourceLine" id="cb276-2" title="2"><span class="kw">acf</span>(GNP.rate)</a>
+<a class="sourceLine" id="cb276-3" title="3"><span class="kw">acf</span>(<span class="kw">abs</span>(GNP.rate))</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co">##default setting</span></a></code></pre></div>
+<p>What do we think is going on? There are several significant autocorrelations within the last 4 quarters. Partial autocorrelation also indicates some possible relationship 8 quarters back.</p>
+<p>Let’s use <code>R</code>’s time series estimation and prediction tool <code>arima</code>. In this world we think there is a regression that looks like this:</p>
+<p><span class="math display">\[
+x_t = a_0 + a_1 x_{t-1} ... a_p x_{t-p} + b_1 \epsilon_{t-1} + ... + b_q \epsilon_{t-q}
+\]</span></p>
+<p>where <span class="math inline">\(x_t\)</span> is a first, <span class="math inline">\(d = 1\)</span>, differenced level of a variable, here GNP. There are <span class="math inline">\(p\)</span> lags of the rate itself and <span class="math inline">\(q\)</span> lags of residuals. We officially call this an <em>Autoregressive Integrated Moving Average</em> process of order <span class="math inline">\((p,d,q)\)</span>, or <code>ARIMA(p,d,q)</code> for short.</p>
+<p>Estimation is quick and easy.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1">fit.rate &lt;-<span class="st"> </span><span class="kw">arima</span>(GNP.rate, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a></code></pre></div>
+<p>The order is 2 lags of rates, 1 further difference (already differenced once when we calculated <code>diff(log(GNP))</code>), and 1 lag of residuals. Let’s diagnose the results with <code>tsdiag()</code>. What are the results?</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1">fit.rate</a></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = GNP.rate, order = c(2, 1, 1))
+## 
+## Coefficients:
+##          ar1    ar2    ma1
+##       -0.790  0.005  0.568
+## s.e.   0.421  0.203  0.405
+## 
+## sigma^2 estimated as 1.65:  log likelihood = -138.6,  aic = 285.3</code></pre>
+<p>Let’s take out the moving average term and compare:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1">fit.rate<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">arima</span>(GNP.rate, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb281-2" title="2">fit.rate<span class="fl">.2</span></a></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = GNP.rate, order = c(2, 0, 0))
+## 
+## Coefficients:
+##         ar1    ar2  intercept
+##       0.473  0.071      1.589
+## s.e.  0.109  0.109      0.279
+## 
+## sigma^2 estimated as 1.41:  log likelihood = -133.7,  aic = 275.5</code></pre>
+<p>We examine the residuals next.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p>The <code>qqnorm</code> function plots actual quantiles against theoretical quantile values from the normal distribution. A line through the scatterplot will reveal deviations of actual quantiles from the normal ones. Those deviations are the key to understanding tail behavior, and thus the potential influence of outliers, on our understanding of the data.</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" title="1"><span class="kw">qqnorm</span>(GNP.resid); <span class="kw">qqline</span>(GNP.resid)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p>Some ways to interpret the qq-chart include</p>
+<ol style="list-style-type: decimal">
+<li>The diagonal line is the normal distribution quantile line.</li>
+<li>Deviations of actual quantiles from the normal quantile line mean nonnormal.</li>
+<li>Especially deviations at either (or both) end of the line spell thick tails and lots more “shape” than the normal distribution allows.</li>
+</ol>
+</div>
+<div id="residuals-again" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Residuals again</h3>
+<p>How can we begin to diagnose the GNP residuals? Let’s use the ACF and the <code>moments</code> package to calculate <code>skewness</code> and <code>kurtosis</code>. We find that the series is very thick tailed and serially correlated as evidenced by the usual statistical suspects. But no volatility clustering.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1"><span class="kw">acf</span>(GNP.resid)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<p>Now let’s look at the absolute values of growth (i.e., GNP growth sizes). This will help us understand the time series aspects of the volatility of the GNP residuals.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" title="1"><span class="kw">acf</span>(<span class="kw">abs</span>(GNP.resid))</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<p>…and compute tail statistics.</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="kw">library</span>(moments)</a>
+<a class="sourceLine" id="cb286-2" title="2"><span class="kw">skewness</span>(GNP.resid)</a></code></pre></div>
+<pre><code>## [1] 0.4041
+## attr(,&quot;method&quot;)
+## [1] &quot;moment&quot;</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="kw">kurtosis</span>(GNP.resid)</a></code></pre></div>
+<pre><code>## [1] 0.3095
+## attr(,&quot;method&quot;)
+## [1] &quot;excess&quot;</code></pre>
+<p>The residuals are positively skewed and not so thick tailed, as the normal distribution has by definition a kurtosis equal to <code>3.00</code>. By the by: Where’s the forecast?</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" title="1">(GNP.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.rate, <span class="dt">n.ahead =</span> <span class="dv">8</span>))</a></code></pre></div>
+<pre><code>## $pred
+##       Qtr1  Qtr2  Qtr3  Qtr4
+## 2016       2.681 3.041 2.754
+## 2017 2.982 2.800 2.945 2.830
+## 2018 2.922                  
+## 
+## $se
+##       Qtr1  Qtr2  Qtr3  Qtr4
+## 2016       1.284 1.627 2.041
+## 2017 2.293 2.586 2.801 3.035
+## 2018 3.227</code></pre>
+<p>Now for something really interesting, yet another rendering of the notorious Efficient Markets Hypothesis.</p>
+</div>
+</div>
+<div id="give-it-the-boot" class="section level2">
+<h2><span class="header-section-number">4.5</span> Give it the Boot</h2>
+<p>Our goal is to infer the significance of a statistical relationship among variates. However, we do not have access to, or a “formula” does not exist, that allows us to compute the sample standard deviation of the mean estimator.</p>
+<ul>
+<li>The context is just how dependent is today’s stock return on yesterday’s?</li>
+<li>We want to use the distribution of real-world returns data, without
+needing assumptions about normality.</li>
+<li>The null hypothesis <span class="math inline">\(H_0\)</span> is lack of dependence (i.e., an efficient market). The alternative hypothesis <span class="math inline">\(H_1\)</span> is that today’s returns depend on past returns, on average.</li>
+</ul>
+<p>Our strategy is to change the data repeatedly, and re-estimate a relationship. The data is sampled using the <code>replicate</code> function, and the sample ACF is computed. This gives us the distribution of the coefficient of the ACF under the null hypotheses, <span class="math inline">\(H0\)</span>: independence, while using the empirical distribution of the returns data.</p>
+<p>Let’s use the Repsol returns and pull the 1st autocorrelation from the sample with this simple code,</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1"><span class="kw">acf</span>(REP.r, <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p>There is not much for us to see, barely a blip, but there is a correlation over the 95% line. Let’s further test this idea.</p>
+<ul>
+<li>We obtain 2500 draws from the distribution of the first autocorrelation using the <code>replicate</code> function.</li>
+<li>We operate under the null hypothesis of independence, assuming rational markets (i.e, rational markets is a “maintained hypothesis”).</li>
+</ul>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1016</span>)</a>
+<a class="sourceLine" id="cb293-2" title="2">acf.coeff.sim &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">2500</span>, <span class="kw">acf</span>(<span class="kw">sample</span>(REP.r, <span class="dt">size =</span> <span class="dv">2500</span>, <span class="dt">replace =</span> <span class="ot">FALSE</span>), <span class="dt">lag =</span> <span class="dv">1</span>, <span class="dt">plot=</span><span class="ot">FALSE</span>)<span class="op">$</span>acf[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb293-3" title="3"><span class="kw">summary</span>(acf.coeff.sim)</a></code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.05383  0.00741  0.02098  0.02129  0.03551  0.10260</code></pre>
+<p>Here is a plot of the distribution of the sample means of the one lag correlation between successive returns.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1"><span class="kw">hist</span>(acf.coeff.sim, <span class="dt">probability =</span> <span class="ot">TRUE</span>, <span class="dt">breaks =</span> <span class="st">&quot;FD&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(.<span class="dv">04</span>, <span class="fl">.05</span>), <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<div id="exercises" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Exercises</h3>
+<div id="exercise-1-leaning-against-the-wind" class="section level4">
+<h4><span class="header-section-number">4.5.1.1</span> Exercise 1: leaning against the wind</h4>
+<p>Download the stock prices of Tesla (NASDAQ: TSLA) and the Ford (NYSE: F). Calculate series of log price ratios for continuously compounded returns.</p>
+<ol style="list-style-type: decimal">
+<li><p>What are the univariate and multivariate stylized facts of these markets?</p></li>
+<li><p>If we were to put together a portfolio of these two assets, how would the stylized facts impact our allocations?</p></li>
+</ol>
+</div>
+<div id="exercise-2-inferring-patterns" class="section level4">
+<h4><span class="header-section-number">4.5.1.2</span> Exercise 2: inferring patterns</h4>
+<ol style="list-style-type: decimal">
+<li>Investigate tolerances of <span class="math inline">\(5\%\)</span> and <span class="math inline">\(1\%\)</span> from both ends of the distribution of the 1-lag acf coefficient using these statements. That was a mouthful! When we think of inference, we first identify a parameter of interest, and its estimator. That parameter is the coefficient of correlation between the current return and its 1-period lag. We estimate this parameter using the history of returns. If the parameter is significantly, and probably, not equal to zero, then we would have reason to believe there is “pattern” in the “history.”</li>
+</ol>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1"><span class="co">## At 95% tolerance level</span></a>
+<a class="sourceLine" id="cb296-2" title="2"><span class="kw">quantile</span>(acf.coeff.sim, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">025</span>,.<span class="dv">975</span>))</a></code></pre></div>
+<pre><code>##     2.5%    97.5% 
+## -0.02026  0.06252</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="co">## At 99% tolerance level</span></a>
+<a class="sourceLine" id="cb298-2" title="2"><span class="kw">quantile</span>(acf.coeff.sim, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">005</span>,.<span class="dv">995</span>))</a></code></pre></div>
+<pre><code>##     0.5%    99.5% 
+## -0.03300  0.07503</code></pre>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="co">## And the </span></a>
+<a class="sourceLine" id="cb300-2" title="2">(t.sim &lt;-<span class="st"> </span><span class="kw">mean</span>(acf.coeff.sim)<span class="op">/</span><span class="kw">sd</span>(acf.coeff.sim))</a></code></pre></div>
+<pre><code>## [1] 1.012</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1">(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(t.sim, <span class="dt">df =</span> <span class="dv">2</span>))</a></code></pre></div>
+<pre><code>## [1] 0.2089</code></pre>
+<p>Here are some highly preliminary and provisional answers to ponder.</p>
+<ol style="list-style-type: decimal">
+<li><p>Quantile values are very narrow…</p></li>
+<li><p>How narrow (feeling like rejecting the null hypothesis)?</p></li>
+<li><p>The t-stat is huge, but…</p></li>
+<li><p>…no buts!, the probability that we would be wrong to reject the null hypothesis is very small.</p></li>
+<li><p>Plot the simulated density and lower and upper quantiles, along with the estimate of the lag-1 coefficient:</p></li>
+</ol>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1"><span class="kw">plot</span>(<span class="kw">density</span>(acf.coeff.sim), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb304-2" title="2"><span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb304-3" title="3"><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">quantile</span>(acf.coeff.sim, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">025</span>,.<span class="dv">975</span>)), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb304-4" title="4"><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">acf</span>(REP.r, <span class="dv">1</span>, <span class="dt">plot=</span><span class="ot">FALSE</span>)<span class="op">$</span>acf[<span class="dv">2</span>], <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">4</span>, <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p>Can we reject the null hypothesis that the coefficient = 0? Is the market “efficient”?</p>
+<p>Here are some provisional answers:</p>
+<ol style="list-style-type: decimal">
+<li><p>Reject the null hypothesis since there is a less than 0.02% chance that the coefficient is zero.</p></li>
+<li><p>Read [Fama(2013, p. 365-367)]<a href="https://www.nobelprize.org/nobel_prizes/economic-sciences/laureates/2013/fama-lecture.pdf" class="uri">https://www.nobelprize.org/nobel_prizes/economic-sciences/laureates/2013/fama-lecture.pdf</a> for a diagnosis.</p></li>
+<li><p>If the model is correct (ACF lag-1) then the previous day’s return can predict today’s return according to our analysis. Thus the market would seem to be inefficient.</p></li>
+<li><p>This means we might be able to create a profitable trading strategy that makes use of the little bit of correlation we found to be significant (net of the costs of trading).</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="summary-2" class="section level2">
+<h2><span class="header-section-number">4.6</span> Summary</h2>
+<p>We explored time series data using ACF, PACF, and CCF. We showed how to pull data from Yahoo! and FRED. We characterized several stylized facts of financial returns and inferred behavior using a rolling correlation regression on volatility. We then supplemented the ordinary least squares regression confidence intervals using the entire distribution of the data with quantile regression. We also built Using bootstrapping techniques we simulated coefficient inference to check the efficient markets hypothesis. This, along with the quantile regression technique, allows us to examine risk tolerance from an inference point of view.</p>
+</div>
+<div id="further-reading-2" class="section level2">
+<h2><span class="header-section-number">4.7</span> Further Reading</h2>
+<p>In this chapter we touch on the voluminous topic of time series analysis as discussed in <span class="citation">Ruppert and Matteson (<a href="#ref-ruppert2015statistics" role="doc-biblioref">2015</a>)</span> : chapters 12, 13, 14, and 15 explore the basics, as in this chapter, as well as far more advanced topics such as GARCH and cointegration. We will explore GARCH in a later chapter as well. <span class="citation">McNeil, Frey, and Embrechts (<a href="#ref-mcneil2015quantitative" role="doc-biblioref">2015</a>)</span> . in their chapter 1 surveys the perspective of risk, all of whichhelps to yield the so-called stylized facts of financial data in chapter 5 and a more formal treatment of time series topics in chapter 4. It is always useful to read the user manuals and vignettes associated with the packages used. Here we can dip into <span class="citation">Zeileis, Grothendieck, and Ryan (<a href="#ref-R-zoo" role="doc-biblioref">2019</a>)</span>, <span class="citation">Hofert and Hornik (<a href="#ref-R-qrmdata" role="doc-biblioref">2016</a>)</span>, <span class="citation">Koenker (<a href="#ref-R-quantreg" role="doc-biblioref">2019</a>)</span>, <span class="citation">Pfaff and McNeil (<a href="#ref-R-evir" role="doc-biblioref">2018</a>)</span>, <span class="citation">Komsta and Novomestky (<a href="#ref-R-moments" role="doc-biblioref">2015</a>)</span>, and <span class="citation">Wuertz, Setz, and Chalabi (<a href="#ref-R-fBasics" role="doc-biblioref">2017</a>)</span> for more insights and examples.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-qrmdata">
+<p>Hofert, Marius, and Kurt Hornik. 2016. <em>Qrmdata: Data Sets for Quantitative Risk Management Practice</em>. <a href="https://CRAN.R-project.org/package=qrmdata">https://CRAN.R-project.org/package=qrmdata</a>.</p>
+</div>
+<div id="ref-R-quantreg">
+<p>Koenker, Roger. 2019. <em>Quantreg: Quantile Regression</em>. <a href="https://CRAN.R-project.org/package=quantreg">https://CRAN.R-project.org/package=quantreg</a>.</p>
+</div>
+<div id="ref-R-moments">
+<p>Komsta, Lukasz, and Frederick Novomestky. 2015. <em>Moments: Moments, Cumulants, Skewness, Kurtosis and Related Tests</em>. <a href="https://CRAN.R-project.org/package=moments">https://CRAN.R-project.org/package=moments</a>.</p>
+</div>
+<div id="ref-mcneil2015quantitative">
+<p>McNeil, A. J., R. Frey, and P. Embrechts. 2015. <em>Quantitative Risk Management: Concepts, Techniques and Tools - Revised Edition</em>. Princeton Series in Finance. Princeton University Press. <a href="https://books.google.com/books?id=SfJnBgAAQBAJ">https://books.google.com/books?id=SfJnBgAAQBAJ</a>.</p>
+</div>
+<div id="ref-R-evir">
+<p>Pfaff, Bernhard, and Alexander McNeil. 2018. <em>Evir: Extreme Values in R</em>. <a href="https://CRAN.R-project.org/package=evir">https://CRAN.R-project.org/package=evir</a>.</p>
+</div>
+<div id="ref-ruppert2015statistics">
+<p>Ruppert, D., and D. S. Matteson. 2015. <em>Statistics and Data Analysis for Financial Engineering: With R Examples</em>. Springer Texts in Statistics. Springer New York. <a href="https://books.google.com/books?id=9X19CAAAQBAJ">https://books.google.com/books?id=9X19CAAAQBAJ</a>.</p>
+</div>
+<div id="ref-R-fBasics">
+<p>Wuertz, Diethelm, Tobias Setz, and Yohan Chalabi. 2017. <em>FBasics: Rmetrics - Markets and Basic Statistics</em>. <a href="https://CRAN.R-project.org/package=fBasics">https://CRAN.R-project.org/package=fBasics</a>.</p>
+</div>
+<div id="ref-R-zoo">
+<p>Zeileis, Achim, Gabor Grothendieck, and Jeffrey A. Ryan. 2019. <em>Zoo: S3 Infrastructure for Regular and Irregular Time Series (Z’s Ordered Observations)</em>. <a href="https://CRAN.R-project.org/package=zoo">https://CRAN.R-project.org/package=zoo</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-data-modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="market-risk.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-macrofinancialdata.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
